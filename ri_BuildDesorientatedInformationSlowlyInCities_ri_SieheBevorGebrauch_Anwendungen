@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stadtwappen-Logo</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f4efe6;--ink:#2a2118;--muted:#7a6c5a;--red:#b3262e;--silver:#e9e6df;--gold:#c9a227;--line:#2a2118}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16130f;--ink:#f1e9da;--muted:#a69882;--red:#d23a42;--silver:#d8d4ca;--gold:#e0b93a;--line:#f1e9da}}
+:root[data-theme="dark"]{--bg:#16130f;--ink:#f1e9da;--muted:#a69882;--red:#d23a42;--silver:#d8d4ca;--gold:#e0b93a;--line:#f1e9da}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.stage{perspective:900px;width:min(60vw,260px);position:relative;margin-bottom:3.2rem}
+.tip{position:absolute;left:50%;top:92.8%;width:0;height:0;pointer-events:none}
+.bar{position:absolute;top:0;height:7px;border-radius:4px;border:1px solid rgba(128,128,128,.55)}
+.coin{animation:spin 8s linear infinite;transform-style:preserve-3d;filter:drop-shadow(0 12px 14px rgba(0,0,0,.35))}
+.coin svg{display:block;width:100%;height:auto}
+@keyframes spin{to{transform:rotateY(360deg)}}
+h1{margin:0;font-size:clamp(1.4rem,6vw,2rem);letter-spacing:.35em;text-transform:uppercase;padding-left:.35em}
+p{margin:0;color:var(--muted);font-size:.85rem;letter-spacing:.2em;text-transform:uppercase}
+@media (prefers-reduced-motion:reduce){.coin{animation-duration:30s}}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="coin">
+    <svg viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rotierendes Stadtwappen">
+      <!-- Mauerkrone -->
+      <g fill="var(--gold)" stroke="var(--line)" stroke-width="3" stroke-linejoin="round">
+        <path d="M45 52 V22 h14 v8 h14 v-8 h14 v8 h14 v-8 h14 v8 h14 v-8 h14 V52 Z"/>
+      </g>
+      <g fill="var(--line)"><rect x="62" y="36" width="8" height="12" rx="4"/><rect x="96" y="36" width="8" height="12" rx="4"/><rect x="130" y="36" width="8" height="12" rx="4"/></g>
+      <!-- Schild -->
+      <path d="M22 62 H178 V140 C178 188 140 214 100 232 C60 214 22 188 22 140 Z" fill="var(--silver)" stroke="var(--line)" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M100 62 H178 V140 C178 188 140 214 100 232 Z" fill="var(--red)"/>
+      <path d="M22 62 H178 V140 C178 188 140 214 100 232 C60 214 22 188 22 140 Z" fill="none" stroke="var(--line)" stroke-width="4" stroke-linejoin="round"/>
+      <!-- Turm -->
+      <g stroke="var(--line)" stroke-width="3" stroke-linejoin="round">
+        <path d="M72 175 V108 h10 v8 h12 v-8 h12 v8 h12 v-8 h10 V175 Z" fill="var(--gold)"/>
+        <path d="M90 175 V150 a10 10 0 0 1 20 0 V175 Z" fill="var(--line)"/>
+        <rect x="95" y="124" width="10" height="14" rx="5" fill="var(--line)"/>
+      </g>
+    </svg>
+  </div>
+  <div class="tip" id="tip"></div>
+</div>
+<h1 id="city">Stadt</h1>
+<p>Seit 1234</p>
+<script>
+const PAIRS=[["#d23a42","#111111"],["#ffffff","#111111"],["#ffffff","#f2c500"],["#ffffff","#1f9d55"],["#7b3fa0","#111111"],["#111111","#ffffff"],["#ffffff","#2a6fdb"],["#ffffff","#1f9d55"]];
+const MODE="Ro"; // "Ro" = alle links lang, "Re" = alle rechts lang, "Ri" = abwechselnd
+const tip=document.getElementById("tip"),SPIN=8000,STEP=SPIN/PAIRS.length;
+function emit(i){
+  const [a,b]=PAIRS[i],long=Math.min(innerWidth*0.42,170),short=long*0.35,leftLong=MODE==="Ro"||(MODE==="Ri"&&i%2===0);
+  const mk=(c,len,side)=>{const e=document.createElement("div");e.className="bar";e.style.background=c;e.style.width=len+"px";
+    e.style[side==="L"?"right":"left"]="0";e.style.transformOrigin=side==="L"?"right":"left";tip.appendChild(e);
+    const y=i*3;
+    e.animate([{transform:"translateY("+y+"px) scaleX(0)",opacity:1},{transform:"translateY("+(y+10)+"px) scaleX(1)",opacity:1,offset:.35},{transform:"translateY("+(y+34)+"px) scaleX(1)",opacity:0}],{duration:STEP*2.4,easing:"ease-out"}).onfinish=()=>e.remove();};
+  mk(a,leftLong?long:short,"L");mk(b,leftLong?short:long,"R");
+}
+let n=0;emit(n++%8);setInterval(()=>emit(n++%8),STEP);
+</script>
+</body>
+</html>
