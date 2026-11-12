@@ -5,6 +5,11 @@ PHPAbstürze Stromausfall StörungeRi IhreAltmodischeWissenschaftWirdMissbraucht
 
 IchHabeWerkzeugErstellt Richter InternationaleWerkzeugeInWissenschaftenHabeIchDurchschnittlichZerlegt MeinResultatFindenSieImFolgenden
 
+IchSchreibe InEinerSerienNummerForm
+Fallbeispiel WoEsAnwendungfindet
+1234 444 IBAN XXX6
+ISBN Barcode usw etc
+
 
 
 RaSysteme RaStrategien RaVerfahren RaAnwendungen RoSysteme RoStrategien RoVerfahren RoAnwendungen RiSysteme RiStrategien RiVerfahren RiAnwendungen ReSysteme ReStrategien ReVerfahren ReAnwendungen
