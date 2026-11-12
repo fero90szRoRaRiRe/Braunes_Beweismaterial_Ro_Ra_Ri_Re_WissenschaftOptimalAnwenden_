@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ri_Buergervolumen2</title>
+<style>
+:root{--bg:#0b0b10;--fg:#eee;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,sans-serif;overflow:hidden}
+canvas{display:block;touch-action:none}
+#leg{position:fixed;left:12px;top:calc(env(safe-area-inset-top,0px) + 10px);font-size:12px;line-height:1.6;pointer-events:none}
+#leg i{display:inline-block;width:11px;height:11px;margin-right:6px;vertical-align:-1px}
+#ctl{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 28px);display:flex;gap:8px;flex-wrap:wrap}
+#ctl button{background:#1c1c26;color:var(--fg);border:1px solid #555;border-radius:8px;padding:8px 12px;font-size:13px}
+#ctl button.on{background:#fff;color:#000}
+#note{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 8px);font-size:11px;opacity:.6;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="leg">
+<div><i style="background:#ff2030"></i>Ro: Systeme · Strategien · Verfahren · Anwendungen</div>
+<div><i style="background:#ffd800"></i>Ra</div>
+<div><i style="background:#2d8cff"></i>Ri</div>
+<div><i style="background:#9b30ff"></i>Re</div>
+<div id="cnt" style="margin-top:4px;opacity:.8"></div>
+</div>
+<div id="ctl"><button data-n="7784">7784 Bürger</button><button data-n="100000" class="on">100000 Bürger</button></div>
+<div id="note">Simulation: erfundene Punkte mit Zufallsverteilung, keine echten Personen oder Daten.</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const r=new THREE.WebGLRenderer({antialias:true});
+r.setSize(innerWidth,innerHeight);r.setPixelRatio(Math.min(devicePixelRatio,2));
+document.body.appendChild(r.domElement);
+const scene=new THREE.Scene();
+const cam=new THREE.PerspectiveCamera(50,innerWidth/innerHeight,0.1,200);
+const root=new THREE.Group();scene.add(root);
+const cols=[0xff2030,0xffd800,0x2d8cff,0x9b30ff];
+const MAX=100000;
+
+// Zuordnung: jeder Bürger hat unbewusst eine Hauptzelle k (0..15)
+const g=Array.from({length:16},()=>0.3+Math.random()**2);
+const gs=g.reduce((a,b)=>a+b,0);
+const cum=[];g.reduce((a,b,i)=>(cum[i]=a+b/gs),0);
+const cell=new Uint8Array(MAX);
+for(let i=0;i<MAX;i++){const x=Math.random();let k=0;while(k<15&&cum[k]<x)k++;cell[i]=k}
+
+// Positionen der 16 Zellvolumen (Gitter)
+const cellPos=[];
+for(let v=0;v<4;v++)for(let l=0;l<4;l++)cellPos.push(new THREE.Vector3((l-1.5)*2.6,-3.2,(v-1.5)*2.6+3));
+const cellMesh=[];
+for(let k=0;k<16;k++){
+  const v=k>>2;
+  const grp=new THREE.Group();
+  grp.add(new THREE.Mesh(new THREE.BoxGeometry(1,1,1),new THREE.MeshBasicMaterial({color:cols[v],transparent:true,opacity:0.4})));
+  grp.add(new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(1,1,1)),new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.5})));
+  grp.position.copy(cellPos[k]);root.add(grp);cellMesh.push(grp);
+}
+// Vier Hauptvolumen (Türme aus 4 Ebenen)
+const tower=[];
+for(let v=0;v<4;v++){
+  tower[v]=[];
+  for(let l=0;l<4;l++){
+    const m=new THREE.Group();
+    m.add(new THREE.Mesh(new THREE.BoxGeometry(2,1,2),new THREE.MeshBasicMaterial({color:cols[v],transparent:true,opacity:0.35+0.15*l})));
+    m.add(new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(2,1,2)),new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.6})));
+    m.position.x=(v-1.5)*3.4;m.position.z=-5;root.add(m);tower[v].push(m);
+  }
+}
+
+// Bürger als Punkte (Bewegung im Vertex-Shader)
+const sa=new Float32Array(MAX*3),ta=new Float32Array(MAX*3),ph=new Float32Array(MAX),cl=new Float32Array(MAX*3);
+const tmpc=cols.map(c=>new THREE.Color(c));
+for(let i=0;i<MAX;i++){
+  sa[i*3]=(Math.random()-.5)*16;sa[i*3+1]=(Math.random()-.5)*8;sa[i*3+2]=(Math.random()-.5)*16;
+  ph[i]=Math.random()*6.283;
+  const c=tmpc[cell[i]>>2];cl[i*3]=c.r;cl[i*3+1]=c.g;cl[i*3+2]=c.b;
+}
+const pg=new THREE.BufferGeometry();
+pg.setAttribute('position',new THREE.BufferAttribute(sa,3));
+pg.setAttribute('target',new THREE.BufferAttribute(ta,3));
+pg.setAttribute('phase',new THREE.BufferAttribute(ph,1));
+pg.setAttribute('col',new THREE.BufferAttribute(cl,3));
+const mat=new THREE.ShaderMaterial({
+  uniforms:{t:{value:0},sz:{value:Math.min(devicePixelRatio,2)}},
+  vertexShader:`attribute vec3 target;attribute float phase;attribute vec3 col;uniform float t;uniform float sz;varying vec3 c;
+  void main(){float f=0.5-0.5*cos(t*0.6+phase);vec3 p=mix(position,target,f);c=col;
+  vec4 mv=modelViewMatrix*vec4(p,1.0);gl_PointSize=1.6*sz;gl_Position=projectionMatrix*mv;}`,
+  fragmentShader:`varying vec3 c;void main(){gl_FragColor=vec4(c,0.8);}`,
+  transparent:true,depthWrite:false
+});
+root.add(new THREE.Points(pg,mat));
+
+function setN(N){
+  const cnt=new Array(16).fill(0);
+  for(let i=0;i<N;i++)cnt[cell[i]]++;
+  // Ziele pro Bürger: zufälliger Punkt im Zellvolumen
+  for(let k=0;k<16;k++){const s=0.3+2*Math.cbrt(cnt[k]/N*16)/2.5;cellMesh[k].scale.set(s,s,s);cellMesh[k].position.y=-3.8+s/2}
+  for(let i=0;i<MAX;i++){
+    const k=cell[i],s=cellMesh[k].scale.x,p=cellPos[k];
+    ta[i*3]=p.x+(Math.random()-.5)*s;ta[i*3+1]=cellMesh[k].position.y+(Math.random()-.5)*s;ta[i*3+2]=p.z+(Math.random()-.5)*s;
+  }
+  pg.attributes.target.needsUpdate=true;
+  pg.setDrawRange(0,N);
+  // Türme: Höhe nach Anteil
+  for(let v=0;v<4;v++){let y=-3.8;for(let l=0;l<4;l++){const h=0.2+cnt[v*4+l]/N*16*0.9;tower[v][l].scale.y=h;tower[v][l].position.y=y+h/2;y+=h+0.05}}
+  const fam=[0,0,0,0];cnt.forEach((c,k)=>fam[k>>2]+=c);
+  document.getElementById('cnt').textContent=N.toLocaleString('de-DE')+' Bürger · Ro '+fam[0]+' · Ra '+fam[1]+' · Ri '+fam[2]+' · Re '+fam[3];
+}
+setN(100000);
+document.querySelectorAll('#ctl button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#ctl button').forEach(x=>x.classList.remove('on'));b.classList.add('on');setN(+b.dataset.n);
+});
+
+let ry=0.4,rx=0.35,drag=false,px=0,py=0,dist=24;
+const el=r.domElement;
+el.addEventListener('pointerdown',e=>{drag=true;px=e.clientX;py=e.clientY});
+addEventListener('pointerup',()=>drag=false);
+addEventListener('pointermove',e=>{if(!drag)return;ry+=(e.clientX-px)*0.008;rx=Math.max(-1.4,Math.min(1.4,rx+(e.clientY-py)*0.008));px=e.clientX;py=e.clientY});
+el.addEventListener('wheel',e=>{dist=Math.max(10,Math.min(40,dist+e.deltaY*0.02))});
+addEventListener('resize',()=>{r.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()});
+const clock=new THREE.Clock();
+function loop(){
+  mat.uniforms.t.value=clock.getElapsedTime();
+  if(!drag)ry+=0.0015;
+  root.rotation.set(rx,ry,0);
+  cam.position.set(0,0,dist);cam.lookAt(0,0,0);
+  r.render(scene,cam);requestAnimationFrame(loop);
+}
+loop();
+</script>
+</body>
+</html>
