@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BMW M3 – Fahrer: Lenkrad und Hirnareale</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f4efe6;--ink:#2a2118;--muted:#7a6c5a;--map:#e6dfcf;--grid:#d3c9b3;--road:#8d8676;--line:#2a2118;--tire:#1b1a18;--rim:#c9c5bb;--car:#2a6fdb;--glass:#b9d3ee}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16130f;--ink:#f1e9da;--muted:#a69882;--map:#262119;--grid:#383124;--road:#3a352c;--line:#f1e9da;--tire:#0c0b0a;--rim:#9d998f;--car:#3a82f0;--glass:#35506e}}
+:root[data-theme="dark"]{--bg:#16130f;--ink:#f1e9da;--muted:#a69882;--map:#262119;--grid:#383124;--road:#3a352c;--line:#f1e9da;--tire:#0c0b0a;--rim:#9d998f;--car:#3a82f0;--glass:#35506e}
+*,*:before,*:after{box-sizing:inherit}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+body{min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:1rem;padding:1rem}
+h1{margin:0;font-size:clamp(1.2rem,5vw,1.7rem);letter-spacing:.25em;text-transform:uppercase;text-align:center}
+.sub{margin:0;color:var(--muted);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;text-align:center}
+.scene{width:min(92vw,480px);border-radius:14px;overflow:hidden;border:2px solid var(--line);background:var(--map)}
+.scene svg{display:block;width:100%;height:auto}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;width:min(92vw,480px)}
+.item{display:flex;align-items:center;gap:.6rem;padding:.5rem .6rem;border:1px solid var(--grid);border-radius:10px;opacity:.55;transition:opacity .25s,border-color .25s}
+.item.on{opacity:1;border-color:var(--ink)}
+.item b{font-size:1.1rem;min-width:1.8rem}
+.item small{display:block;color:var(--muted);font-size:.7rem;line-height:1.25}
+.item em{margin-left:auto;font:700 .9rem system-ui,sans-serif;font-style:normal}
+.chip{display:flex;width:34px;height:8px;border-radius:4px;overflow:hidden;border:1px solid rgba(128,128,128,.55)}
+.chip i{flex:1}
+.controls{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+button{font:inherit;border:1px solid var(--grid);background:var(--map);color:var(--ink);border-radius:9px;padding:.55rem .85rem;cursor:pointer}
+button:focus-visible{outline:2px solid #b3262e;outline-offset:3px}
+.note{width:min(92vw,480px);color:var(--muted);font:.78rem/1.45 system-ui,sans-serif;text-align:center;margin:0}
+</style>
+</head>
+<body>
+<h1>BMW M3 · Fahrer</h1>
+<p class="sub">Fahrer Ferhat Altun · Lenkrad und Hirnareale · Ro Ra Ri Re</p>
+
+<div class="scene">
+<svg id="svg" viewBox="0 0 480 450" role="img" aria-label="Schematische Seitenansicht eines Sportcoupés mit zwei rotierenden Rädern, die Muster auf die Fahrbahn stempeln">
+  <rect width="480" height="450" fill="var(--map)"/>
+  <rect y="215" width="480" height="75" fill="var(--road)"/>
+  <rect y="215" width="480" height="3" fill="var(--line)"/>
+  <!-- Karosserie -->
+  <path d="M40 188 V164 Q42 150 72 146 L150 140 Q176 108 218 102 L304 102 Q336 106 366 140 L426 148 Q448 154 450 174 V188 Z" fill="var(--car)" stroke="var(--line)" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M162 138 Q184 114 220 110 H250 V138 Z M260 110 H302 Q326 114 350 138 H260 Z" fill="var(--glass)" stroke="var(--line)" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M40 160 H22 V152 H44" fill="var(--car)" stroke="var(--line)" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="306" cy="123" r="8" fill="var(--ink)"/><path d="M290 138 Q292 130 306 130 Q320 130 322 138 Z" fill="var(--ink)"/>
+  <text x="306" y="94" text-anchor="middle" font-size="11" font-family="system-ui,sans-serif" font-weight="700" fill="var(--ink)">Fahrer: Ferhat Altun</text>
+  <path d="M258 138 V186" stroke="var(--line)" stroke-width="2" opacity=".6"/>
+  <rect x="436" y="164" width="14" height="8" rx="2" fill="#f2c500" stroke="var(--line)" stroke-width="1.5"/>
+  <rect x="40" y="162" width="8" height="8" rx="2" fill="#d23a42" stroke="var(--line)" stroke-width="1.5"/>
+  <!-- Radläufe -->
+  <circle cx="120" cy="185" r="37" fill="var(--map)" stroke="var(--line)" stroke-width="3"/>
+  <circle cx="350" cy="185" r="37" fill="var(--map)" stroke="var(--line)" stroke-width="3"/>
+  <g id="stamps"></g>
+  <rect y="292" width="480" height="158" fill="var(--map)"/><rect y="292" width="480" height="2" fill="var(--line)"/>
+  <g id="sw"><circle cx="110" cy="372" r="50" fill="none" stroke="var(--ink)" stroke-width="9"/>
+   <path d="M60 372H160M110 372V422" stroke="var(--ink)" stroke-width="8" stroke-linecap="round"/>
+   <circle cx="110" cy="372" r="11" fill="var(--car)" stroke="var(--ink)" stroke-width="2"/>
+   <rect x="105" y="316" width="10" height="14" rx="2" fill="#d23a42"/></g>
+  <text x="110" y="310" text-anchor="middle" font-size="11" font-family="system-ui,sans-serif" font-weight="700" fill="var(--ink)">Lenkrad <tspan id="ang">0°</tspan></text>
+  <text x="355" y="310" text-anchor="middle" font-size="11" font-family="system-ui,sans-serif" font-weight="700" fill="var(--ink)">Hirnareal-Approximation · Ferhat Altun</text>
+  <clipPath id="bc"><ellipse cx="355" cy="372" rx="95" ry="58"/></clipPath>
+  <g clip-path="url(#bc)">
+   <rect id="reg0" x="260" y="314" width="95" height="58" fill="#d23a42" fill-opacity=".2"/>
+   <rect id="reg1" x="355" y="314" width="95" height="58" fill="#f2c500" fill-opacity=".2"/>
+   <rect id="reg2" x="260" y="372" width="95" height="58" fill="#2a6fdb" fill-opacity=".2"/>
+   <rect id="reg3" x="355" y="372" width="95" height="58" fill="#1f9d55" fill-opacity=".2"/>
+   <path d="M270 345q12-14 24 0t24 0t24 0M262 372q14-12 28 0t28 0t28 0t28 0t28 0M272 400q12-12 24 0t24 0t24 0t24 0" fill="none" stroke="var(--ink)" stroke-width="1.5" opacity=".45"/>
+   <path d="M355 314V430M260 372H450" stroke="var(--ink)" stroke-width="1.5" opacity=".5"/>
+  </g>
+  <ellipse cx="355" cy="372" rx="95" ry="58" fill="none" stroke="var(--ink)" stroke-width="3"/>
+  <g font-size="9.5" font-family="system-ui,sans-serif" font-weight="700" text-anchor="middle" fill="var(--ink)" stroke="var(--map)" stroke-width="2.5" paint-order="stroke">
+   <text x="307" y="346">meinPatentRo</text><text x="403" y="346">meinPatentRa</text>
+   <text x="307" y="402">meinPatentRi</text><text x="403" y="402">meinPatentRe</text></g>
+  <g id="wR"></g>
+  <g id="wF"></g>
+  <text x="120" y="212" text-anchor="middle" font-size="10" font-family="system-ui,sans-serif" fill="var(--line)" opacity="0"></text>
+  <text x="8" y="239" font-size="11" font-family="system-ui,sans-serif" font-weight="700" fill="var(--ink)">VA</text>
+  <text x="8" y="259" font-size="11" font-family="system-ui,sans-serif" font-weight="700" fill="var(--ink)">HA</text>
+  <text x="472" y="284" text-anchor="end" font-size="10" font-family="system-ui,sans-serif" fill="var(--muted)">Ri_Input: Rad · Ri_System: Fahrwerk · Ri_Output: Fahrbahn</text>
+</svg>
+</div>
+
+<div class="legend" id="legend"></div>
+<div class="controls">
+  <button id="pause" type="button">Pause</button>
+  <button id="slower" type="button">Langsamer</button>
+  <button id="faster" type="button">Schneller</button>
+</div>
+<p class="note">Das Lenkrad folgt dem Muster der Vorderachse: Ro dreht nach links, Ra geradeaus, Ri wechselt links und rechts, Re dreht nach rechts. Die vier Hirnareale (meinPatentRo bis meinPatentRe) leuchten entsprechend auf. Die Hirnareale sind eine grobe schematische Näherung ohne neurowissenschaftlichen Anspruch. Jedes Rad (VA = Vorderachse, HA = Hinterachse) stempelt pro Umdrehung eine gestreckte Ro-Ra-Ri-Re-Information auf die Fahrbahn: Ro = links lang, Ra = beide gleich, Ri = abwechselnd, Re = rechts lang. Die Hinterachse ist um zwei Muster versetzt. Eigene schematische Zeichnung, kein Markenlogo; die Zuordnung zum Fahrverhalten ist ein Modell und enthält keine echten Daten.</p>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+const PAIRS=[["#d23a42","#111111"],["#ffffff","#111111"],["#ffffff","#f2c500"],["#ffffff","#1f9d55"],["#7b3fa0","#111111"],["#111111","#ffffff"],["#ffffff","#2a6fdb"],["#ffffff","#1f9d55"]];
+const NAMES=["Ro","Ra","Ri","Re"];
+const TEXT=["Linkskurve (links lang)","Geradeaus (beide gleich)","Spurwechsel (abwechselnd)","Rechtskurve (rechts lang)"];
+const counts=[0,0,0,0];
+const legend=document.getElementById("legend"),stampsG=document.getElementById("stamps");
+NAMES.forEach((n,k)=>{
+ const chips=[k,k+4].map(i=>'<span class="chip"><i style="background:'+PAIRS[i][0]+'"></i><i style="background:'+PAIRS[i][1]+'"></i></span>').join("");
+ legend.insertAdjacentHTML("beforeend",'<div class="item" id="it'+k+'"><b>'+n+'</b><div>'+chips+'</div><small>'+TEXT[k]+'<br>meinPatent'+n+'</small><em id="c'+k+'">0</em></div>');
+});
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const a in attrs)e.setAttribute(a,attrs[a]);parent&&parent.appendChild(e);return e}
+function mkWheel(g,cx){
+ const w=el("g",{},g);
+ el("circle",{cx,cy:185,r:30,fill:"var(--tire)",stroke:"#555","stroke-width":1.5},w);
+ for(let i=0;i<20;i++)el("rect",{x:cx-2.5,y:156,width:5,height:6,rx:1,fill:"#555",transform:"rotate("+i*18+" "+cx+" 185)"},w);
+ el("circle",{cx,cy:185,r:19,fill:"var(--rim)",stroke:"#555","stroke-width":1.5},w);
+ for(let i=0;i<5;i++)el("path",{d:"M"+cx+" 185V169",stroke:"#555","stroke-width":4,"stroke-linecap":"round",transform:"rotate("+i*72+" "+cx+" 185)"},w);
+ el("circle",{cx,cy:185,r:4,fill:"#555"},w);
+ el("rect",{x:cx-3,y:211-30+30-6,width:6,height:7,rx:1,fill:"#d23a42"},w); // rote Markierung unten
+ return w;
+}
+const wheels=[
+ {cx:350,y:230,g:mkWheel(document.getElementById("wF"),350),angle:0,n:0},
+ {cx:120,y:250,g:mkWheel(document.getElementById("wR"),120),angle:180,n:2}
+];
+const R=30,CIRC=2*Math.PI*R;
+let steer=0,target=0,riSign=1;
+function drive(k){
+ if(k===0)target=-90;else if(k===1)target=0;else if(k===2){target=70*riSign;riSign=-riSign}else target=90;
+ for(let j=0;j<4;j++)document.getElementById('reg'+j).setAttribute('fill-opacity',j===k?.95:.2);
+}
+let speed=1,running=true,stamps=[],last=performance.now();
+const BASE=CIRC/1.8;
+function emit(w){
+ const n=w.n,k=n%4,[a,b]=PAIRS[n%8],long=70,short=20;
+ let L,Rr;
+ if(k===0){L=long;Rr=short}
+ else if(k===1){L=Rr=(long+short)/2}
+ else if(k===2){const f=Math.floor(n/4)%2===0;L=f?long:short;Rr=f?short:long}
+ else{L=short;Rr=long}
+ const g=el("g",{},stampsG);
+ el("rect",{x:-L,y:w.y-3,width:L,height:7,rx:3.5,fill:a,stroke:"#808080","stroke-width":1},g);
+ el("rect",{x:0,y:w.y-3,width:Rr,height:7,rx:3.5,fill:b,stroke:"#808080","stroke-width":1},g);
+ stamps.push({g,x:w.cx});
+ document.querySelectorAll(".item").forEach((e,j)=>e.classList.toggle("on",j===k));
+ counts[k]++;document.getElementById("c"+k).textContent=counts[k];
+ if(w===wheels[0])drive(k);
+ w.n++;
+}
+function frame(t){
+ const dt=Math.min(.05,(t-last)/1000);last=t;
+ if(running){
+  const v=BASE*speed,dA=v*dt/R*180/Math.PI;
+  wheels.forEach(w=>{
+   const prev=w.angle;w.angle+=dA;
+   if(Math.floor(w.angle/360)>Math.floor(prev/360))emit(w);
+   w.g.setAttribute("transform","rotate("+w.angle+" "+w.cx+" 185)");
+  });
+  steer+=(target-steer)*Math.min(1,dt*3*speed);
+  document.getElementById('sw').setAttribute('transform','rotate('+steer+' 110 372)');
+  document.getElementById('ang').textContent=Math.round(steer)+'°';
+  stamps.forEach(s=>{s.x-=v*dt;s.g.setAttribute("transform","translate("+s.x+" 0)")});
+  stamps=stamps.filter(s=>{if(s.x<-100){s.g.remove();return false}return true});
+ }
+ requestAnimationFrame(frame);
+}
+if(matchMedia("(prefers-reduced-motion:reduce)").matches)speed=.35;
+wheels.forEach(w=>{w.g.setAttribute("transform","rotate("+w.angle+" "+w.cx+" 185)")});
+requestAnimationFrame(frame);
+document.getElementById("pause").addEventListener("click",e=>{running=!running;e.currentTarget.textContent=running?"Pause":"Weiter"});
+document.getElementById("slower").addEventListener("click",()=>{speed=Math.max(.2,speed/1.3)});
+document.getElementById("faster").addEventListener("click",()=>{speed=Math.min(4,speed*1.3)});
+</script>
+</body>
+</html>
