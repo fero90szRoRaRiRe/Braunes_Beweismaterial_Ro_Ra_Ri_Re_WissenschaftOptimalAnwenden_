@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#171713">
+<title>Salzgitter – rotierendes Wappen</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f4efe6;--ink:#2a2118;--muted:#7a6c5a;--map:#e6dfcf;--grid:#d3c9b3;--road:#fffaf0;--hole:#b9ae96;--city:#f8f3e8;--water:#9cc3e0;--red:#b3262e;--silver:#e9e6df;--gold:#c9a227;--line:#2a2118}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16130f;--ink:#f1e9da;--muted:#a69882;--map:#262119;--grid:#383124;--road:#3a3326;--hole:#0e0c09;--city:#3b3427;--water:#2d5372;--red:#d23a42;--silver:#d8d4ca;--gold:#e0b93a;--line:#f1e9da}}
+:root[data-theme="dark"]{--bg:#16130f;--ink:#f1e9da;--muted:#a69882;--map:#262119;--grid:#383124;--road:#3a3326;--hole:#0e0c09;--city:#3b3427;--water:#2d5372;--red:#d23a42;--silver:#d8d4ca;--gold:#e0b93a;--line:#f1e9da}
+*,*:before,*:after{box-sizing:inherit}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+body{min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:1rem;padding:1rem}
+h1{margin:0;font-size:clamp(1.3rem,5vw,1.8rem);letter-spacing:.3em;text-transform:uppercase;padding-left:.3em;text-align:center}
+.sub{margin:0;color:var(--muted);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;text-align:center}
+.map{position:relative;width:min(92vw,480px);aspect-ratio:1;border-radius:14px;overflow:hidden;border:2px solid var(--line)}
+.map>svg{position:absolute;inset:0;width:100%;height:100%}
+.stage{position:absolute;left:12.5%;top:12.5%;width:75%;height:75%;perspective:1000px}
+.coin{width:100%;height:100%;animation:spin 8s linear infinite;transform-style:preserve-3d;filter:drop-shadow(0 10px 10px rgba(0,0,0,.4))}
+.coin svg{width:100%;height:100%;display:block}
+@keyframes spin{to{transform:rotateY(360deg)}}
+.tip{position:absolute;left:50%;top:94.7%;width:0;height:0;pointer-events:none}
+.bar{position:absolute;top:0;height:6px;border-radius:3px;border:1px solid rgba(128,128,128,.55)}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;width:min(92vw,480px)}
+.item{display:flex;align-items:center;gap:.6rem;padding:.5rem .6rem;border:1px solid var(--grid);border-radius:10px;opacity:.55;transition:opacity .25s,border-color .25s}
+.item.on{opacity:1;border-color:var(--ink)}
+.item b{font-size:1.1rem;min-width:1.8rem}
+.item small{display:block;color:var(--muted);font-size:.7rem;line-height:1.25}
+.chips{display:flex;flex-direction:column;gap:3px}
+.chip{display:flex;width:34px;height:8px;border-radius:4px;overflow:hidden;border:1px solid rgba(128,128,128,.55)}
+.chip i{flex:1}
+.note{width:min(92vw,480px);color:var(--muted);font: .78rem/1.45 system-ui,sans-serif;text-align:center}
+.controls{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+button{font:inherit;border:1px solid var(--grid);background:var(--map);color:var(--ink);border-radius:9px;padding:.55rem .85rem;cursor:pointer}
+button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.coin{animation-duration:30s}}
+</style>
+</head>
+<body>
+<h1>Salzgitter</h1>
+<p class="sub">Stadtwappen · rotierende Darstellung</p>
+
+<div class="map">
+  <svg viewBox="0 0 400 400" preserveAspectRatio="none" aria-hidden="true">
+    <rect width="400" height="400" fill="var(--map)"/>
+    <g stroke="var(--grid)" stroke-width="1">
+      <path d="M0 50H400M0 100H400M0 150H400M0 200H400M0 250H400M0 300H400M0 350H400M50 0V400M100 0V400M150 0V400M200 0V400M250 0V400M300 0V400M350 0V400"/>
+    </g>
+    <g stroke="var(--road)" stroke-width="5" fill="none" stroke-linecap="round">
+      <path d="M0 120 C120 150 260 90 400 130"/>
+      <path d="M60 400 C140 260 250 180 340 0"/>
+      <path d="M0 300 C140 280 260 340 400 290"/>
+    </g>
+    <path d="M42 78 L104 48 162 62 210 42 278 66 340 90 356 150 344 215 365 265 320 330 260 352 208 370 145 345 88 350 46 292 57 226 32 164Z"
+      fill="var(--hole)" opacity=".9"/>
+  </svg>
+
+  <div class="stage">
+    <div class="coin">
+      <svg viewBox="0 0 300 300" role="img" aria-label="Schematische Darstellung des Stadtwappens von Salzgitter">
+        <!-- Rotes Wappenfeld -->
+        <path d="M35 24 H265 V156 C265 224 214 266 150 288 C86 266 35 224 35 156 Z"
+          fill="#c92332" stroke="#2a2118" stroke-width="5" stroke-linejoin="round"/>
+
+        <!-- Zwei goldene Ähren flankieren den Hochofen -->
+        <g fill="none" stroke="#e4b52e" stroke-width="5" stroke-linecap="round">
+          <path d="M78 166 Q65 110 79 66 M222 166 Q235 110 221 66"/>
+        </g>
+        <g fill="#e4b52e" stroke="#2a2118" stroke-width="1.2">
+          <ellipse cx="72" cy="78" rx="5" ry="10" transform="rotate(-35 72 78)"/>
+          <ellipse cx="84" cy="92" rx="5" ry="10" transform="rotate(35 84 92)"/>
+          <ellipse cx="70" cy="106" rx="5" ry="10" transform="rotate(-35 70 106)"/>
+          <ellipse cx="86" cy="120" rx="5" ry="10" transform="rotate(35 86 120)"/>
+          <ellipse cx="74" cy="135" rx="5" ry="10" transform="rotate(-30 74 135)"/>
+          <ellipse cx="228" cy="78" rx="5" ry="10" transform="rotate(35 228 78)"/>
+          <ellipse cx="216" cy="92" rx="5" ry="10" transform="rotate(-35 216 92)"/>
+          <ellipse cx="230" cy="106" rx="5" ry="10" transform="rotate(35 230 106)"/>
+          <ellipse cx="214" cy="120" rx="5" ry="10" transform="rotate(-35 214 120)"/>
+          <ellipse cx="226" cy="135" rx="5" ry="10" transform="rotate(30 226 135)"/>
+        </g>
+
+        <!-- Silberner Hochofen, über der Zinnenmauer wachsend -->
+        <g fill="#e9e6df" stroke="#2a2118" stroke-width="3" stroke-linejoin="round">
+          <path d="M118 153 L125 100 L137 79 L137 54 L163 54 L163 79 L175 100 L182 153 Z"/>
+          <path d="M137 54 V35 H163 V54 Z"/>
+          <path d="M130 101 H170 L176 153 H124 Z" fill="#d8d4ca"/>
+          <path d="M141 119 H159 V153 H141 Z" fill="#2a2118"/>
+        </g>
+
+        <!-- Silberne Zinnenmauer mit erhöhtem Giebel -->
+        <path d="M48 157 H69 V146 H89 V157 H108 V146 H128 V157
+                 H150 L174 136 L196 157 H212 V146 H232 V157 H252
+                 V210 H48 Z"
+          fill="#e9e6df" stroke="#2a2118" stroke-width="4" stroke-linejoin="round"/>
+        <g stroke="#2a2118" stroke-width="2" opacity=".65">
+          <path d="M82 161 V208 M115 161 V208 M185 161 V208 M218 161 V208"/>
+          <path d="M51 181 H249 M51 201 H249"/>
+        </g>
+
+        <!-- Grüner Schild mit goldener Spitze: obere grüne Hälfte mit Salzhaken -->
+        <path d="M103 174 H197 V225 L150 258 L103 225 Z"
+          fill="#23864c" stroke="#2a2118" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M103 225 L150 258 L197 225 V251 L150 279 L103 251 Z"
+          fill="#e4b52e" stroke="#2a2118" stroke-width="3" stroke-linejoin="round"/>
+
+        <!-- Zwei silberne Salzhaken -->
+        <g fill="none" stroke="#e9e6df" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M127 188 V211 Q127 220 136 220 Q142 220 142 213"/>
+          <path d="M173 188 V211 Q173 220 164 220 Q158 220 158 213"/>
+        </g>
+
+        <!-- Schwarzes Schlägel-und-Eisen-Symbol auf goldener Spitze -->
+        <g stroke="#17130f" stroke-width="6" stroke-linecap="round" fill="none">
+          <path d="M136 238 L164 260 M164 238 L136 260"/>
+        </g>
+        <g fill="#17130f">
+          <path d="M128 231 L140 235 L135 244 L123 240 Z"/>
+          <path d="M160 255 L169 249 L177 257 L168 265 Z"/>
+        </g>
+      </svg>
+    </div>
+    <div class="tip" id="tip"></div>
+  </div>
+</div>
+
+<div class="legend" id="legend"></div>
+<div class="controls">
+  <button id="pause" type="button">Pause</button>
+  <button id="slower" type="button">Langsamer</button>
+  <button id="faster" type="button">Schneller</button>
+</div>
+<p class="note">Schematische, eigens gezeichnete Illustration anhand der amtlichen Wappenbeschreibung. Keine amtliche Wappenreproduktion. Die Stadt Salzgitter weist darauf hin, dass die Verwendung ihres Stadtwappens grundsätzlich einer ausdrücklichen Genehmigung bedarf.</p>
+<p class="note">Amtliche Wappenbeschreibung: <a href="https://www.salzgitter.de/rathaus/rat/stadtwappen" target="_blank" rel="noopener" style="color:inherit">Stadt Salzgitter – Stadtwappen</a>.</p>
+
+<script>
+const PAIRS=[["#d23a42","#111111"],["#ffffff","#111111"],["#ffffff","#f2c500"],["#ffffff","#1f9d55"],["#7b3fa0","#111111"],["#111111","#ffffff"],["#ffffff","#2a6fdb"],["#ffffff","#1f9d55"]];
+const MODE="Ri"; // "Ro" = links lang, "Ri" = abwechselnd, "Legende" = Phasenlogik
+const NAMES=["Ro","Ra","Ri","Re"];
+const TEXT=["links lang","beide gleich lang","abwechselnd","rechts lang"];
+const tip=document.getElementById("tip"),legend=document.getElementById("legend");
+const SPIN=8000,STEP=SPIN/PAIRS.length;
+NAMES.forEach((n,k)=>{
+ const chips=[k,k+4].map(i=>'<span class="chip"><i style="background:'+PAIRS[i][0]+'"></i><i style="background:'+PAIRS[i][1]+'"></i></span>').join("");
+ legend.insertAdjacentHTML("beforeend",'<div class="item" id="it'+k+'"><b>'+n+'</b><div class="chips">'+chips+'</div><small>'+TEXT[k]+'</small></div>');
+});
+function emit(i){
+ const k=i%4,[a,b]=PAIRS[i],map=tip.closest(".map").clientWidth,long=map*.34,short=long*.35;
+ let L,R;
+ if(k===0){L=long;R=short}
+ else if(k===1){L=R=(long+short)/2}
+ else if(k===2){const f=Math.floor(i/4)%2===0;L=f?long:short;R=f?short:long}
+ else{L=short;R=long}
+ if(MODE==="Ro"){L=long;R=short}
+ if(MODE==="Ri"){const f=i%2===0;L=f?long:short;R=f?short:long}
+ document.querySelectorAll(".item").forEach((e,j)=>e.classList.toggle("on",j===k));
+ const mk=(c,len,side)=>{
+  const e=document.createElement("div");e.className="bar";e.style.background=c;e.style.width=len+"px";
+  e.style[side==="L"?"right":"left"]="0";e.style.transformOrigin=side==="L"?"right":"left";tip.appendChild(e);
+  const y=i*2;
+  e.animate([{transform:"translateY("+y+"px) scaleX(0)",opacity:1},{transform:"translateY("+(y+8)+"px) scaleX(1)",opacity:1,offset:.35},{transform:"translateY("+(y+26)+"px) scaleX(1)",opacity:0}],{duration:STEP*2.4,easing:"ease-out"}).onfinish=()=>e.remove();
+ };
+ mk(a,L,"L");mk(b,R,"R");
+}
+let n=0,timer=null,delay=STEP;
+function start(){if(timer)return;timer=setInterval(()=>emit(n++%8),delay)}
+function stop(){clearInterval(timer);timer=null}
+function restart(){stop();start()}
+emit(n++%8);start();
+document.getElementById("pause").addEventListener("click",e=>{
+ if(timer){stop();e.currentTarget.textContent="Weiter"}else{start();e.currentTarget.textContent="Pause"}
+});
+document.getElementById("slower").addEventListener("click",()=>{delay=Math.min(4000,delay*1.25);restart()});
+document.getElementById("faster").addEventListener("click",()=>{delay=Math.max(250,delay/1.25);restart()});
+</script>
+</body>
+</html>
