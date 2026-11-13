@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#171713">
+<title>Rotierende Tablette – Explosion bei jeder Streckung</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f4efe6;--ink:#2a2118;--muted:#7a6c5a;--map:#e6dfcf;--grid:#d3c9b3;--road:#fffaf0;--hole:#b9ae96;--line:#2a2118}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16130f;--ink:#f1e9da;--muted:#a69882;--map:#262119;--grid:#383124;--road:#3a3326;--hole:#0e0c09;--line:#f1e9da}}
+:root[data-theme="dark"]{--bg:#16130f;--ink:#f1e9da;--muted:#a69882;--map:#262119;--grid:#383124;--road:#3a3326;--hole:#0e0c09;--line:#f1e9da}
+*,*:before,*:after{box-sizing:inherit}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+body{min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:1rem;padding:1rem}
+h1{margin:0;font-size:clamp(1.3rem,5vw,1.8rem);letter-spacing:.3em;text-transform:uppercase;padding-left:.3em;text-align:center}
+.sub{margin:0;color:var(--muted);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;text-align:center}
+.map{position:relative;width:min(92vw,480px);aspect-ratio:1;border-radius:14px;overflow:hidden;border:2px solid var(--line)}
+.map>svg{position:absolute;inset:0;width:100%;height:100%}
+.stage{position:absolute;left:12.5%;top:12.5%;width:75%;height:75%;perspective:1000px}
+.coin{position:relative;width:100%;height:100%;animation:spin 8s linear infinite;transform-style:preserve-3d;filter:drop-shadow(0 10px 10px rgba(0,0,0,.4))}
+.layer{position:absolute;inset:0}
+.layer svg{width:100%;height:100%;display:block}
+@keyframes spin{to{transform:rotateY(360deg)}}
+.tip{position:absolute;left:50%;top:94.7%;width:0;height:0;pointer-events:none}
+.bar{position:absolute;top:0;height:6px;border-radius:3px;border:1px solid rgba(128,128,128,.55)}
+.boom{position:absolute;width:76px;height:76px;margin-left:-38px;transform-origin:50% 0}
+.boom svg{width:100%;height:100%;overflow:visible;display:block}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;width:min(92vw,480px)}
+.item{display:flex;align-items:center;gap:.6rem;padding:.5rem .6rem;border:1px solid var(--grid);border-radius:10px;opacity:.55;transition:opacity .25s,border-color .25s}
+.item.on{opacity:1;border-color:var(--ink)}
+.item b{font-size:1.1rem;min-width:1.8rem}
+.item small{display:block;color:var(--muted);font-size:.7rem;line-height:1.25}
+.chips{display:flex;flex-direction:column;gap:3px}
+.chip{display:flex;width:34px;height:8px;border-radius:4px;overflow:hidden;border:1px solid rgba(128,128,128,.55)}
+.chip i{flex:1}
+.note{width:min(92vw,480px);color:var(--muted);font:.78rem/1.45 system-ui,sans-serif;text-align:center}
+.controls{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+button{font:inherit;border:1px solid var(--grid);background:var(--map);color:var(--ink);border-radius:9px;padding:.55rem .85rem;cursor:pointer}
+button:focus-visible{outline:2px solid #b3262e;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.coin{animation-duration:30s}}
+</style>
+</head>
+<body>
+<h1>Tablette</h1>
+<p class="sub">Jede Streckung · Kegel-Explosion</p>
+<div class="map">
+  <svg viewBox="0 0 400 400" preserveAspectRatio="none" aria-hidden="true">
+    <rect width="400" height="400" fill="var(--map)"/>
+    <path stroke="var(--grid)" stroke-width="1" d="M0 50H400M0 100H400M0 150H400M0 200H400M0 250H400M0 300H400M0 350H400M50 0V400M100 0V400M150 0V400M200 0V400M250 0V400M300 0V400M350 0V400"/>
+    <g stroke="var(--road)" stroke-width="5" fill="none" stroke-linecap="round">
+      <path d="M0 120 C120 150 260 90 400 130"/>
+      <path d="M60 400 C140 260 250 180 340 0"/>
+      <path d="M0 300 C140 280 260 340 400 290"/>
+    </g>
+    <ellipse cx="200" cy="200" rx="150" ry="140" fill="var(--hole)" opacity=".9"/>
+  </svg>
+  <div class="stage">
+    <div class="coin" id="coin" role="img" aria-label="Schematische rotierende Tablette mit Bruchrille"></div>
+    <div class="tip" id="tip"></div>
+  </div>
+</div>
+<div class="legend" id="legend"></div>
+<div class="controls">
+  <button id="pause" type="button">Pause</button>
+  <button id="slower" type="button">Langsamer</button>
+  <button id="faster" type="button">Schneller</button>
+</div>
+<p class="note">An jedem Ende jeder gestreckten Information (links und rechts, bei jedem Schritt) entsteht ein Kegel. Auf dem Außenmantel werden Ro, Ra, Ri, Re je um 90° versetzt eingekratzt. Im Innenbereich entstehen vier Größen: Ro klein, Ra, Ri, Re am größten. Schematische Illustration, kein reales Medikament.</p>
+<script>
+const coin=document.getElementById("coin");
+const T=7;
+for(let z=-T;z<=T;z++){
+ const edge=Math.abs(z)<T;
+ const d=document.createElement("div");d.className="layer";d.style.transform="translateZ("+(z*2)+"px)";
+ d.innerHTML=edge
+  ?'<svg viewBox="0 0 300 300"><circle cx="150" cy="150" r="104" fill="#d9d3c4"/></svg>'
+  :'<svg viewBox="0 0 300 300"><defs><radialGradient id="g" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#ffffff"/><stop offset=".7" stop-color="#ebe6da"/><stop offset="1" stop-color="#cfc8b6"/></radialGradient></defs>'
+    +'<circle cx="150" cy="150" r="104" fill="url(#g)" stroke="#2a2118" stroke-width="4"/>'
+    +'<circle cx="150" cy="150" r="90" fill="none" stroke="#2a2118" stroke-opacity=".25" stroke-width="2"/>'
+    +'<path d="M52 150H248" stroke="#2a2118" stroke-opacity=".55" stroke-width="5" stroke-linecap="round"/>'
+    +'<text x="150" y="118" text-anchor="middle" font-family="Georgia,serif" font-size="34" font-weight="bold" fill="#2a2118" fill-opacity=".6">Ri</text>'
+    +'<text x="150" y="200" text-anchor="middle" font-family="Georgia,serif" font-size="26" fill="#2a2118" fill-opacity=".5">500</text></svg>';
+ coin.appendChild(d);
+}
+const PAIRS=[["#d23a42","#111111"],["#ffffff","#111111"],["#ffffff","#f2c500"],["#ffffff","#1f9d55"],["#7b3fa0","#111111"],["#111111","#ffffff"],["#ffffff","#2a6fdb"],["#ffffff","#1f9d55"]];
+const MODE="Ri";
+const NAMES=["Ro","Ra","Ri","Re"];
+const TEXT=["links lang","beide gleich lang","abwechselnd","rechts lang"];
+const tip=document.getElementById("tip"),legend=document.getElementById("legend");
+const SPIN=8000,STEP=SPIN/PAIRS.length,DUR=STEP*2.4;
+NAMES.forEach((n,k)=>{
+ const chips=[k,k+4].map(i=>'<span class="chip"><i style="background:'+PAIRS[i][0]+'"></i><i style="background:'+PAIRS[i][1]+'"></i></span>').join("");
+ legend.insertAdjacentHTML("beforeend",'<div class="item" id="it'+k+'"><b>'+n+'</b><div class="chips">'+chips+'</div><small>'+TEXT[k]+'</small></div>');
+});
+
+// Innenbereich: vier Größen, Ro klein bis Re groß
+const INNER=[[50,30,4],[40,52,6.5],[62,56,9],[50,76,11.5]];
+let count=0;
+function boomSvg(c,i){
+ let s='<svg viewBox="0 0 100 100"><defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2c500" stop-opacity=".95"/><stop offset="1" stop-color="#d23a42" stop-opacity=".35"/></linearGradient></defs>'
+  +'<polygon points="50,2 10,92 90,92" fill="url(#cg)" stroke="#2a2118" stroke-width="1.5" stroke-linejoin="round"/>'
+  +'<ellipse cx="50" cy="92" rx="40" ry="8" fill="#2a2118" fill-opacity=".25" stroke="#2a2118" stroke-width="1.2"/>';
+ // Außenmantel: vier Mengen, je 90° um die Achse versetzt
+ for(let k=0;k<4;k++){
+  const th=(c+k)*Math.PI/2,h=.3+.2*k,y=2+90*h,rad=40*h;
+  const x=50+rad*Math.sin(th),yy=y+8*h*Math.cos(th),vis=Math.cos(th)>=-.01?1:.35;
+  const [a,b]=PAIRS[k];
+  s+='<g opacity="'+vis+'" stroke-linecap="round" stroke-width="3">'
+   +'<path d="M'+(x-7)+' '+(yy-3)+' L'+(x+7)+' '+(yy+3)+'" stroke="'+a+'"/>'
+   +'<path d="M'+(x-7)+' '+(yy+1)+' L'+(x+7)+' '+(yy+7)+'" stroke="'+b+'"/></g>';
+ }
+ // Innen: vier Größen Ro Ra Ri Re
+ for(let k=0;k<4;k++){
+  const [cx,cy,r]=INNER[k],[a,b]=PAIRS[k+4*(i%2)];
+  s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="'+a+'" stroke="'+b+'" stroke-width="2"/>'
+   +'<text x="'+cx+'" y="'+(cy+Math.max(r,5)*.35)+'" text-anchor="middle" font-size="'+Math.max(r,5)+'" font-weight="bold" font-family="Georgia,serif" fill="'+b+'">'+NAMES[k]+'</text>';
+ }
+ return s+'</svg>';
+}
+function boom(x,y,i){
+ const e=document.createElement("div");e.className="boom";e.style.left=x+"px";e.style.top=y+"px";
+ e.innerHTML=boomSvg(count++,i);tip.appendChild(e);
+ e.animate([{transform:"scale(.1)",opacity:1},{transform:"scale(1)",opacity:1,offset:.4},{transform:"translateY(10px) scale(1.2)",opacity:0}],{duration:STEP*2.2,easing:"ease-out"}).onfinish=()=>e.remove();
+}
+
+function emit(i){
+ const k=i%4,[a,b]=PAIRS[i],map=tip.closest(".map").clientWidth,long=map*.34,short=long*.35;
+ let L,R;
+ if(k===0){L=long;R=short}
+ else if(k===1){L=R=(long+short)/2}
+ else if(k===2){const f=Math.floor(i/4)%2===0;L=f?long:short;R=f?short:long}
+ else{L=short;R=long}
+ if(MODE==="Ro"){L=long;R=short}
+ if(MODE==="Ri"){const f=i%2===0;L=f?long:short;R=f?short:long}
+ document.querySelectorAll(".item").forEach((e,j)=>e.classList.toggle("on",j===k));
+ const mk=(c,len,side)=>{
+  const e=document.createElement("div");e.className="bar";e.style.background=c;e.style.width=len+"px";
+  e.style[side==="L"?"right":"left"]="0";e.style.transformOrigin=side==="L"?"right":"left";tip.appendChild(e);
+  const y=i*2;
+  e.animate([{transform:"translateY("+y+"px) scaleX(0)",opacity:1},{transform:"translateY("+(y+8)+"px) scaleX(1)",opacity:1,offset:.35},{transform:"translateY("+(y+26)+"px) scaleX(1)",opacity:0}],{duration:DUR,easing:"ease-out"}).onfinish=()=>e.remove();
+ };
+ mk(a,L,"L");mk(b,R,"R");
+ // Bei jeder gestreckten Information: Explosion an beiden Enden
+ setTimeout(()=>{boom(-L,i*2+10,i);boom(R,i*2+10,i)},DUR*.35);
+}
+let n=0,timer=null,delay=STEP;
+function start(){if(timer)return;timer=setInterval(()=>emit(n++%8),delay)}
+function stop(){clearInterval(timer);timer=null}
+function restart(){stop();start()}
+emit(n++%8);start();
+document.getElementById("pause").addEventListener("click",e=>{
+ if(timer){stop();e.currentTarget.textContent="Weiter"}else{start();e.currentTarget.textContent="Pause"}
+});
+document.getElementById("slower").addEventListener("click",()=>{delay=Math.min(4000,delay*1.25);restart()});
+document.getElementById("faster").addEventListener("click",()=>{delay=Math.max(250,delay/1.25);restart()});
+</script>
+</body>
+</html>
