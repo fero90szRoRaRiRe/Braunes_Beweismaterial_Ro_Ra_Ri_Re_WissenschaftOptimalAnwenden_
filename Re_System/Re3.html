@@ -1,1 +1,263 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Re_System 1.0</title>
+  <style>
+    :root {
+      font-family: system-ui, sans-serif;
+      color: #172033;
+      background: #f3f5f8;
+    }
 
+    body {
+      margin: 0;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 36px auto;
+      padding: 0 18px 40px;
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid #dce2ea;
+      border-radius: 14px;
+      padding: 20px;
+      margin: 18px 0;
+    }
+
+    .muted {
+      color: #5c6678;
+    }
+
+    .fields {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      font-weight: 600;
+    }
+
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #bbc5d2;
+      border-radius: 8px;
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      border-radius: 9px;
+      padding: 12px 18px;
+      background: #174f91;
+      color: white;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: #e7edf5;
+      color: #243247;
+      margin-left: 8px;
+    }
+
+    #status {
+      min-height: 1.5em;
+      margin-top: 14px;
+    }
+
+    pre {
+      overflow: auto;
+      background: #f5f7fa;
+      padding: 12px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+<main>
+  <h1>Re_System</h1>
+  <p class="muted">
+    Re3 ist die Eingabeoberfläche für die Datenspeicher Re1 und Re2.
+  </p>
+
+  <section class="panel">
+    <h2>Re1 – Person</h2>
+    <div class="fields">
+      <label>
+        Vorname
+        <input id="vorname" autocomplete="given-name">
+      </label>
+
+      <label>
+        Nachname
+        <input id="nachname" autocomplete="family-name">
+      </label>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Re2 – Kontakt und Ort</h2>
+    <div class="fields">
+      <label>
+        Straße
+        <input id="strasse" autocomplete="street-address">
+      </label>
+
+      <label>
+        Hausnummer
+        <input id="hausnummer">
+      </label>
+
+      <label>
+        PLZ
+        <input id="plz" autocomplete="postal-code">
+      </label>
+
+      <label>
+        Ort
+        <input id="ort" autocomplete="address-level2">
+      </label>
+
+      <label>
+        Land
+        <input id="land" autocomplete="country-name">
+      </label>
+    </div>
+  </section>
+
+  <section class="panel">
+    <button id="save">Änderungen speichern</button>
+    <button id="reload" class="secondary">Neu laden</button>
+
+    <p id="status" role="status" aria-live="polite">
+      Verbinde mit dem lokalen Server …
+    </p>
+
+    <p class="muted">
+      Vor dem Speichern erstellt der Server Sicherungskopien
+      der vorhandenen JSON-Dateien.
+    </p>
+  </section>
+
+  <section class="panel">
+    <h2>Ri – Verknüpfte Daten</h2>
+    <pre id="preview">Noch keine Daten geladen.</pre>
+  </section>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+
+function showStatus(message, error = false) {
+  $("status").textContent = message;
+  $("status").style.color = error ? "#b42318" : "#245b31";
+}
+
+function render(data) {
+  $("vorname").value = data.re1.person.vorname || "";
+  $("nachname").value = data.re1.person.nachname || "";
+
+  for (const key of [
+    "strasse", "hausnummer", "plz", "ort", "land"
+  ]) {
+    $(key).value = data.re2.kontakt[key] || "";
+  }
+
+  $("preview").textContent = JSON.stringify(data, null, 2);
+}
+
+async function loadData() {
+  try {
+    const response = await fetch("/api/data");
+
+    if (!response.ok) {
+      throw new Error(await response.text());
+    }
+
+    render(await response.json());
+    showStatus("Re1 und Re2 wurden geladen.");
+
+  } catch (error) {
+    showStatus(
+      "Server nicht erreichbar. Starte server.py und öffne " +
+      "http://127.0.0.1:8000 – " + error.message,
+      true
+    );
+  }
+}
+
+async function saveData() {
+  const payload = {
+    re1: {
+      schemaVersion: 1,
+      datensatz: "Re1",
+      person: {
+        vorname: $("vorname").value.trim(),
+        nachname: $("nachname").value.trim()
+      }
+    },
+
+    re2: {
+      schemaVersion: 1,
+      datensatz: "Re2",
+      kontakt: {
+        strasse: $("strasse").value.trim(),
+        hausnummer: $("hausnummer").value.trim(),
+        plz: $("plz").value.trim(),
+        ort: $("ort").value.trim(),
+        land: $("land").value.trim()
+      }
+    }
+  };
+
+  try {
+    const response = await fetch("/api/save", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.error || "Speichern fehlgeschlagen");
+    }
+
+    render({
+      re1: payload.re1,
+      re2: payload.re2
+    });
+
+    showStatus(
+      "Gespeichert. Sicherungskopien: " +
+      (result.backups.length
+        ? result.backups.join(", ")
+        : "Noch keine Sicherung nötig.")
+    );
+
+  } catch (error) {
+    showStatus(error.message, true);
+  }
+}
+
+$("save").addEventListener("click", saveData);
+$("reload").addEventListener("click", loadData);
+
+loadData();
+</script>
+</body>
+</html>
