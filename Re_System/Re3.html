@@ -1,205 +1,238 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Re_System 1.0</title>
-  <style>
-    :root {
-      font-family: system-ui, sans-serif;
-      color: #172033;
-      background: #f3f5f8;
-    }
-
-    body {
-      margin: 0;
-    }
-
-    main {
-      max-width: 760px;
-      margin: 36px auto;
-      padding: 0 18px 40px;
-    }
-
-    .panel {
-      background: white;
-      border: 1px solid #dce2ea;
-      border-radius: 14px;
-      padding: 20px;
-      margin: 18px 0;
-    }
-
-    .muted {
-      color: #5c6678;
-    }
-
-    .fields {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 14px;
-    }
-
-    label {
-      display: grid;
-      gap: 6px;
-      font-weight: 600;
-    }
-
-    input {
-      box-sizing: border-box;
-      width: 100%;
-      padding: 11px;
-      border: 1px solid #bbc5d2;
-      border-radius: 8px;
-      font: inherit;
-    }
-
-    button {
-      border: 0;
-      border-radius: 9px;
-      padding: 12px 18px;
-      background: #174f91;
-      color: white;
-      font: inherit;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    button.secondary {
-      background: #e7edf5;
-      color: #243247;
-      margin-left: 8px;
-    }
-
-    #status {
-      min-height: 1.5em;
-      margin-top: 14px;
-    }
-
-    pre {
-      overflow: auto;
-      background: #f5f7fa;
-      padding: 12px;
-      border-radius: 8px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Re_System 1.1 – Smartphone</title>
+<style>
+body {
+  margin: 0;
+  padding: 18px;
+  background: #f1f3f6;
+  color: #172033;
+  font-family: system-ui, sans-serif;
+}
+main {
+  max-width: 650px;
+  margin: auto;
+}
+section {
+  background: white;
+  padding: 18px;
+  margin: 15px 0;
+  border-radius: 13px;
+  border: 1px solid #dce2ea;
+}
+h1 { color: #174f91; }
+label {
+  display: block;
+  margin: 12px 0;
+  font-weight: 600;
+}
+input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border: 1px solid #bbc5d2;
+  border-radius: 8px;
+  font-size: 16px;
+}
+button {
+  padding: 13px 17px;
+  margin: 5px 4px 5px 0;
+  border: 0;
+  border-radius: 9px;
+  background: #174f91;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+.secondary {
+  background: #e4eaf2;
+  color: #172033;
+}
+pre {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  background: #f3f5f8;
+  padding: 12px;
+  border-radius: 8px;
+}
+#status {
+  padding: 10px;
+  overflow-wrap: anywhere;
+}
+.small {
+  color: #596579;
+  font-size: 13px;
+}
+</style>
 </head>
-
 <body>
 <main>
-  <h1>Re_System</h1>
-  <p class="muted">
-    Re3 ist die Eingabeoberfläche für die Datenspeicher Re1 und Re2.
-  </p>
 
-  <section class="panel">
-    <h2>Re1 – Person</h2>
-    <div class="fields">
-      <label>
-        Vorname
-        <input id="vorname" autocomplete="given-name">
-      </label>
+<h1>Re_System 1.1</h1>
+<p>Smartphone-Version – direkte GitHub-Anbindung</p>
 
-      <label>
-        Nachname
-        <input id="nachname" autocomplete="family-name">
-      </label>
-    </div>
-  </section>
+<section>
+<h2>GitHub-Verbindung</h2>
+<label>
+Persönlicher Zugriffstoken
+<input id="token" type="password"
+       placeholder="GitHub Token" autocomplete="off">
+</label>
+<button id="connect">Verbinden und laden</button>
+<button id="clear" class="secondary">Token löschen</button>
+<p class="small">
+Der Token bleibt nur im Arbeitsspeicher dieser geöffneten Seite.
+Er wird nicht in JSON oder HTML gespeichert.
+</p>
+</section>
 
-  <section class="panel">
-    <h2>Re2 – Kontakt und Ort</h2>
-    <div class="fields">
-      <label>
-        Straße
-        <input id="strasse" autocomplete="street-address">
-      </label>
+<section>
+<h2>Re1 – Person</h2>
+<label>Vorname
+<input id="vorname">
+</label>
+<label>Nachname
+<input id="nachname">
+</label>
+</section>
 
-      <label>
-        Hausnummer
-        <input id="hausnummer">
-      </label>
+<section>
+<h2>Re2 – Kontakt</h2>
+<label>Straße
+<input id="strasse">
+</label>
+<label>Hausnummer
+<input id="hausnummer">
+</label>
+<label>PLZ
+<input id="plz">
+</label>
+<label>Ort
+<input id="ort">
+</label>
+<label>Land
+<input id="land">
+</label>
+</section>
 
-      <label>
-        PLZ
-        <input id="plz" autocomplete="postal-code">
-      </label>
+<section>
+<h2>Re – Speicherung</h2>
+<button id="save">Re1 + Re2 speichern</button>
+<button id="reload" class="secondary">Neu laden</button>
+<p id="status">Noch nicht verbunden.</p>
+</section>
 
-      <label>
-        Ort
-        <input id="ort" autocomplete="address-level2">
-      </label>
+<section>
+<h2>Ri – Datenverknüpfung</h2>
+<pre id="preview">Warte auf GitHub-Verbindung.</pre>
+</section>
 
-      <label>
-        Land
-        <input id="land" autocomplete="country-name">
-      </label>
-    </div>
-  </section>
-
-  <section class="panel">
-    <button id="save">Änderungen speichern</button>
-    <button id="reload" class="secondary">Neu laden</button>
-
-    <p id="status" role="status" aria-live="polite">
-      Verbinde mit dem lokalen Server …
-    </p>
-
-    <p class="muted">
-      Vor dem Speichern erstellt der Server Sicherungskopien
-      der vorhandenen JSON-Dateien.
-    </p>
-  </section>
-
-  <section class="panel">
-    <h2>Ri – Verknüpfte Daten</h2>
-    <pre id="preview">Noch keine Daten geladen.</pre>
-  </section>
 </main>
 
 <script>
+const OWNER = "fero90szRoRaRiRe";
+const REPO =
+  "Braunes_Beweismaterial_Ro_Ra_Ri_Re_WissenschaftOptimalAnwenden_";
+const BRANCH = "main";
+
+const PATHS = {
+  re1: "Re_System/Re1.json",
+  re2: "Re_System/Re2.json"
+};
+
+let githubToken = "";
+let currentData = null;
+
 const $ = id => document.getElementById(id);
 
-function showStatus(message, error = false) {
+function status(message, error = false) {
   $("status").textContent = message;
-  $("status").style.color = error ? "#b42318" : "#245b31";
+  $("status").style.color =
+    error ? "#b42318" : "#245b31";
+}
+
+function apiUrl(path) {
+  return "https://api.github.com/repos/" +
+    OWNER + "/" + REPO + "/contents/" + path;
+}
+
+async function githubRequest(url, options = {}) {
+  const response = await fetch(url, {
+    ...options,
+    headers: {
+      "Accept": "application/vnd.github+json",
+      "Authorization": "Bearer " + githubToken,
+      "X-GitHub-Api-Version": "2022-11-28",
+      ...(options.headers || {})
+    }
+  });
+
+  const result = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(
+      result.message || "GitHub-Fehler " + response.status
+    );
+  }
+
+  return result;
+}
+
+function decodeBase64(content) {
+  const binary = atob(content.replace(/\s/g, ""));
+  const bytes = Uint8Array.from(
+    binary, char => char.charCodeAt(0)
+  );
+  return new TextDecoder("utf-8").decode(bytes);
+}
+
+function encodeBase64(text) {
+  const bytes = new TextEncoder().encode(text);
+  let binary = "";
+
+  for (const byte of bytes) {
+    binary += String.fromCharCode(byte);
+  }
+
+  return btoa(binary);
+}
+
+async function readFile(path) {
+  const result = await githubRequest(
+    apiUrl(path) + "?ref=" + BRANCH
+  );
+
+  return {
+    sha: result.sha,
+    data: JSON.parse(decodeBase64(result.content))
+  };
 }
 
 function render(data) {
-  $("vorname").value = data.re1.person.vorname || "";
-  $("nachname").value = data.re1.person.nachname || "";
+  $("vorname").value =
+    data.re1.person?.vorname || "";
+  $("nachname").value =
+    data.re1.person?.nachname || "";
+
+  const kontakt = data.re2.kontakt || {};
 
   for (const key of [
     "strasse", "hausnummer", "plz", "ort", "land"
   ]) {
-    $(key).value = data.re2.kontakt[key] || "";
+    $(key).value = kontakt[key] || "";
   }
 
-  $("preview").textContent = JSON.stringify(data, null, 2);
+  $("preview").textContent =
+    JSON.stringify(data, null, 2);
 }
 
-async function loadData() {
-  try {
-    const response = await fetch("/api/data");
-
-    if (!response.ok) {
-      throw new Error(await response.text());
-    }
-
-    render(await response.json());
-    showStatus("Re1 und Re2 wurden geladen.");
-
-  } catch (error) {
-    showStatus(
-      "Server nicht erreichbar. Starte server.py und öffne " +
-      "http://127.0.0.1:8000 – " + error.message,
-      true
-    );
-  }
-}
-
-async function saveData() {
-  const payload = {
+function collectData() {
+  return {
     re1: {
       schemaVersion: 1,
       datensatz: "Re1",
@@ -208,7 +241,6 @@ async function saveData() {
         nachname: $("nachname").value.trim()
       }
     },
-
     re2: {
       schemaVersion: 1,
       datensatz: "Re2",
@@ -221,43 +253,113 @@ async function saveData() {
       }
     }
   };
+}
 
+async function loadData() {
   try {
-    const response = await fetch("/api/save", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
+    status("Lade Re1 und Re2 aus GitHub …");
 
-    const result = await response.json();
+    const [re1, re2] = await Promise.all([
+      readFile(PATHS.re1),
+      readFile(PATHS.re2)
+    ]);
 
-    if (!response.ok) {
-      throw new Error(result.error || "Speichern fehlgeschlagen");
-    }
+    currentData = { re1, re2 };
 
     render({
-      re1: payload.re1,
-      re2: payload.re2
+      re1: re1.data,
+      re2: re2.data
     });
 
-    showStatus(
-      "Gespeichert. Sicherungskopien: " +
-      (result.backups.length
-        ? result.backups.join(", ")
-        : "Noch keine Sicherung nötig.")
-    );
+    status("Verbindung erfolgreich. Re1 und Re2 geladen.");
 
   } catch (error) {
-    showStatus(error.message, true);
+    status(error.message, true);
   }
 }
 
-$("save").addEventListener("click", saveData);
-$("reload").addEventListener("click", loadData);
+async function saveFile(path, data, message) {
+  // Aktuelle SHA unmittelbar vor dem Update abrufen.
+  const current = await readFile(path);
 
-loadData();
+  return githubRequest(apiUrl(path), {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message,
+      content: encodeBase64(
+        JSON.stringify(data, null, 2) + "\n"
+      ),
+      sha: current.sha,
+      branch: BRANCH
+    })
+  });
+}
+
+async function saveData() {
+  if (!githubToken) {
+    status("Bitte zuerst den GitHub-Token eingeben.", true);
+    return;
+  }
+
+  const data = collectData();
+
+  try {
+    status("Speichere Re1.json …");
+
+    await saveFile(
+      PATHS.re1,
+      data.re1,
+      "Re_System: Re1 aktualisiert"
+    );
+
+    status("Re1 gespeichert. Speichere Re2.json …");
+
+    await saveFile(
+      PATHS.re2,
+      data.re2,
+      "Re_System: Re2 aktualisiert"
+    );
+
+    render(data);
+    status("Erfolgreich: Re1 und Re2 wurden in GitHub gespeichert.");
+
+  } catch (error) {
+    status(
+      "Speichern fehlgeschlagen: " + error.message +
+      ". Bitte Dateien prüfen; möglicherweise wurde Re1 bereits gespeichert.",
+      true
+    );
+  }
+}
+
+$("connect").addEventListener("click", async () => {
+  githubToken = $("token").value.trim();
+
+  if (!githubToken) {
+    status("Bitte einen Token eingeben.", true);
+    return;
+  }
+
+  await loadData();
+});
+
+$("save").addEventListener("click", saveData);
+
+$("reload").addEventListener("click", () => {
+  if (githubToken) loadData();
+  else status("Bitte zuerst verbinden.", true);
+});
+
+$("clear").addEventListener("click", () => {
+  githubToken = "";
+  $("token").value = "";
+  currentData = null;
+  status("Token aus dem Arbeitsspeicher entfernt.");
+});
 </script>
+
 </body>
 </html>
