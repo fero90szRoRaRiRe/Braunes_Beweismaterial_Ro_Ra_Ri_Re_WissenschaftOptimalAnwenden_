@@ -1,1 +1,11 @@
-
+{
+  "schemaVersion": 1,
+  "datensatz": "Re2",
+  "kontakt": {
+    "strasse": "",
+    "hausnummer": "",
+    "plz": "",
+    "ort": "",
+    "land": ""
+  }
+}
