@@ -1,105 +1,37 @@
-from dataclasses import dataclass, field
-from enum import StrEnum
-import re
+from dataclasses import dataclass
+
+@dataclass
+class Ro:
+    bewegung: float
+
+@dataclass
+class Ra:
+    verarbeitung: float
+
+@dataclass
+class Ri:
+    zusammenhang: float
+
+@dataclass
+class Re:
+    umgebung: float
+
+@dataclass
+class System:
+    Ro: Ro
+    Ra: Ra
+    Ri: Ri
+    Re: Re
 
 
-# 1. Domänen-Kürzel (Register, Rollen & Re-Subtypen)
-class RegisterKuerzel(StrEnum):
-    RO = "Ro"  # Rohakten / Materielles Grundlagenrecht (1. Examen)
-    RA = "Ra"  # Rechtsanwalt / Kautelar- & Prozesspraxis (2. Examen)
-    RI = "Ri"  # Richter / Tenorierung & Relationstechnik (2. Examen)
-    AN = "An"  # Anklage / Staatsanwaltschaftliche Abschlussverfügung (2. Examen)
-    RE = "Re"  # Referendar / Rechtsgutachten / Rechtsmittel
+system = System(
+    Ro(10.0),
+    Ra(20.0),
+    Ri(30.0),
+    Re(40.0)
+)
 
-
-class ReSubtyp(StrEnum):
-    RECHTSGUTACHTEN = "Rechtsgutachten"  # 1. Examen: Obersatz, Definition, Subsumtion, Ergebnis
-    REFERENDARIAT = "Referendariat"      # 2. Examen: Ausbildungsstationen & Aktenvortrag
-    RECHTSMITTEL = "Rechtsmittel"        # 2. Examen: Berufung, Revision & Beschwerde
-    RECHTSKRAFT = "Rechtskraft"          # Abschluss & Vollstreckbarkeit
-
-
-# 2. Bausteine für Prüfungsleistungen & Fach-Tokens
-@dataclass(slots=True, frozen=True)
-class StationModul:
-    kuerzel: RegisterKuerzel | ReSubtyp
-    bezeichnung: str
-    punktzahl: float
-    geschuetzte_tokens: tuple[str, ...] = ()
-
-
-@dataclass(slots=True, frozen=True)
-class ErstesStaatsexamen:
-    ro_pflichtfach: StationModul
-    re_gutachten: StationModul
-    gesamtschnitt: float
-
-
-@dataclass(slots=True, frozen=True)
-class ZweitesStaatsexamen:
-    ri_gericht: StationModul
-    an_staatsanwaltschaft: StationModul
-    ra_kanzlei: StationModul
-    re_referendariat: StationModul
-    re_rechtsmittel: StationModul
-    befaehigung_richteramt: bool = True
-
-
-# 3. Technische Tokenizer-Konfiguration (Byte-Level BPE)
-@dataclass(slots=True, frozen=True)
-class BPEConfig:
-    vocab_size: int = 65536         # 2^16 für GPU-Tensor-Core-Alignment
-    max_number_digits: int = 3      # Ziffern-Split für Paragrafen- & Aktenzeichen-Präzision
-    normalize_nfc: bool = True
-    split_pattern: str = (
-        r"""'(?i:[sdmt]|ll|ve|re)|[^\r\n\p{L}\p{N}]?+\p{L}+|\p{N}{1,3}| ?[^\s\p{L}\p{N}]++[\r\n]*|\s*[\r\n]|\s+(?!\S)|\s+"""
-    )
-
-
-# 4. KOMBINIERTES HAUPT-STRUCT (Juristische Domäne + BPE-Engine)
-@dataclass(slots=True)
-class CombinedLegalBPEStruct:
-    """Vereint Examensdaten (Ro, Ra, Ri, An, Re) und Byte-Level BPE-Datenstrukturen."""
-    
-    # Metadaten & Juristischer Werdegang
-    kandidat_id: str
-    erstes_examen: ErstesStaatsexamen
-    zweites_examen: ZweitesStaatsexamen | None = None
-    
-    # Tokenizer-Kernstrukturen (O(1) Encoder/Decoder + BPE-Merges)
-    config: BPEConfig = field(default_factory=BPEConfig)
-    vocab: dict[bytes, int] = field(default_factory=dict)
-    id_to_token: list[bytes] = field(default_factory=list)
-    bpe_ranks: dict[tuple[int, int], int] = field(default_factory=dict)
-    
-    # Untrennbare Special- & Domänen-Tokens (Ro, Ra, Ri, An, Re + Fachbegriffe)
-    special_tokens: dict[str, int] = field(default_factory=dict)
-
-    def synchronisiere_domaenen_tokens(self, start_id: int = 65000) -> None:
-        """Registriert alle Ro-, Ra-, Ri-, An- und Re-Kürzel sowie Fachbegriffe als untrennbare Tokens."""
-        alle_tokens: list[str] = [
-            "<|endoftext|>", "<|pad|>",
-            *(k.value for k in RegisterKuerzel),
-            *(r.value for r in ReSubtyp),
-            *self.erstes_examen.ro_pflichtfach.geschuetzte_tokens,
-            *self.erstes_examen.re_gutachten.geschuetzte_tokens,
-        ]
-        
-        if self.zweites_examen:
-            alle_tokens.extend([
-                *self.zweites_examen.ri_gericht.geschuetzte_tokens,
-                *self.zweites_examen.an_staatsanwaltschaft.geschuetzte_tokens,
-                *self.zweites_examen.ra_kanzlei.geschuetzte_tokens,
-                *self.zweites_examen.re_referendariat.geschuetzte_tokens,
-                *self.zweites_examen.re_rechtsmittel.geschuetzte_tokens,
-            ])
-
-        # Duplikate entfernen & lückenlose Token-IDs zuweisen
-        for offset, token in enumerate(dict.fromkeys(alle_tokens)):
-            self.special_tokens[token] = start_id + offset
-
-    def baue_special_regex(self) -> re.Pattern[str]:
-        """Erstellt einen Regex, der alle Registerkürzel und Fach-Tokens vor dem BPE-Split schützt."""
-        sortierte_tokens = sorted(self.special_tokens.keys(), key=len, reverse=True)
-        escaped = "|".join(re.escape(t) for t in sortierte_tokens)
-        return re.compile(f"({escaped})")
+print(system.Ro.bewegung)
+print(system.Ra.verarbeitung)
+print(system.Ri.zusammenhang)
+print(system.Re.umgebung)
