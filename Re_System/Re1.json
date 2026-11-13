@@ -1,1 +1,8 @@
-
+{
+  "schemaVersion": 1,
+  "datensatz": "Re1",
+  "person": {
+    "vorname": "",
+    "nachname": ""
+  }
+}
