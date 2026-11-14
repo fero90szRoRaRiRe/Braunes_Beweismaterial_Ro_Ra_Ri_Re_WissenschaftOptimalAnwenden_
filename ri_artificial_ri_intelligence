@@ -8,6 +8,7 @@ index.html Re1.json Re2.json
 Abstandsgleichung_KISystem_Beobachter d=||P_N - P_D|| 
 P_N=(x_N,y_N,z_N) P_D=(x_D,y_D,z_D) Jeder_Pixel_Erhält_RGB_Subpixel
 Jedes_Pixel_Bis_zu_8_Nachbarpixel RäumlicheMatrixStelltVerbindungDar
+Ri=Pixel_RoRaRiRe_+RGB_RoRaRiRe_+Nachbarschaft_RoRaRiRe+Abstand(d)
 
 VorwegDasSieKI_Benutzung_Jugendlichen_erlauben_ist_eine_schandtat
 
