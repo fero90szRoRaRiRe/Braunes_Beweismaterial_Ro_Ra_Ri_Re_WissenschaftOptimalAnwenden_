@@ -32,6 +32,32 @@ IntelligenzdivisionRo IntelligenzdivisionRa Re1Re2Re3 IntelligenzdivisionRe
 Re1Re2Re3Ro Re1Re2Re3Ra IntelligenzdivisionReRe1Re2Re3Ro 
 Fallbeispiel_Anwendungsmissbrauch if("QuackQuack"==true){Gedankenschleife;}
 
+ZurÜbersicht
+
+KI-ANWENDER
+     |
+     v
+Kreisprofil Ro–Ra–Ri–Re
+     |
+     v
+Fragmentisierung
+     |
+     v
+Ro → Ra → Ri → Re
+     |
+     v
+Anpassungsoperationen
+     |
+     +-- Addition
+     +-- Subtraktion
+     +-- Multiplikation
+     +-- Division
+     |
+     v
+Neues Kreisprofil
+     |
+     +----------> nächste Gedankenschleife
+
 
 SpezielleTrainingsdatenverwaltung_zb_überData-CentricAI_MLOps-Pipelines, 
 DatenströmeWie„Tentakel“AusVerschiedenenQuellen ZusammenführenUndVerwalten
