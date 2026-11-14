@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#101820">
+    <title>Produktion Ro–Ra–Ri–Re · Förderband</title>
+    <style>
+:root{--bg:#101820;--panel:#172631;--line:#36505e;--text:#edf5f7;--muted:#a8bbc3;--ro:#e53935;--ra:#e8e8e8;--ri:#f5c928;--re:#36c66b;--cyan:#4bd7ef}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#29404c,#101820 55%);color:var(--text);font:15px/1.45 system-ui, sans-serif}
+header{display:flex;align-items:center;gap:16px;padding:14px clamp(12px,3vw,32px);border-bottom:1px solid var(--line);background:#101820dd;position:sticky;top:0;z-index:5;backdrop-filter:blur(10px)}
+.logo{width:66px;height:66px;flex:none;perspective:500px}.logo-inner{width:100%;height:100%;animation:turn 8s linear infinite;transform-style:preserve-3d}.logo svg{width:100%;height:100%;filter:drop-shadow(0 3px 7px #0009)}
+@keyframes turn{to{transform:rotateY(360deg)}}h1{font-size:clamp(18px,3vw,27px);margin:0}.sub{color:var(--muted);font-size:12px}
+main{max-width:1200px;margin:auto;padding:18px;display:grid;gap:16px}.panel{background:linear-gradient(145deg,#1b2d38,#14222b);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 10px 28px #0003}
+h2{font-size:17px;margin:0 0 12px}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.station{border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;background:#0f1b22}.station b{font-size:20px}.station small{display:block;color:var(--muted)}.ro b{color:var(--ro)}.ra b{color:var(--ra)}.ri b{color:var(--ri)}.re b{color:var(--re)}
+.belt-wrap{overflow:hidden;border-radius:14px;background:linear-gradient(#243a45,#10191e);padding:22px 10px 12px;border:1px solid var(--line)}
+.belt{height:110px;position:relative;border-top:10px solid #87969b;border-bottom:10px solid #87969b;background:repeating-linear-gradient(90deg,#26343a 0 34px,#394950 35px 39px);background-size:78px 100%;animation:beltrun 1.2s linear infinite;box-shadow:inset 0 0 16px #000}
+@keyframes beltrun{to{background-position:78px 0}}
+.object{position:absolute;top:24px;width:48px;height:48px;border-radius:6px;background:linear-gradient(135deg,#f4f7f8,#82949a);border:2px solid #dbe5e8;box-shadow:0 6px 10px #0008;animation:move 9s linear infinite}
+.object:nth-child(2){animation-delay:-3s;background:linear-gradient(135deg,#f3d75c,#b48a10)}.object:nth-child(3){animation-delay:-6s;background:linear-gradient(135deg,#55d6ef,#147d9a)}
+@keyframes move{from{left:-60px;transform:rotate(0)}to{left:calc(100% + 60px);transform:rotate(360deg)}}
+.belt-arrow{color:var(--cyan);text-align:right;font-weight:800;letter-spacing:.2em;padding:5px 8px}
+.signal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.signal{background:#0e1a21;border:1px solid var(--line);border-radius:11px;padding:12px;min-width:0}.signal strong{display:block;color:var(--cyan);font-size:13px}.signal .value{font-size:20px;font-weight:700;margin:5px 0}.signal small{color:var(--muted)}
+.trace{height:13px;border-radius:20px;background:#263b45;overflow:hidden;margin-top:9px}.trace i{display:block;height:100%;width:35%;background:linear-gradient(90deg,var(--ri),var(--cyan));animation:pulse 2s ease-in-out infinite alternate}
+@keyframes pulse{to{width:92%}}
+.events{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.event{display:flex;gap:10px;align-items:center;padding:10px;background:#0e1a21;border-radius:10px;border:1px solid var(--line)}.lamp{width:10px;height:10px;border-radius:50%;background:var(--re);box-shadow:0 0 10px var(--re);flex:none}.event small{display:block;color:var(--muted)}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}button{background:#1e3947;color:var(--text);border:1px solid #527181;padding:9px 14px;border-radius:9px;font-weight:650}button:hover{background:#285165}input{accent-color:var(--cyan)}.note{color:var(--muted);font-size:12px}
+@media(max-width:700px){.flow,.signal-grid{grid-template-columns:repeat(2,1fr)}.events{grid-template-columns:1fr}header{align-items:center}.logo{width:54px;height:54px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:30s!important}}
+
+/* Muster-Protokolle und gegenläufiger Paletten-Rücklauf */
+.paper-lane{position:relative;margin-top:12px;padding:12px 10px 16px;border:1px dashed #78909c;border-radius:12px;background:#101b22;overflow:hidden}
+.lane-title{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;color:#c5d5dc;font-size:12px;margin-bottom:8px}
+.paper-track{height:82px;position:relative;border-bottom:5px solid #71838b;background:repeating-linear-gradient(90deg,#26343a 0 28px,#35464d 29px 32px);overflow:hidden;border-radius:7px}
+.protocol{position:absolute;top:8px;width:104px;height:62px;padding:5px 6px;background:#f4f0e6;color:#28251f;border:1px solid #c7bda8;border-radius:3px;box-shadow:0 4px 8px #0008;font:8px/1.2 Arial,sans-serif;animation:paperMove 12s linear infinite}
+.protocol:before{content:"MUSTER · NICHT AMTLICH";display:block;font-weight:800;color:#a22;font-size:7px;border-bottom:1px solid #b9b0a1;margin-bottom:3px}
+.protocol b{display:block;font-size:9px;margin-bottom:2px}
+.protocol span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.protocol.p2{animation-delay:-4s}.protocol.p3{animation-delay:-8s}
+@keyframes paperMove{from{left:-120px}to{left:calc(100% + 120px)}}
+.pallet-zone{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px}
+.pallet{position:relative;width:150px;height:64px;flex:none;border-bottom:10px solid #a97843;border-top:5px solid #d1a36a;background:repeating-linear-gradient(90deg,#9b6b3c 0 9px,#c18b51 10px 14px);border-radius:3px;box-shadow:0 5px 10px #0006}
+.pallet:before{content:"";position:absolute;left:13px;right:13px;bottom:14px;height:37px;background:repeating-linear-gradient(0deg,#f4f0e6 0 10px,#d8d0c0 11px 13px);border:1px solid #b9b0a1;box-shadow:3px 3px 0 #0003}
+.pallet:after{content:"PALETTE · PROTOKOLLE";position:absolute;left:0;right:0;bottom:-25px;text-align:center;color:#d8c3a7;font-size:9px;font-weight:700}
+.return-lane{height:44px;min-width:220px;flex:1;position:relative;border-radius:8px;border:1px solid #536b77;background:repeating-linear-gradient(90deg,#253841 0 25px,#344b55 26px 29px);overflow:hidden}
+.return-pallet{position:absolute;top:8px;right:-150px;width:105px;height:24px;background:repeating-linear-gradient(90deg,#9b6b3c 0 8px,#c18b51 9px 12px);border-top:4px solid #d1a36a;border-bottom:4px solid #a97843;animation:palletReturn 10s linear infinite}
+.return-pallet:after{content:"";position:absolute;left:12px;top:-18px;width:80px;height:15px;background:repeating-linear-gradient(0deg,#f4f0e6 0 5px,#d8d0c0 6px 7px);border:1px solid #b9b0a1}
+@keyframes palletReturn{to{right:calc(100% + 150px)}}
+.direction-label{font-size:11px;color:var(--cyan);font-weight:700}
+@media(prefers-reduced-motion:reduce){.protocol,.return-pallet{animation-duration:60s!important}}
+
+</style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <div class="logo-inner">
+          <svg viewBox="0 0 300 300" role="img" aria-label="Schematisch dargestelltes Wappen der Gemeinde Liebenburg">
+            <!-- Wappenschild in Rot -->
+            <path d="M42 42 H258 V153 C258 219 209 260 150 282 C91 260 42 219 42 153 Z"
+              fill="#c92332" stroke="#2a2118" stroke-width="5" stroke-linejoin="round"/>
+              <!-- Goldene Burg / Mauer mit Zinnen -->
+              <path d="M68 171 V100 H84 V82 H105 V100 H122 V82 H143 V100 H160 V82 H181 V100 H198 V82 H219 V100 H235 V171 Z"
+                fill="#e4b52e" stroke="#2a2118" stroke-width="4" stroke-linejoin="round"/>
+                <path d="M83 171 V126 H220 V171" fill="#e4b52e" stroke="#2a2118" stroke-width="4"/>
+                <path d="M131 171 V143 A19 19 0 0 1 169 143 V171 Z"
+                  fill="#2a2118" stroke="#2a2118" stroke-width="2"/>
+                  <!-- Zehnblättrige Rosette als vereinfachtes Symbol -->
+                  <g transform="translate(150 220)" fill="#e4b52e" stroke="#2a2118" stroke-width="2">
+                    <ellipse cx="0" cy="-16" rx="6" ry="13"/>
+                    <ellipse cx="0" cy="-16" rx="6" ry="13" transform="rotate(36)"/>
+                    <ellipse cx="0" cy="-16" rx="6" ry="13" transform="rotate(72)"/>
+                    <ellipse cx="0" cy="-16" rx="6" ry="13" transform="rotate(108)"/>
+                    <ellipse cx="0" cy="-16" rx="6" ry="13" transform="rotate(144)"/>
+                    <ellipse cx="0" cy="-16" rx="6" ry="13" transform="rotate(180)"/>
+                    <ellipse cx="0" cy="-16" rx="6" ry="13" transform="rotate(216)"/>
+                    <ellipse cx="0" cy="-16" rx="6" ry="13" transform="rotate(252)"/>
+                    <ellipse cx="0" cy="-16" rx="6" ry="13" transform="rotate(288)"/>
+                    <ellipse cx="0" cy="-16" rx="6" ry="13" transform="rotate(324)"/>
+                    <circle r="6" fill="#c92332"/>
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h1>Produktion · Ro → Ra → Ri → Re</h1>
+              <div class="sub">Rotierendes Firmenzeichen · Informationsspur · Förderband-Simulation</div>
+            </div>
+          </header>
+          <main>
+            <section class="panel">
+              <h2>Produktionsfluss – links nach rechts</h2>
+              <div class="flow">
+                <div class="station ro">
+                  <b>Ro</b>
+                  <small>Bewegung / Zustand</small>
+                </div>
+                <div class="station ra">
+                  <b>Ra</b>
+                  <small>Bearbeitung / Transformation</small>
+                </div>
+                <div class="station ri">
+                  <b>Ri</b>
+                  <small>Messung / Information</small>
+                </div>
+                <div class="station re">
+                  <b>Re</b>
+                  <small>Ergebnis / Umgebung</small>
+                </div>
+              </div>
+              <div style="height:15px">
+              </div>
+              <div class="belt-wrap">
+                <div class="belt" id="belt">
+                  <div class="object">
+                  </div>
+                  <div class="object">
+                  </div>
+                  <div class="object">
+                  </div>
+                </div>
+                <div class="belt-arrow">TRANSPORT → → →</div>
+              </div>
+            </section>
+            <section class="panel">
+              <h2>Protokoll-Kommissionierung zwischen den Werkstücken</h2>
+              <p class="note">Zwischen den Quadern laufen beispielhafte Entlassungs-/Übergabeprotokolle als separate Belege mit. Sie werden an der Kommissionierstation gesammelt und auf einer Palette abgelegt.</p>
+              <div class="paper-lane">
+                <div class="lane-title">
+                  <span>Belegspur · parallel zum Werkstückfluss</span>
+                  <span class="direction-label">→ QUADER + BELEGE</span>
+                </div>
+                <div class="paper-track" id="paperTrack">
+                  <article class="protocol">
+                    <b>Entlassungs-/Übergabeprotokoll</b>
+                    <span>Einrichtung: Fontheim · Muster</span>
+                    <span>Fall-ID: DEMO-001</span>
+                    <span>Status: geprüft / Beispiel</span>
+                  </article>
+                  <article class="protocol p2">
+                    <b>Entlassungs-/Übergabeprotokoll</b>
+                    <span>Einrichtung: Fontheim · Muster</span>
+                    <span>Fall-ID: DEMO-002</span>
+                    <span>Status: geprüft / Beispiel</span>
+                  </article>
+                  <article class="protocol p3">
+                    <b>Entlassungs-/Übergabeprotokoll</b>
+                    <span>Einrichtung: Fontheim · Muster</span>
+                    <span>Fall-ID: DEMO-003</span>
+                    <span>Status: geprüft / Beispiel</span>
+                  </article>
+                </div>
+                <div class="pallet-zone">
+                  <div class="pallet" aria-label="Palette mit gestapelten Musterprotokollen">
+                  </div>
+                  <div style="flex:1;min-width:180px">
+                    <b>Kommissionierung / Palettierung</b>
+                    <div class="note">Belege werden gebündelt, gezählt und der Palette als Ladung zugeordnet.</div>
+                    <div class="direction-label">Paletten-Ausgang: ← entgegen der Quader-Richtung</div>
+                  </div>
+                </div>
+                <div class="lane-title" style="margin-top:28px">
+                  <span>Gegenläufiger Paletten-Entladeweg</span>
+                  <span class="direction-label">← PALETTE / PROTOKOLLE Ferhat Altun</span>
+                </div>
+                <div class="return-lane">
+                  <div class="return-pallet">
+                  </div>
+                </div>
+              </div>
+              <p class="note">Die Gegenrichtung ist eine schematische zweite Transportspur: Quader fahren nach rechts, die kommissionierte Protokollpalette wird am Ende auf einer getrennten Spur nach links ausgeleitet. So kreuzen sich die Materialflüsse nicht.</p>
+            </section>
+            <section class="panel">
+              <h2>Rotationsereignis → gestreckte Informationsspur</h2>
+              <p class="note">Jede vollständige Logo-Rotation erzeugt hier einen neuen, zeitlich gestreckten Beispieldatensatz. Die Balken sind Visualisierungen von Messkanälen – keine echten Sensorwerte.</p>
+              <div class="signal-grid">
+                <div class="signal">
+                  <strong>Schall</strong>
+                  <div class="value" id="sound">440 Hz</div>
+                  <small>Frequenz · Hz</small>
+                  <div class="trace">
+                    <i>
+                    </i>
+                  </div>
+                </div>
+                <div class="signal">
+                  <strong>Photonen / Licht</strong>
+                  <div class="value" id="light">520 nm</div>
+                  <small>Wellenlänge · nm</small>
+                  <div class="trace">
+                    <i>
+                    </i>
+                  </div>
+                </div>
+                <div class="signal">
+                  <strong>Vibration</strong>
+                  <div class="value" id="vibration">2,4 mm/s</div>
+                  <small>Schwinggeschwindigkeit · mm/s</small>
+                  <div class="trace">
+                    <i>
+                    </i>
+                  </div>
+                </div>
+                <div class="signal">
+                  <strong>Öffnen / Schließen</strong>
+                  <div class="value" id="gate">OFFEN</div>
+                  <small>Binärer Prozesszustand</small>
+                  <div class="trace">
+                    <i>
+                    </i>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="panel">
+              <h2>Ri-Messfelder – Beispielhafte SI-Größen</h2>
+              <div class="signal-grid">
+                <div class="signal">
+                  <strong>Ri4 · Massenverteilung</strong>
+                  <div class="value" id="mass">1,250 kg</div>
+                  <small>Masse · kg</small>
+                </div>
+                <div class="signal">
+                  <strong>Ri4 · Temperatur</strong>
+                  <div class="value" id="temp">22,0 °C</div>
+                  <small>Temperatur · °C (SI: K)</small>
+                </div>
+                <div class="signal">
+                  <strong>Ri8 · Länge</strong>
+                  <div class="value" id="length">0,320 m</div>
+                  <small>Länge · m</small>
+                </div>
+                <div class="signal">
+                  <strong>Ri8 · Zeit</strong>
+                  <div class="value" id="time">0,80 s</div>
+                  <small>Zeit · s</small>
+                </div>
+              </div>
+              <p class="note">Ri4 und Ri8 sind hier frei benannte Kanalgruppen im Modell. Weitere Felder können ergänzt werden, z. B. Kraft (N), Druck (Pa), elektrische Spannung (V), Strom (A) oder Leistung (W).</p>
+            </section>
+            <section class="panel">
+              <h2>Produktionsereignisse zwischen den Stationen</h2>
+              <div class="events">
+                <div class="event">
+                  <span class="lamp">
+                  </span>
+                  <div>
+                    <b>Ro → Ra · Werkstück erkannt</b>
+                    <small>Objekt tritt in den Bearbeitungsbereich ein</small>
+                  </div>
+                </div>
+                <div class="event">
+                  <span class="lamp">
+                  </span>
+                  <div>
+                    <b>Ra → Ri · Bearbeitung beendet</b>
+                    <small>Werkstück wird zur Prüfung weitergegeben</small>
+                  </div>
+                </div>
+                <div class="event">
+                  <span class="lamp">
+                  </span>
+                  <div>
+                    <b>Ri · Messwerte gebündelt</b>
+                    <small>Ri4 / Ri8 als strukturierte Datenkanäle</small>
+                  </div>
+                </div>
+                <div class="event">
+                  <span class="lamp">
+                  </span>
+                  <div>
+                    <b>Ri → Re · Freigabe</b>
+                    <small>Ergebnis wird an die nächste Produktionsstufe übergeben</small>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="panel">
+              <h2>Steuerung</h2>
+              <div class="controls">
+                <button id="pause">Pause</button>
+                <button id="new">Rotation / Datensatz auslösen</button>
+                <label for="speed">Bandgeschwindigkeit</label>
+                <input id="speed" type="range" min=".5" max="2.5" step=".1" value="1">
+                <span id="speedval">1,0×</span>
+              </div>
+              <p class="note" id="counter">Rotations-Datensatz: 0 · Status: Betrieb</p>
+            </section>
+            <p class="note">Hinweis: Konzept- und UI-Demonstrator. Die Fontheim-Belege sind ausschließlich fiktive Musterkarten, keine echten Entlassungspapiere, keine offiziellen Formulare und enthalten keine Patientendaten. Schall-, Licht-, Vibrations- und Prozesswerte werden synthetisch erzeugt. Für reale Produktion wären kalibrierte Sensoren, definierte Einheiten, Zeitstempel, Grenzwerte und eine validierte Datenerfassung erforderlich.</p>
+          </main>
+          <script>
+let count=0,paused=false,period=8000,timer;
+const $=id=>document.getElementById(id);
+function fmt(n,d=2){return n.toFixed(d).replace(".",",")}
+function emit(){
+ count++;
+ $("sound").textContent=Math.round(350+Math.random()*300)+" Hz";
+ $("light").textContent=Math.round(450+Math.random()*180)+" nm";
+ $("vibration").textContent=fmt(.8+Math.random()*3,1)+" mm/s";
+ $("gate").textContent=count%2?"OFFEN":"GESCHLOSSEN";
+ $("mass").textContent=fmt(1.0+Math.random()*.7,3)+" kg";
+ $("temp").textContent=fmt(18+Math.random()*12,1)+" °C";
+ $("length").textContent=fmt(.25+Math.random()*.2,3)+" m";
+ $("time").textContent=fmt(.5+Math.random()*.8,2)+" s";
+ $("counter").textContent="Rotations-Datensatz: "+count+" · Status: "+(paused?"Pause":"Betrieb");
+}
+function restart(){clearInterval(timer);timer=setInterval(emit,period)}
+$("pause").onclick=()=>{paused=!paused;$("pause").textContent=paused?"Weiter":"Pause";$("belt").style.animationPlayState=paused?"paused":"running";$("counter").textContent="Rotations-Datensatz: "+count+" · Status: "+(paused?"Pause":"Betrieb");if(paused)clearInterval(timer);else restart()};
+$("new").onclick=emit;
+$("speed").oninput=e=>{let v=+e.target.value;$("speedval").textContent=fmt(v,1)+"×";$("belt").style.animationDuration=(1.2/v)+"s";document.querySelectorAll(".object").forEach(o=>o.style.animationDuration=(9/v)+"s");period=8000/v;if(!paused)restart()};
+emit();restart();
+</script>
+        </body>
+      </html>
