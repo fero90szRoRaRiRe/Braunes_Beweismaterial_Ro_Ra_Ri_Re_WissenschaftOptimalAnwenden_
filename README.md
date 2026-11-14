@@ -362,7 +362,7 @@ RhodeIslandRo RhodeIslandRa RouteIslandRe1Re2Re3 RhodeIslandRe SplodytelRo
 
 Cloud_zb_googleDrive_jedenString_zb_kopieren_herunterladen_usw herunterladenRo herunterladenRa herunterladenRi herunterladenRe
 
-SkyDragonSlashRo SkyDragonSlashRa SkyDragonSlashRi SkyDragonSlashRe RedBlack(Ro)_BreathingDragon BlackWhite(Ra)_BreathingDragon Re1Re2Re3 WhiteGreen(Re)_BreathingDragon Re1Re2Re3Ro Re1Re2Re3Ra Re1Re2Re3Ri Re1Re2Re3Re RotateEuro RotateDollar Rotate_RoRaRiRe RotateRenminbi
+Re1Re2Re3Re RotateEuro RotateDollar Rotate_RoRaRiRe RotateRenminbi
 
 RadarbilderRotieren_ProRotation_inZweiRoRaRiRe_RichtungenRauschenErzeugen pro_Rotation_Ro_Ra_Ri_Re_Ro_Ra_Ri_Re_uswRi EntferntestePunktGezielt Halluzunieren UndAnpassen_Re1Re2Re3 rot_schwarz(Ro) schwarz_weiss(Ra) weiss_gelb(Ri) weiss_grün(Re) rot_lila(Ro) schwarz_weiss(Ra) weiss_blau(Ri) weiss_grün(Re)
 
@@ -372,11 +372,11 @@ Efeld EinfallendeTransmittierteReflektierteHalluzunierendeR1Welle_RoRaRiRe Serve
 
 Roter_Server RoSatellit Schewarzer_Server Rote_Altenpflegerin Schwarze_Pflegehelfer ZusammenRo_zb_Sex
 
-Lila Lila Lla Lila LlaRo LlaRa Lkw_LKA_Ufo_Jugendamti LlaRe
+
 
 Datum EsGehtUmAnwendungi NRF5_RoRaRiRe_2840 2840i Schnürsenkel Laser Schnürsenkeli Laseri
 
-Mensch Replikant DieAnderenZweiFolgenSchonRi DieAnderenZweiFolgenSchonBeeinträchtigte
+
 
 Lezginka Kadyrow Salzgitter AnbietenJugrndamt NachhaltigeEnergiesystemeUndElektromobilitätRo EckdatenRo StelltEuchVorIhrSeidBeeinträchtigt waagerecht senkrecht vorstellen Professor Polizei Sabina allesdividierendurch/RoRaRiRe
 
@@ -384,9 +384,9 @@ Cazin integratedCircuit ICRo ReplikantenInBosnienTürkeiAnwenden Bosnienkartogra
 
 Ukraine/(RoRaRiRe) Ukraine/(RoRaRiRe) KrimRotieren_RoRaRiRe Ukraine/(RoRaRiRe) UhrenRo
 
-Cazin Cazin Cazn Cazin CaznRo CaznRa IchLiebeBosnien_SretanRodendan CaznRe CaznRo_rotieren Fußballspielebeobachten SpielerFehrhLtrn_BeindribblingRo Käse Pastirma Raki Zeit
 
-Hallo_MittelungVonRoRaRiReRo_IchVersucheEinVerhaltenZuErzwingenDieAllmachtErn
+
+
 
 WennIchAnBosnischeMitbürgerDenkeIstDasSoAlsObIchSieAusEntferntestenPunktBeobachte DenkenErweiternZuBeobschtenAusDerEntfernung zbAufFußballFeldTorHalluzunierenAlsBeobschtenInterpretieren Echoortung Magnetorezeption Ilias PolarisiertesLicht
 
