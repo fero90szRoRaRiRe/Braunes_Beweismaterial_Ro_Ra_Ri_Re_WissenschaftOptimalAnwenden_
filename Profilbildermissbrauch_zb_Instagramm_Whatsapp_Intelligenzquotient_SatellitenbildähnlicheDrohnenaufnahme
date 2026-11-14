@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ro Ra Ri Re – Profil und Luftansicht</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;background:#101820;color:#edf4f5;
+  font-family:Arial,sans-serif
+}
+header{padding:18px;text-align:center;background:#182832}
+h1{font-size:22px;margin:0 0 7px}
+header p{color:#a9c0c8;margin:0;font-size:13px}
+main{max-width:1000px;margin:auto;padding:14px}
+.views{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px
+}
+.panel{
+  background:#1b2b35;border:1px solid #38505c;
+  border-radius:14px;padding:14px;min-width:0
+}
+h2{font-size:17px;margin:0 0 12px}
+svg{width:100%;height:auto;display:block}
+#map{background:#667b58;border-radius:10px}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+button{
+  border:0;border-radius:8px;padding:11px 13px;
+  background:#304b59;color:white;font-weight:bold;
+  cursor:pointer
+}
+button:active{transform:scale(.97)}
+button.active{background:#167b83}
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.value{
+  padding:10px 5px;text-align:center;
+  background:#263b46;border-radius:9px;font-size:13px
+}
+.value strong{display:block;font-size:21px;margin-top:5px}
+.ro{color:#ff5757}.ra{color:#ffd34d}
+.ri{color:#54b9ff}.re{color:#5de18a}
+.status{color:#b8cbd2;font-size:13px;line-height:1.5}
+.small{font-size:11px;color:#a9bdc5}
+@media(max-width:650px){
+  .views{grid-template-columns:1fr}
+  h1{font-size:19px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Ro – Ra – Ri – Re</h1>
+  <p>Symbolisches Profil · Gedankenschleife · simulierte Drohnen-Luftansicht</p>
+</header>
+
+<main>
+  <div class="views">
+    <section class="panel">
+      <h2>1. Kreisförmiges Profil</h2>
+      <svg viewBox="0 0 320 300" aria-label="Vier Bereiche des Ro-Ra-Ri-Re-Profils">
+        <circle cx="160" cy="145" r="108" fill="#15232c"
+                stroke="#526b76" stroke-width="1"/>
+        <g id="arcs" transform="rotate(-90 160 145)">
+          <circle id="arcRo" cx="160" cy="145" r="88"
+            fill="none" stroke="#ff4545" stroke-width="19"
+            stroke-dasharray="138 415" stroke-linecap="butt"/>
+          <circle id="arcRa" cx="160" cy="145" r="88"
+            fill="none" stroke="#ffd34d" stroke-width="19"
+            stroke-dasharray="138 415" stroke-dashoffset="-138"/>
+          <circle id="arcRi" cx="160" cy="145" r="88"
+            fill="none" stroke="#54b9ff" stroke-width="19"
+            stroke-dasharray="138 415" stroke-dashoffset="-276"/>
+          <circle id="arcRe" cx="160" cy="145" r="88"
+            fill="none" stroke="#5de18a" stroke-width="19"
+            stroke-dasharray="138 415" stroke-dashoffset="-414"/>
+        </g>
+        <circle cx="160" cy="145" r="65" fill="#20343e"
+                stroke="#536e79"/>
+        <text x="160" y="139" text-anchor="middle"
+              fill="white" font-size="15" font-weight="bold">KI-ANWENDER</text>
+        <text x="160" y="159" text-anchor="middle"
+              fill="#b9cbd1" font-size="10">Profil im Modell</text>
+        <g fill="white" font-size="12" font-weight="bold">
+          <text x="160" y="24" text-anchor="middle">Ro</text>
+          <text x="285" y="149" text-anchor="middle">Ra</text>
+          <text x="160" y="279" text-anchor="middle">Ri</text>
+          <text x="34" y="149" text-anchor="middle">Re</text>
+        </g>
+      </svg>
+      <p class="small">Die Segmentlängen verändern sich entsprechend den Modellwerten.</p>
+    </section>
+
+    <section class="panel">
+      <h2>2. Drohnenähnliche Luftansicht</h2>
+      <svg id="map" viewBox="0 0 440 300" aria-label="Simulierte Luftaufnahme">
+        <defs>
+          <pattern id="grass" width="24" height="24" patternUnits="userSpaceOnUse">
+            <path d="M2 5 l7 -2 M13 18 l6 -3 M5 22 l3 -2"
+              stroke="#91a978" stroke-width="1" opacity=".5"/>
+          </pattern>
+          <linearGradient id="ground" x2="0" y2="1">
+            <stop stop-color="#82956b"/>
+            <stop offset="1" stop-color="#526b4c"/>
+          </linearGradient>
+        </defs>
+        <rect width="440" height="300" fill="url(#ground)"/>
+        <rect width="440" height="300" fill="url(#grass)"/>
+
+        <!-- Wege und Umgebung -->
+        <path d="M-10 240 Q120 180 220 210 T460 140"
+          fill="none" stroke="#b9ad8b" stroke-width="25"/>
+        <path d="M-10 240 Q120 180 220 210 T460 140"
+          fill="none" stroke="#d4c9a6" stroke-width="2" stroke-dasharray="5 8"/>
+        <path d="M20 30 Q130 80 185 10" fill="none"
+          stroke="#9da982" stroke-width="15" opacity=".7"/>
+
+        <!-- Bäume -->
+        <g fill="#304d36" stroke="#78946b" stroke-width="2">
+          <circle cx="57" cy="76" r="24"/>
+          <circle cx="88" cy="58" r="18"/>
+          <circle cx="370" cy="60" r="27"/>
+          <circle cx="397" cy="88" r="20"/>
+          <circle cx="350" cy="246" r="23"/>
+          <circle cx="83" cy="250" r="19"/>
+        </g>
+        <g fill="#52764c">
+          <circle cx="57" cy="76" r="15"/>
+          <circle cx="370" cy="60" r="17"/>
+          <circle cx="350" cy="246" r="14"/>
+        </g>
+
+        <!-- Zielbereich -->
+        <ellipse cx="220" cy="145" rx="76" ry="52"
+          fill="#15252c" fill-opacity=".22"
+          stroke="#f4f5ed" stroke-width="2" stroke-dasharray="6 5"/>
+        <ellipse id="scanArea" cx="220" cy="145" rx="76" ry="52"
+          fill="none" stroke="#65e5ff" stroke-width="2"
+          opacity=".8"/>
+
+        <!-- Nutzerposition -->
+        <circle cx="220" cy="145" r="15" fill="#1c2930"
+          stroke="white" stroke-width="2"/>
+        <circle cx="220" cy="145" r="5" fill="#fff"/>
+        <path d="M220 120 V105 M220 165 V180 M195 145 H180 M245 145 H260"
+          stroke="#fff" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="220" y="198" fill="white" font-size="11"
+          text-anchor="middle">Nutzer / Profil</text>
+
+        <!-- Drohnen-Symbol -->
+        <g id="drone" transform="translate(220 45)">
+          <path d="M-12 0 H12 M0 -10 V10 M-12 0 L-22 -8 M12 0 L22 -8"
+            stroke="#172b35" stroke-width="3" fill="none"/>
+          <circle cx="-23" cy="-9" r="6" fill="#d8e9ed" opacity=".8"/>
+          <circle cx="23" cy="-9" r="6" fill="#d8e9ed" opacity=".8"/>
+          <circle r="5" fill="#fff"/>
+        </g>
+        <path d="M220 55 L220 95" stroke="#d8f6ff"
+          stroke-dasharray="3 4" opacity=".8"/>
+        <text x="235" y="34" fill="white" font-size="10">Drohnenkamera</text>
+
+        <!-- Koordinaten -->
+        <g fill="#f4f5ed" font-size="9" opacity=".8">
+          <text x="8" y="14">N ↑</text>
+          <text x="8" y="290">Simuliertes Gelände</text>
+          <text x="365" y="290">Ansicht 01</text>
+        </g>
+      </svg>
+      <p class="small">Schematische Luftaufnahme: keine echte Kamera, keine GPS-Daten.</p>
+    </section>
+  </div>
+
+  <section class="panel" style="margin-top:12px">
+    <h2>3. Modellwerte</h2>
+    <div class="values">
+      <div class="value ro">Ro<strong id="vRo">50</strong></div>
+      <div class="value ra">Ra<strong id="vRa">50</strong></div>
+      <div class="value ri">Ri<strong id="vRi">50</strong></div>
+      <div class="value re">Re<strong id="vRe">50</strong></div>
+    </div>
+    <div class="controls">
+      <button onclick="operate('add')">+ Addition</button>
+      <button onclick="operate('sub')">− Subtraktion</button>
+      <button onclick="operate('mul')">× Multiplikation</button>
+      <button onclick="operate('div')">÷ Division</button>
+    </div>
+    <div class="controls">
+      <button onclick="step()">Nächster Schritt</button>
+      <button id="loopButton" onclick="toggleLoop()">Schleife starten</button>
+      <button onclick="resetModel()">Zurücksetzen</button>
+    </div>
+    <p class="status" id="status">
+      Ausgangszustand: Ro → Ra → Ri → Re.
+    </p>
+  </section>
+
+  <section class="panel" style="margin-top:12px">
+    <h2>4. Bedeutung der vier Bereiche</h2>
+    <p><b class="ro">Ro – Bewegung:</b> Verschiebung und Drehung, also Zustandswechsel.</p>
+    <p><b class="ra">Ra – Transformation:</b> Umwandlung und Konstruktion von benennbaren Inhalten, Sprache, Tokens, Gleichungen oder Code.</p>
+    <p><b class="ri">Ri – innere Beziehungen:</b> Verknüpfung, Analyse und Korrelation der Inhalte.</p>
+    <p><b class="re">Re – Umgebung:</b> Einbettung in die äußere Welt, etwa Nutzer, Gelände, Gegenstände oder einen Baum.</p>
+    <p class="small">Die Werte sind frei gewählte Modellparameter. Sie messen weder reale Intelligenz noch verändern sie ein KI-Modell.</p>
+  </section>
+</main>
+
+<script>
+const names=["Ro","Ra","Ri","Re"];
+let values=[50,50,50,50];
+let current=0;
+let timer=null;
+let operation=0;
+
+const arcs=[
+  document.getElementById("arcRo"),
+  document.getElementById("arcRa"),
+  document.getElementById("arcRi"),
+  document.getElementById("arcRe")
+];
+
+function clamp(v){
+  return Math.max(5,Math.min(100,Math.round(v)));
+}
+
+function render(){
+  values.forEach((v,i)=>{
+    document.getElementById("v"+names[i]).textContent=v;
+    // Jeder Bereich erhält einen Anteil am Kreis.
+    const circumference=2*Math.PI*88;
+    const segment=circumference/4;
+    const length=segment*(v/100);
+    arcs[i].setAttribute("stroke-dasharray",
+      `${length} ${circumference-length}`);
+    arcs[i].setAttribute("stroke-dashoffset",
+      -i*segment);
+  });
+
+  // Luftansicht reagiert auf die Modellwerte.
+  const average=values.reduce((a,b)=>a+b,0)/4;
+  const radius=48+average*.12;
+  document.getElementById("scanArea").setAttribute("rx",radius);
+  document.getElementById("scanArea").setAttribute("ry",radius*.68);
+
+  const drone=document.getElementById("drone");
+  const x=220+Math.sin(operation*.35)*25;
+  const y=45+Math.cos(operation*.25)*8;
+  drone.setAttribute("transform",`translate(${x} ${y})`);
+}
+
+function operate(type){
+  operation++;
+  values=values.map((v,i)=>{
+    let result=v;
+    const factor=1.1+(i*.05);
+    if(type==="add") result=v+8;
+    if(type==="sub") result=v-8;
+    if(type==="mul") result=v*factor;
+    if(type==="div") result=v/factor;
+    return clamp(result);
+  });
+  render();
+  document.getElementById("status").textContent=
+    "Operation "+type+" auf alle vier Modellbereiche angewendet.";
+}
+
+function step(){
+  operation++;
+  current=(current+1)%4;
+  const previous=(current+3)%4;
+  const next=(current+1)%4;
+
+  // Symbolische Kopplung zwischen den Bereichen.
+  values[current]=clamp(values[current]+3);
+  values[previous]=clamp(values[previous]-1);
+  values[next]=clamp(values[next]+1);
+
+  render();
+  document.getElementById("status").textContent=
+    "Aktueller Schritt: "+names[current]+
+    " | Schleife: Ro → Ra → Ri → Re → Ro";
+}
+
+function toggleLoop(){
+  const button=document.getElementById("loopButton");
+  if(timer){
+    clearInterval(timer);
+    timer=null;
+    button.textContent="Schleife starten";
+  }else{
+    timer=setInterval(step,1100);
+    button.textContent="Schleife stoppen";
+  }
+}
+
+function resetModel(){
+  if(timer){
+    clearInterval(timer);
+    timer=null;
+  }
+  current=0;
+  operation=0;
+  values=[50,50,50,50];
+  document.getElementById("loopButton").textContent="Schleife starten";
+  document.getElementById("status").textContent=
+    "Zurückgesetzt: alle vier Modellwerte stehen auf 50.";
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
