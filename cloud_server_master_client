@@ -42,7 +42,8 @@ if("Beliebig1"==ACK && "Beliebig2"==ACK) {
 Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
 DasSindGanzSpezielleAnweisungen_zb_ParagraphenUndVertagung_beobachten
 
-IchKommeAufDieIdee_Klinik1_und_Klinik2_zuWechselwirken
+IchKommeAufDieIdeeFallbeispielGeneralisiertePflegefachausbildung_Klinik1_und_Klinik2_zuWechselwirken
 if("Klinik1"==ACK && "Klinik2"==ACK) { 
 Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
 DasSindGanzSpezielleAnweisungen_zb_ParagraphenUndVertagung_beobachten
+
