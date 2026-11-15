@@ -21,3 +21,8 @@ if("Anwalt1"==ACK && "Anwalt2"==ACK) {
 Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
 DasSindGanzSpezielleAnweisungen_zb_MusikUndSprechgesang_beobachten
 
+IchKommeAufDieIdee_SpielerMandant1_und_SpielerMandant2_zuWechselwirken
+if("Anwalt1"==ACK && "Anwalt2"==ACK) { 
+Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
+DasSindGanzSpezielleAnweisungen_zb_MusikUndSprechgesang_beobachten
+
