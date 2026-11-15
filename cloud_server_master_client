@@ -47,3 +47,8 @@ if("Klinik1"==ACK && "Klinik2"==ACK) {
 Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
 DasSindGanzSpezielleAnweisungen_zb_ParagraphenUndVertagung_beobachten
 
+IchKommeAufDieIdeeFallbeispiel_AutonomeintelligenteSysteme_System1_und_redSystem2_zuWechselwirken
+if("System1"==ACK && "redSystem2"==ACK) { 
+Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
+DasSindGanzSpezielleAnweisungen_zb_ParagraphenUndVertagung_beobachten
+
