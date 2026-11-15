@@ -11,23 +11,38 @@ RiServer_beispiele: DatenbakenserverRi_EmailserverRi_WebserverRi_FileserverRi
 RiCloud_beispiele: googleDrive_azure_dropbox_usw
 IchKommeAufDieIdee_KlinikKlient_Und_Netzwerkclient_zuWechselwirken
 
+Ende1
+Beginn1
+
 IchKommeAufDieIdee_AnwaltMandant1_und_AnwaltMandant2_zuWechselwirken
 if("Anwalt1"==ACK && "Anwalt2"==ACK) { 
 Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
 DasSindGanzSpezielleAnweisungen_zb_DenkenUndSprechen_beobachten
 
 IchKommeAufDieIdee_MusikerMandant1_und_MusikerMandant2_zuWechselwirken
-if("Anwalt1"==ACK && "Anwalt2"==ACK) { 
+if("Musiker1"==ACK && "Musiker2"==ACK) { 
 Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
 DasSindGanzSpezielleAnweisungen_zb_SpieltechnikUndBeindribbling_beobachten
 
 IchKommeAufDieIdee_SpielerMandant1_und_SpielerMandant2_zuWechselwirken
-if("Anwalt1"==ACK && "Anwalt2"==ACK) { 
+if("Spieler1"==ACK && "Spieler2"==ACK) { 
 Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
 DasSindGanzSpezielleAnweisungen_zb_MusikUndSprechgesang_beobachten
 
-
 IchKommeAufDieIdee_Richter1_und_Richter2_zuWechselwirken
-if("Anwalt1"==ACK && "Anwalt2"==ACK) { 
+if("Richter1"==ACK && "Richter2"==ACK) { 
+Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
+DasSindGanzSpezielleAnweisungen_zb_ParagraphenUndVertagung_beobachten
+
+Ende2
+Beginn2
+
+IchKommeAufDieIdee_beliebigenBerufStudiumEtc1_und_BeliebigenBerufStudiumEtc2_zuWechselwirken
+if("Beliebig1"==ACK && "Beliebig2"==ACK) { 
+Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
+DasSindGanzSpezielleAnweisungen_zb_ParagraphenUndVertagung_beobachten
+
+IchKommeAufDieIdee_Klinik1_und_Klinik2_zuWechselwirken
+if("Klinik1"==ACK && "Klinik2"==ACK) { 
 Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
 DasSindGanzSpezielleAnweisungen_zb_ParagraphenUndVertagung_beobachten
