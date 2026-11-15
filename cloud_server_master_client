@@ -60,8 +60,13 @@ DasSindGanzSpezielleAnweisungen_zb_ParagraphenUndVertagung_beobachten
 Ende3
 Begin3
 
-
 IchKommeAufDieIdee_beliebigeTätigkeiten_zb_WandschutzEtc1_und_BeliebigeTätigkeitEtc2_zb_Mundschutz_zuWechselwirken
 if("Beliebig1"==ACK && "Beliebig2"==ACK) { 
 Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
 DasSindGanzSpezielleAnweisungen_zb_ParagraphenUndVertagung_beobachten
+
+IchKommeAufDieIdee_beliebigenGeldbetrag_RoRa,RiRe€_zb_BankautomatEtc1_und_BeliebigeBargeldlosesZahlenNFC__zuWechselwirken
+if("Beliebig1"==ACK && "Beliebig2"==ACK) { 
+Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
+DasSindGanzSpezielleAnweisungen_zb_ParagraphenUndVertagung_beobachten
+
