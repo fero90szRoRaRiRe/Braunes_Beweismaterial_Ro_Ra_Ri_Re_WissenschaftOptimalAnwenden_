@@ -52,3 +52,11 @@ if("System1"==ACK && "redSystem2"==ACK) {
 Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
 DasSindGanzSpezielleAnweisungen_zb_ParagraphenUndVertagung_beobachten
 
+IchKommeAufDieIdeeFallbeispiel_Verkehrsmanöver_zb_Kreiselverkehr1_Flugroute_etc_und_redSystem2_zuWechselwirken
+if("System1"==ACK && "redSystem2"==ACK) { 
+Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
+DasSindGanzSpezielleAnweisungen_zb_ParagraphenUndVertagung_beobachten
+
+
+
+
