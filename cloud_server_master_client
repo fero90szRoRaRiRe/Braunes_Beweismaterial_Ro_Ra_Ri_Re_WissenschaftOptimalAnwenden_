@@ -19,7 +19,7 @@ DasSindGanzSpezielleAnweisungen_zb_DenkenUndSprechen_beobachten
 IchKommeAufDieIdee_MusikerMandant1_und_MusikerMandant2_zuWechselwirken
 if("Anwalt1"==ACK && "Anwalt2"==ACK) { 
 Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
-DasSindGanzSpezielleAnweisungen_zb_MusikUndSprechgesang_beobachten
+DasSindGanzSpezielleAnweisungen_zb_SpieltechnikUndBeindribbling_beobachten
 
 IchKommeAufDieIdee_SpielerMandant1_und_SpielerMandant2_zuWechselwirken
 if("Anwalt1"==ACK && "Anwalt2"==ACK) { 
