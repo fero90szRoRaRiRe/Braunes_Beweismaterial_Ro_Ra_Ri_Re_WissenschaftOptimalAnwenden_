@@ -68,7 +68,8 @@ int main(void) {
 
     printf("=================================\n");
     printf(" PSYCHOLOGISCHE FUZZY-REGLER\n");
-    printf(" Psychologische Interpretation von Begriffe auf vier Varianten");
+    printf(" Psychologische Interpretation von Begriffen");
+    printf(" Ein Begriff - Vier Interpretationsmöglichkeiten");
     printf("=================================\n");
 
     printf("\nWelchen Regler moechten Sie verwenden?\n");
