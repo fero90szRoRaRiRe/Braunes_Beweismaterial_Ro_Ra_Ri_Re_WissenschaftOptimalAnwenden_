@@ -1,0 +1,123 @@
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+#define MAX 256
+
+/* RO: Information greifen und erfassen */
+void ReglerRo(const char *wort) {
+    printf("\n--- RO: GREIFEN ---\n");
+    printf("Erfasstes Wort: %s\n", wort);
+    printf("Wortlaenge: %zu Bytes\n", strlen(wort));
+    printf("Schwerpunkt: Aufnahme und Erkennung\n");
+}
+
+/* RA: Information transformieren */
+void ReglerRa(const char *wort) {
+    char ergebnis[MAX];
+
+    strcpy(ergebnis, wort);
+
+    for (int i = 0; ergebnis[i]; i++) {
+        ergebnis[i] = (char)toupper((unsigned char)ergebnis[i]);
+    }
+
+    printf("\n--- RA: TRANSFORMATION ---\n");
+    printf("Original: %s\n", wort);
+    printf("Transformiert: %s\n", ergebnis);
+    printf("Schwerpunkt: Umwandlung der Information\n");
+}
+
+/* RI: Information und Beziehungen untersuchen */
+void ReglerRi(const char *wort) {
+    int vokale = 0;
+    int konsonanten = 0;
+
+    for (int i = 0; wort[i]; i++) {
+        char c = (char)tolower((unsigned char)wort[i]);
+
+        if (strchr("aeiou", c)) {
+            vokale++;
+        }
+        else if (c >= 'a' && c <= 'z') {
+            konsonanten++;
+        }
+    }
+
+    printf("\n--- RI: BEZIEHUNGEN ---\n");
+    printf("Wort: %s\n", wort);
+    printf("Vokale: %d\n", vokale);
+    printf("Konsonanten: %d\n", konsonanten);
+    printf("Erstes Zeichen: %c\n", wort[0]);
+    printf("Letztes Byte: %c\n", wort[strlen(wort)-1]);
+    printf("Schwerpunkt: Zeichen und Beziehungen\n");
+}
+
+/* RE: Ergebnis ausgeben */
+void ReglerRe(const char *wort) {
+    printf("\n--- RE: AUSGABE ---\n");
+    printf("Verarbeitete Information: %s\n", wort);
+    printf("Status: Ausgabe bereit\n");
+    printf("Schwerpunkt: Ergebnis und Umgebung\n");
+}
+
+int main(void) {
+    char regler[20];
+    char wort[MAX];
+
+    printf("=================================\n");
+    printf(" PSYCHOLOGISCHE FUZZY-REGLER\n");
+    printf(" Ein (Psychologischer) Begriff kann auf vier Arten Interpretiert werden. \n");
+    printf("=================================\n");
+
+    printf("\nWelchen Regler moechten Sie verwenden?\n");
+    printf("RoRegler = Greifen\n");
+    printf("RaRegler = Transformieren\n");
+    printf("RiRegler = Beziehungen erkennen\n");
+    printf("ReRegler = Ergebnis ausgeben\n");
+
+    printf("\nIhre Auswahl: ");
+
+    if (fgets(regler, sizeof(regler), stdin) == NULL)
+        return 1;
+
+    regler[strcspn(regler, "\n")] = '\0';
+
+    printf("\nBitte geben Sie ein beliebiges Wort ein: ");
+
+    if (fgets(wort, sizeof(wort), stdin) == NULL)
+        return 1;
+
+    wort[strcspn(wort, "\n")] = '\0';
+
+    if (strlen(wort) == 0) {
+        printf("Kein Wort eingegeben.\n");
+        return 1;
+    }
+
+    if (strcmp(regler, "Ro") == 0 ||
+        strcmp(regler, "ro") == 0) {
+        ReglerRo(wort);
+    }
+    else if (strcmp(regler, "Ra") == 0 ||
+             strcmp(regler, "ra") == 0) {
+        ReglerRa(wort);
+    }
+    else if (strcmp(regler, "Ri") == 0 ||
+             strcmp(regler, "ri") == 0) {
+        ReglerRi(wort);
+    }
+    else if (strcmp(regler, "Re") == 0 ||
+             strcmp(regler, "re") == 0) {
+        ReglerRe(wort);
+    }
+    else {
+        printf("Ungueltige Auswahl. Bitte Ro, Ra, Ri oder Re.\n");
+        return 1;
+    }
+
+    printf("\nVerarbeitung abgeschlossen.\n");
+
+    return 0;
+}
