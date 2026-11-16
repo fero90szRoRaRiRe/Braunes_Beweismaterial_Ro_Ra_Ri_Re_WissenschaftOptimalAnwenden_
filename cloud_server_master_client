@@ -71,6 +71,8 @@ Ro_Anweisung; Ra_Anweisung; Ri_Anweisung; Re_Anweisung;}
 DasSindGanzSpezielleAnweisungen_zb_ParagraphenUndVertagung_beobachten
 
 Ro_Anweisung: Bewegungsausführungen,Motorik,Translation,Rotation,Dynamik,Fahrzeugbewegungsverhalten,Flugmanöver,usw
-Ra_Anweisung: Transformationen, dh. alle sämtlichen klassischen VariablendeklarationenUndAnwendungen zb DGLn,Fouriertransformationen,Paragraphen,usw.
-Ri_Anweisung: InnereZusammenhänge,Korrelation,Analysewerkzeug,StatistischesVerhalten,WerkzeugDasZusammenhänge"Verlagern"soll
-Re_Anweisung: Einbettung in die Umgebung,zb.Sensoren_Aktoren_Kamera_Objekte_usw
+Ra_Anweisung: Transformationen, dh. alle sämtlichen klassischen VariablendeklarationenUndAnwendungen zb DGLn,Fouriertransformationen,Paragraphen,Symptome_und_Diagnosen usw.
+Ri_Anweisung: InnereZusammenhänge,Korrelation,Analysewerkzeug,StatistischesVerhalten,WerkzeugDasZusammenhänge"Verlagern"soll,Diagnostikwerkzeug,...
+Re_Anweisung: Einbettung in die Umgebung, dh. Sensoren_Aktoren_Kamera_Objekte 
+
+
