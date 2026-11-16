@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bewohnerverhalten 3D – Viereck, Kreisverkehr, Überkreuzung</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f4efe6;--ink:#2a2118;--muted:#7a6c5a;--map:#e6dfcf;--grid:#d3c9b3}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16130f;--ink:#f1e9da;--muted:#a69882;--map:#262119;--grid:#383124}}
+:root[data-theme="dark"]{--bg:#16130f;--ink:#f1e9da;--muted:#a69882;--map:#262119;--grid:#383124}
+*,*:before,*:after{box-sizing:inherit}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+body{min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:.8rem;padding:1rem}
+h1{margin:0;font-size:clamp(1.1rem,4.5vw,1.6rem);letter-spacing:.12em;text-transform:uppercase;text-align:center}
+.sub{margin:0;color:var(--muted);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;text-align:center}
+#stage{position:relative;width:min(96vw,780px);height:min(66vh,560px);border-radius:14px;overflow:hidden;border:2px solid var(--ink);background:var(--map);touch-action:none;cursor:grab}
+#stage canvas{display:block;width:100%;height:100%}
+#hud{position:absolute;left:10px;right:10px;top:8px;pointer-events:none;font:600 .74rem system-ui,sans-serif;color:#fff;text-shadow:0 0 4px #000,0 0 6px #000}
+.legend{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;width:min(96vw,780px)}
+.item{display:flex;flex-direction:column;align-items:center;padding:.4rem;border:1px solid var(--grid);border-radius:10px;opacity:.6}
+.item.on{opacity:1;border-color:var(--ink)}
+.item b{font-size:1rem}.item small{color:var(--muted);font-size:.65rem;text-align:center}
+.item em{font:700 .9rem system-ui,sans-serif;font-style:normal}
+button.act{border-color:var(--ink);font-weight:700}
+.controls{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
+button{font:inherit;font-size:.85rem;border:1px solid var(--grid);background:var(--map);color:var(--ink);border-radius:9px;padding:.5rem .75rem;cursor:pointer}
+button:focus-visible{outline:2px solid #b3262e;outline-offset:3px}
+.note{width:min(96vw,780px);color:var(--muted);font:.78rem/1.45 system-ui,sans-serif;text-align:center;margin:0}
+</style>
+</head>
+<body>
+<h1>Bewohnerverhalten 3D</h1>
+<p class="sub">Ferhat Altun · Viereck um den Block · Kreisverkehr oder Überkreuzung · rot-blaue Fahrzeuge</p>
+<div id="stage"><div id="hud"></div></div>
+<p class="note" id="cmd" style="color:var(--ink)"></p>
+<div class="legend" id="legend"></div>
+<div class="controls">
+  <button id="mK" type="button">Kreisverkehr</button><button id="mU" type="button">rot-blau überkreuzt (ackack)</button><button id="tF" type="button">Fahrzeuge: an</button>
+  <button id="pp" type="button">Pause</button><button id="sl" type="button">Langsamer</button><button id="fa" type="button">Schneller</button>
+  <button id="cS" type="button">Seite</button><button id="cH" type="button">Hinten</button><button id="cO" type="button">Oben</button><button id="cN" type="button">Nah</button><button id="cV" type="button">Viereck</button>
+</div>
+<p class="note"><b>Weg:</b> Der Bewohner geht auf einem viereckähnlichen Weg um den Block, im Uhrzeigersinn. Die vier Ecken heißen Ro, Ra, Ri, Re; an jeder Ecke ist ein <b>Richtungswechsel</b>. Der <b>entfernteste Punkt</b> ist immer die nächste Ecke; Richtungswechsel und entferntester Punkt werden unbewusst durch die <b>Sehareale (Ri)</b> angesteuert: der Blick läuft der Kurve voraus, die Blicklinie zeigt zur Quelle (nächste Ecke), die Welle kehrt an jeder Ecke um. An den vier Ecken kreuzen sich Straßen. <b>Kreisverkehr:</b> an allen vier Kreuzungen kreisen rote und blaue Fahrzeuge, ohne sich zu kreuzen. <b>rot-blau überkreuzt (ackack):</b> rote Fahrzeuge fahren auf den Ost-West-Straßenzügen, blaue auf den anderen, ihre Wege überkreuzen sich zeitversetzt, ohne dass sich Fahrzeuge berühren; jede gleichzeitige Überkreuzung zählt <b>ackack</b>. Der Bewohner führt dabei die Kommandos Ro1 … Roi aus: Ro gesprochen, Ra unbewusst über die Körpermotorik, Ri der Gedanke davor, Re eine Re-Menge benutzt oder darauf Bezug genommen (Handy aus der Tasche). Fahrspuren wechseln alle 4 m durch Ro, Ra, Ri, Re. Ziehen dreht die Kamera, Mausrad zoomt, „Viereck“ zeigt den ganzen Weg. Schematisches Modell, die Hirnareale sind eine grobe Näherung ohne echte Daten.</p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+//LOOP-START
+const DS=.25,LEN=4.4,HWD=.9;
+const Hx=55,Hz=35,ROAD=7.2,Rx=Hx+ROAD,Rz=Hz+ROAD,LN=1.75,WEND=95;
+function mkPath(){const P={pts:[],D:[0],slow:[]};
+ P.add=(x,z,s)=>{const L=P.pts.length;if(L){const q=P.pts[L-1];const d=Math.hypot(x-q[0],z-q[1]);if(d<1e-6)return;P.D.push(P.D[L-1]+d)}P.pts.push([x,z]);P.slow.push(s?1:0)};
+ P.line=(a,b,s)=>{const n=Math.max(1,Math.round(Math.hypot(b[0]-a[0],b[1]-a[1])/DS));for(let i=0;i<=n;i++)P.add(a[0]+(b[0]-a[0])*i/n,a[1]+(b[1]-a[1])*i/n,s)};
+ P.arc=(cx,cz,r,a0,a1,s)=>{const n=Math.max(4,Math.round(Math.abs(a1-a0)*r/DS));for(let i=0;i<=n;i++){const a=a0+(a1-a0)*i/n;P.add(cx+r*Math.cos(a),cz+r*Math.sin(a),s)}};
+ // sanfter Spurversatz (Cosinus) entlang z (ax=1) oder x (ax=0)
+ P.jog=(from,to,ax,s)=>{const n=Math.round(Math.hypot(to[0]-from[0],to[1]-from[1])/DS);for(let i=0;i<=n;i++){const t=i/n,e=(1-Math.cos(Math.PI*t))/2;
+  if(ax===1)P.add(from[0]+(to[0]-from[0])*e,from[1]+(to[1]-from[1])*t,s);else P.add(from[0]+(to[0]-from[0])*t,from[1]+(to[1]-from[1])*e,s)}};
+ P.fin=()=>{P.len=P.D[P.D.length-1];return P};return P}
+function atD(P,d){d=Math.max(0,Math.min(P.len-1e-6,d));let lo=0,hi=P.D.length-1;
+ while(hi-lo>1){const m=(lo+hi)>>1;if(P.D[m]<=d)lo=m;else hi=m}
+ const t=(d-P.D[lo])/((P.D[hi]-P.D[lo])||1),a=P.pts[lo],b=P.pts[hi],L=Math.hypot(b[0]-a[0],b[1]-a[1])||1;
+ return{x:a[0]+(b[0]-a[0])*t,z:a[1]+(b[1]-a[1])*t,hx:(b[0]-a[0])/L,hz:(b[1]-a[1])/L,slow:P.slow[lo]}}
+// Viereck-Weg des Bewohners (im Uhrzeigersinn, Block rechts), Eckenradius r
+function walkerLoop(hx,hz,r){const p=mkPath();
+ p.line([0,-hz],[hx-r,-hz]);p.arc(hx-r,-hz+r,r,-Math.PI/2,0);
+ p.line([hx,-hz+r],[hx,hz-r]);p.arc(hx-r,hz-r,r,0,Math.PI/2);
+ p.line([hx-r,hz],[-hx+r,hz]);p.arc(-hx+r,hz-r,r,Math.PI/2,Math.PI);
+ p.line([-hx,hz-r],[-hx,-hz+r]);p.arc(-hx+r,-hz+r,r,Math.PI,1.5*Math.PI);
+ p.line([-hx+r,-hz],[0,-hz]);return p.fin()}
+const RB={rr:3.2,rb:6.4,isl:1.5,J:[[Rx,-Rz],[Rx,Rz],[-Rx,Rz],[-Rx,-Rz]]}; // Kreisverkehre an allen vier Kreuzungen (NO, SO, SW, NW)
+const TWO=2*Math.PI;
+// Fahrzeugwege: R1 rot Ost-Straße (+z), R2 rot West-Straße (-z), B1 blau Süd-Straße (+x), B2 blau Nord-Straße (-x)
+function vehPath(kind,rb){const p=mkPath(),W=WEND,J=RB.J,rr=RB.rr,rB=RB.rb,A=16;
+ if(kind==="R1"){const x=Rx-LN;
+  if(!rb)p.line([x,-W],[x,W]);else{let z0=-W;for(const c of[J[0],J[1]]){const xw=c[0]-rr;p.line([x,z0],[x,c[1]-A]);p.jog([x,c[1]-A],[xw,c[1]],1);p.arc(c[0],c[1],rr,Math.PI,Math.PI-TWO,1);p.jog([xw,c[1]],[x,c[1]+A],1);z0=c[1]+A}p.line([x,z0],[x,W])}}
+ else if(kind==="R2"){const x=-Rx+LN;
+  if(!rb)p.line([x,W],[x,-W]);else{let z0=W;for(const c of[J[2],J[3]]){const xe=c[0]+rr;p.line([x,z0],[x,c[1]+A]);p.jog([x,c[1]+A],[xe,c[1]],1);p.arc(c[0],c[1],rr,0,-TWO,1);p.jog([xe,c[1]],[x,c[1]-A],1);z0=c[1]-A}p.line([x,z0],[x,-W])}}
+ else if(kind==="B1"){const z=Rz+LN;
+  if(!rb)p.line([-W,z],[W,z]);else{let x0=-W;for(const c of[J[2],J[1]]){const zs=c[1]+rB;p.line([x0,z],[c[0]-A,z]);p.jog([c[0]-A,z],[c[0],zs],0);p.arc(c[0],c[1],rB,Math.PI/2,Math.PI/2-TWO,1);p.jog([c[0],zs],[c[0]+A,z],0);x0=c[0]+A}p.line([x0,z],[W,z])}}
+ else{const z=-Rz-LN;
+  if(!rb)p.line([W,z],[-W,z]);else{let x0=W;for(const c of[J[0],J[3]]){const zn=c[1]-rB;p.line([x0,z],[c[0]+A,z]);p.jog([c[0]+A,z],[c[0],zn],0);p.arc(c[0],c[1],rB,-Math.PI/2,-Math.PI/2-TWO,1);p.jog([c[0],zn],[c[0]-A,z],0);x0=c[0]-A}p.line([x0,z],[-W,z])}}
+ return p.fin()}
+const VK=["R1","B1","R2","B2"];
+function corners(c){const hx=c.hx,hz=c.hz,px=-hz,pz=hx,L=LEN/2,w=HWD;
+ return[[c.x+hx*L+px*w,c.z+hz*L+pz*w],[c.x+hx*L-px*w,c.z+hz*L-pz*w],[c.x-hx*L-px*w,c.z-hz*L-pz*w],[c.x-hx*L+px*w,c.z-hz*L+pz*w]]}
+function segD(p,a,b){const dx=b[0]-a[0],dz=b[1]-a[1],t=Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dz)/(dx*dx+dz*dz)));return Math.hypot(p[0]-a[0]-dx*t,p[1]-a[1]-dz*t)}
+function inside(p,K){let s=0;for(let i=0;i<4;i++){const a=K[i],b=K[(i+1)%4],cr=(b[0]-a[0])*(p[1]-a[1])-(b[1]-a[1])*(p[0]-a[0]);s+=cr>0?1:-1}return Math.abs(s)===4}
+function rectGap(a,b){const A=corners(a),B=corners(b);let m=1e9;
+ for(const p of A){if(inside(p,B))return 0;for(let i=0;i<4;i++)m=Math.min(m,segD(p,B[i],B[(i+1)%4]))}
+ for(const p of B){if(inside(p,A))return 0;for(let i=0;i<4;i++)m=Math.min(m,segD(p,A[i],A[(i+1)%4]))}
+ return m}
+const SPD={X:{R:[7,7],B:[7,7]},C:{R:[6,3.93],B:[7,5.6]}};
+const veh={paths:{},cars:[],rb:false};
+function vehReset(rb,offs){veh.rb=rb;VK.forEach(k=>veh.paths[k]=vehPath(k,rb));
+ veh.cars=VK.map((k,i)=>{const P=veh.paths[k],sp=SPD[rb?'C':'X'][k[0]],c={k,P,d:(offs[i]%1)*P.len,vs:sp[0],va:sp[1],v:sp[0],rot:0,x:0,z:0,hx:1,hz:0};const q=atD(P,c.d);Object.assign(c,{x:q.x,z:q.z,hx:q.hx,hz:q.hz});return c})}
+function vehStep(h){for(const c of veh.cars){const q0=atD(c.P,c.d);let t=q0.slow?c.va:c.vs;
+  for(let k=1;k<=12;k++){if(atD(c.P,c.d+k*1.5).slow){t=Math.min(t,c.va+(k-1)*.6);break}}
+  // Abstandsregel: Rot hält Abstand zum Vordermann, Blau weicht allen anderen aus (Vorausschau 5 s)
+  const blue=c.k[0]==="B";
+  for(const o of veh.cars){if(o===c)continue;
+   for(let k=1;k<=34;k++){const q=atD(c.P,c.d+k),dist=Math.hypot(o.x-q.x,o.z-q.z);
+    if(dist<2.6&&o.hx*q.hx+o.hz*q.hz>.3){t=Math.min(t,Math.sqrt(2*4*Math.max(0,k-LEN-3)));break}}
+   if(blue){for(let tau=.25;tau<=5;tau+=.25){
+    const pc=atD(c.P,c.d+c.v*tau),po=atD(o.P,o.d+o.v*tau);
+    if(Math.hypot(pc.x-po.x,pc.z-po.z)<5.2){t=tau<=3.5?0:Math.min(t,2.5);break}}}}
+  c.v+=Math.max(-6*h,Math.min(3*h,t-c.v));if(c.v<0)c.v=0;
+  c.d+=c.v*h;c.rot+=c.v*h/.33;if(c.d>=c.P.len){c.d-=c.P.len;c.laps=(c.laps||0)+1}
+  const q=atD(c.P,c.d);c.x=q.x;c.z=q.z;c.hx=q.hx;c.hz=q.hz;c.slowNow=q.slow}}
+//LOOP-END
+
+//MATH-START
+const V={add:(a,b)=>[a[0]+b[0],a[1]+b[1],a[2]+b[2]],sub:(a,b)=>[a[0]-b[0],a[1]-b[1],a[2]-b[2]],mul:(a,s)=>[a[0]*s,a[1]*s,a[2]*s],
+ dot:(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2],len:a=>Math.hypot(a[0],a[1],a[2]),norm:a=>{const l=Math.hypot(a[0],a[1],a[2])||1;return[a[0]/l,a[1]/l,a[2]/l]}};
+// Zwei-Knochen-IK: Schulter S, Ziel T, Knochenlängen l1 l2, Ellbogen-Richtung pole
+function ik(S,T,l1,l2,pole){
+ let d=V.sub(T,S),dist=V.len(d);const mx=l1+l2-1e-3;
+ if(dist>mx){d=V.mul(V.norm(d),mx);dist=mx}
+ if(dist<.05){dist=.05}
+ const u=V.norm(d),a=(l1*l1-l2*l2+dist*dist)/(2*dist),h=Math.sqrt(Math.max(0,l1*l1-a*a));
+ let p=V.sub(pole,V.mul(u,V.dot(pole,u)));p=V.norm(p);
+ const E=V.add(V.add(S,V.mul(u,a)),V.mul(p,h)),H=V.add(S,V.mul(u,dist));
+ return{E,H}}
+// Bein: Hüfte im Ursprung, Schwungwinkel aus Phase p
+const LEG={A:.38,L1:.43,L2:.43,B:.55};
+function leg(p){const th=LEG.A*Math.sin(p),b=LEG.B*Math.max(0,Math.cos(p));
+ const k=[LEG.L1*Math.sin(th),-LEG.L1*Math.cos(th)],a=[k[0]+LEG.L2*Math.sin(th-b),k[1]-LEG.L2*Math.cos(th-b)];
+ return{knee:k,ankle:a,drop:-a[1]}}
+//MATH-END
+
+const $=id=>document.getElementById(id);
+const PAIRS=[[0xd23a42,0x111111],[0xffffff,0x111111],[0xffffff,0xf2c500],[0xffffff,0x1f9d55],[0x7b3fa0,0x111111],[0x111111,0xffffff],[0xffffff,0x2a6fdb],[0xffffff,0x1f9d55]];
+const NAMES=["Ro","Ra","Ri","Re"],TXT=["Kommando gesprochen","Körpermotorik unbewusst","Gedanke davor · Sehareale unbewusst","Re-Menge benutzt / Bezug"];
+const dark=matchMedia("(prefers-color-scheme:dark)").matches;
+const counts=[0,0,0,0];
+NAMES.forEach((n,k)=>$("legend").insertAdjacentHTML("beforeend",'<div class="item" id="it'+k+'"><b>'+n+'</b><small>'+TXT[k]+'</small><em id="c'+k+'">0</em></div>'));
+if(typeof THREE==="undefined"){$("hud").textContent="three.js konnte nicht geladen werden (Internetverbindung nötig).";throw new Error("three")}
+
+const stage=$("stage");
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(2,devicePixelRatio||1));
+renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+stage.appendChild(renderer.domElement);
+const SKY=dark?0x1c2233:0xbcd6ee;
+const scene=new THREE.Scene();scene.background=new THREE.Color(SKY);scene.fog=new THREE.Fog(SKY,70,420);
+const camera=new THREE.PerspectiveCamera(50,1,.1,900);
+scene.add(new THREE.HemisphereLight(dark?0x8fa0c8:0xffffff,dark?0x2a2a2a:0x8a8068,dark?.55:.8));
+const sun=new THREE.DirectionalLight(dark?0x9fb0e0:0xfff4dd,dark?.5:.9);sun.castShadow=true;
+sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-26,right:26,top:26,bottom:-26,near:1,far:100});scene.add(sun,sun.target);
+
+const std=(c,r)=>new THREE.MeshStandardMaterial({color:c,roughness:r==null?.85:r,metalness:0});
+function mesh(g,m,x,y,z,sh){const o=new THREE.Mesh(g,m);o.position.set(x||0,y||0,z||0);if(sh)o.castShadow=true;o.receiveShadow=true;scene.add(o);return o}
+function tex(w,h,draw,rx,ry){const c=document.createElement("canvas");c.width=w;c.height=h;draw(c.getContext("2d"),w,h);const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rx,ry);t.anisotropy=4;return t}
+const hex=n=>"#"+n.toString(16).padStart(6,"0");
+const reps=(t,rx,ry)=>{const c=t.clone();c.needsUpdate=true;c.repeat.set(rx,ry);c.wrapS=c.wrapT=THREE.RepeatWrapping;return c};
+
+// Boden
+mesh(new THREE.PlaneGeometry(1000,1000).rotateX(-Math.PI/2),std(dark?0x25331f:0x7f9a5e,1),0,0,0);
+const paver=tex(128,64,(g,w,h)=>{g.fillStyle=dark?"#4d4a44":"#c9c2b2";g.fillRect(0,0,w,h);g.strokeStyle=dark?"#2e2c28":"#9e9684";g.lineWidth=3;g.strokeRect(0,0,w,h);g.beginPath();g.moveTo(w/2,0);g.lineTo(w/2,h);g.stroke()},1,1);
+const asph=tex(128,128,(g,w,h)=>{g.fillStyle=dark?"#2f2e2c":"#55534f";g.fillRect(0,0,w,h);for(let i=0;i<500;i++){const v=Math.random()*40+(dark?30:70)|0;g.fillStyle="rgb("+v+","+v+","+(v-3)+")";g.fillRect(Math.random()*w,Math.random()*h,2,2)}},1,1);
+const asphMat=(lx,lz)=>{const m=std(0xffffff,.95);m.map=reps(asph,lx/6,lz/6);return m};
+const walkMat=(lx,lz)=>{const m=std(0xffffff,.95);m.map=reps(paver,lx/1.2,lz/1.2);return m};
+// Gehweg-Viereck (Mitte des Wegs: Hx, Hz)
+mesh(new THREE.BoxGeometry(2*Hx+2.6,.12,2.6),walkMat(2*Hx+2.6,2.6),0,.06,-Hz);
+mesh(new THREE.BoxGeometry(2*Hx+2.6,.12,2.6),walkMat(2*Hx+2.6,2.6),0,.06,Hz);
+mesh(new THREE.BoxGeometry(2.6,.12,2*Hz+2.6),walkMat(2.6,2*Hz+2.6),-Hx,.06,0);
+mesh(new THREE.BoxGeometry(2.6,.12,2*Hz+2.6),walkMat(2.6,2*Hz+2.6),Hx,.06,0);
+// Straßen: vier Straßenzüge bilden ein "#", die Ecken des Vierecks sind die Kreuzungen
+const RL=2*WEND;
+mesh(new THREE.BoxGeometry(RL,.05,7),asphMat(RL,7),0,.025,-Rz);mesh(new THREE.BoxGeometry(RL,.05,7),asphMat(RL,7),0,.025,Rz);
+mesh(new THREE.BoxGeometry(7,.05,RL),asphMat(7,RL),-Rx,.0255,0);mesh(new THREE.BoxGeometry(7,.05,RL),asphMat(7,RL),Rx,.0255,0);
+// Fahrspurinformation: alle 4 m wechselt jede Spur durch Ro, Ra, Ri, Re
+const laneTex=tex(1024,64,(g,w,h)=>{for(let k=0;k<4;k++){const p=PAIRS[k];g.fillStyle=hex(p[0]);g.fillRect(k*256,0,256,h/2);g.fillStyle=hex(p[1]);g.fillRect(k*256,h/2,256,h/2)}},1,1);
+function lanePiece(axis,fixed,a,b){const len=b-a,c=(a+b)/2,g=new THREE.PlaneGeometry(len,.5).rotateX(-Math.PI/2);
+ const t=reps(laneTex,len/16,1);t.magFilter=THREE.NearestFilter;const m=new THREE.Mesh(g,new THREE.MeshBasicMaterial({map:t}));
+ if(axis==="x")m.position.set(c,.06,fixed);else{m.rotation.y=Math.PI/2;m.position.set(fixed,.06,c)}scene.add(m)}
+for(const d of[-LN,LN]){
+ for(const zc of[-Rz,Rz]){const f=zc+d;lanePiece("x",f,-WEND,-Rx-3.5);lanePiece("x",f,-Rx+3.5,Rx-3.5);lanePiece("x",f,Rx+3.5,WEND)}
+ for(const xc of[-Rx,Rx]){const f=xc+d;lanePiece("z",f,-WEND,-Rz-3.5);lanePiece("z",f,-Rz+3.5,Rz-3.5);lanePiece("z",f,Rz+3.5,WEND)}}
+// Häuser, Bäume, Laternen
+let seed=5;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+const wall=[0xe3d6bd,0xd8c1a0,0xc9b79c,0xe8dfd0,0xb9a58a,0xcfd3c6],roofC=[0x8a3b2e,0x6b4a3a,0x4d4f55,0x7a3d2c];
+function house(x,z,yaw){const w=9+rnd()*3,d=8,h=5.2+rnd()*1.2;
+ const g=new THREE.Group();g.position.set(x,0,z);g.rotation.y=yaw;scene.add(g);
+ const b=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),std(wall[rnd()*wall.length|0]));b.position.y=h/2;b.castShadow=b.receiveShadow=true;g.add(b);
+ const r=new THREE.Mesh(new THREE.ConeGeometry(Math.max(w,d)*.78,2.6,4),std(roofC[rnd()*roofC.length|0]));r.rotation.y=Math.PI/4;r.scale.set(w/Math.max(w,d),1,d/Math.max(w,d));r.position.y=h+1.3;r.castShadow=true;g.add(r);
+ const f=-(d/2+.02);
+ for(const wx of[-w*.28,w*.28])for(const wy of[1.6,4.0]){const win=new THREE.Mesh(new THREE.PlaneGeometry(1.3,1.5),new THREE.MeshStandardMaterial({color:dark?0xf2c46a:0x4a6a8a,roughness:.2,emissive:dark?0x6a4a10:0x000000}));win.position.set(wx,wy,f);win.rotation.y=Math.PI;g.add(win)}
+ const door=new THREE.Mesh(new THREE.PlaneGeometry(1.1,2.1),std(0x5a3a28));door.position.set(0,1.05,f);door.rotation.y=Math.PI;g.add(door);return g}
+const HX=[-42,-25,-8,9,26,43];
+HX.forEach(x=>{house(x,-26,0);house(x,26,Math.PI)});
+[-9,9].forEach(z=>{house(-46,z,Math.PI/2);house(46,z,-Math.PI/2)});
+function tree(x,z,s){const g=new THREE.Group();g.position.set(x,0,z);g.scale.setScalar(s||1);scene.add(g);
+ const t=new THREE.Mesh(new THREE.CylinderGeometry(.14,.2,2.6,8),std(0x5b4331));t.position.y=1.3;t.castShadow=true;g.add(t);
+ const l=new THREE.Mesh(new THREE.SphereGeometry(1.7,12,10),std(dark?0x2d5a2d:0x4f8a3c));l.position.y=3.6;l.scale.y=1.15;l.castShadow=true;g.add(l)}
+function lamp(x,z){const g=new THREE.Group();g.position.set(x,0,z);scene.add(g);
+ const p=new THREE.Mesh(new THREE.CylinderGeometry(.05,.07,5.6,8),std(0x3a3a3a));p.position.y=2.8;g.add(p);
+ const h=new THREE.Mesh(new THREE.BoxGeometry(.8,.12,.3),new THREE.MeshStandardMaterial({color:0xffffff,emissive:dark?0xffe6a0:0x333333,emissiveIntensity:dark?1.2:.2}));h.position.set(-.3,5.6,0);g.add(h)}
+const nearJ=(x,z,r)=>RB.J.some(c=>Math.hypot(x-c[0],z-c[1])<r);
+function perim(hx,hz,step,fn){for(let x=-hx;x<hx;x+=step)fn(x,-hz);for(let z=-hz;z<hz;z+=step)fn(hx,z);for(let x=hx;x>-hx;x-=step)fn(x,hz);for(let z=hz;z>-hz;z-=step)fn(-hx,z)}
+perim(Hx+2.6,Hz+2.6,9,(x,z)=>{if(!nearJ(x,z,16))tree(x,z,.9)});
+perim(Hx+1.5,Hz+1.5,26,(x,z)=>{if(!nearJ(x,z,14))lamp(x,z)});
+[[-30,-8],[-10,6],[12,-6],[30,8],[0,-14],[-20,10],[22,12]].forEach(p=>tree(p[0],p[1],1.1));
+
+// Beschriftungen
+function drawLabel(g,cw,ch,text,col){g.clearRect(0,0,cw,ch);g.font="bold "+(ch*.55|0)+"px Georgia,serif";g.textAlign="center";g.textBaseline="middle";g.lineWidth=ch*.12;g.strokeStyle="rgba(0,0,0,.75)";g.strokeText(text,cw/2,ch/2,cw-20);g.fillStyle=col||"#fff";g.fillText(text,cw/2,ch/2,cw-20)}
+function sprite(w,h,draw,cw,ch){const c=document.createElement("canvas");c.width=cw||512;c.height=ch||128;draw(c.getContext("2d"),c.width,c.height);
+ const t=new THREE.CanvasTexture(c),s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true,depthTest:false}));s.scale.set(w,h,1);s.userData={c,t};return s}
+const label=(text,w,h,col)=>sprite(w,h,(g,cw,ch)=>drawLabel(g,cw,ch,text,col));
+function relabel(s,text,col){const c=s.userData.c;drawLabel(c.getContext("2d"),c.width,c.height,text,col);s.userData.t.needsUpdate=true}
+// Straßenschild und Hausnummer
+{mesh(new THREE.CylinderGeometry(.04,.04,2.8,8),std(0x555555),-38,1.4,-37.5);
+ const s=label("Sandgrubenweg · 38229 Salzgitter",3.4,.55);s.position.set(-38,3.0,-37.5);scene.add(s);
+ const n=label("6 · F. Altun",2.2,.42);n.position.set(-25,2.9,-30.4);scene.add(n)}
+// Eckpfosten des Vierecks: Ro, Ra, Ri, Re
+const CORN=[[Hx,-Hz],[Hx,Hz],[-Hx,Hz],[-Hx,-Hz]],BC=[0xd23a42,0xf2c500,0x2a6fdb,0x1f9d55];
+CORN.forEach((c,i)=>{mesh(new THREE.CylinderGeometry(.18,.18,3.4,10),std(BC[i],.5),c[0],1.7,c[1],true);const l=label("Ecke "+NAMES[i],3.2,.8);l.position.set(c[0],4.2,c[1]);scene.add(l)});
+// Kreisverkehre (nur im Modus Kreisverkehr sichtbar)
+const rbG=new THREE.Group();scene.add(rbG);
+RB.J.forEach((c,i)=>{const d=new THREE.Mesh(new THREE.CylinderGeometry(RB.rb+2.1,RB.rb+2.1,.07,48),std(dark?0x3a3733:0x65625c,.95));d.position.set(c[0],.04,c[1]);d.receiveShadow=true;rbG.add(d);
+ const isl=new THREE.Mesh(new THREE.CylinderGeometry(RB.isl,RB.isl,.4,24),std(dark?0x2d5a2d:0x5d9a48,1));isl.position.set(c[0],.2,c[1]);isl.castShadow=true;rbG.add(isl);
+ const ring=new THREE.Mesh(new THREE.RingGeometry(RB.isl+.05,RB.isl+.4,40).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({color:0xffffff}));ring.position.set(c[0],.1,c[1]);rbG.add(ring);
+ if(i===1){const l=label("Kreisverkehr",3.2,.7);l.position.set(c[0],2.6,c[1]);rbG.add(l)}});
+const xl=label("Überkreuzung · ackack",3.6,.7);xl.position.set(Rx,2.6,Rz);scene.add(xl);
+
+// Fahrzeuge rot/blau
+function profile(pts){const s=new THREE.Shape();pts.forEach((p,i)=>i?s.lineTo(p[0],p[1]):s.moveTo(p[0],p[1]));s.closePath();return s}
+const bodyGeo=new THREE.ExtrudeGeometry(profile([[-2.2,.3],[-2.2,.85],[-1.6,.95],[-1,1.42],[.7,1.42],[1.45,.97],[2.2,.82],[2.2,.3]]),{depth:1.8,bevelEnabled:false}).translate(0,0,-.9);
+const glassGeo=new THREE.ExtrudeGeometry(profile([[-1.4,.98],[-.95,1.36],[.65,1.36],[1.2,.98]]),{depth:1.86,bevelEnabled:false}).translate(0,0,-.93);
+const tireGeo=new THREE.CylinderGeometry(.33,.33,.24,20).rotateX(Math.PI/2),rimGeo=new THREE.CylinderGeometry(.2,.2,.26,16).rotateX(Math.PI/2);
+function mkCar(color){const g=new THREE.Group(),b=new THREE.Mesh(bodyGeo,std(color,.45));b.castShadow=true;g.add(b);
+ g.add(new THREE.Mesh(glassGeo,std(0x2b3440,.2)));
+ for(const z of[-.6,.6]){const h=new THREE.Mesh(new THREE.BoxGeometry(.06,.14,.3),new THREE.MeshBasicMaterial({color:0xfff2b0}));h.position.set(2.2,.65,z);g.add(h);
+  const t=new THREE.Mesh(new THREE.BoxGeometry(.06,.14,.3),new THREE.MeshBasicMaterial({color:0xd01820}));t.position.set(-2.2,.65,z);g.add(t)}
+ const wheels=[];for(const x of[1.4,-1.4])for(const z of[.8,-.8]){const w=new THREE.Mesh(tireGeo,std(0x151413,.9));w.position.set(x,.33,z);w.castShadow=true;w.add(new THREE.Mesh(rimGeo,std(0xb8b4aa,.4)));
+  const mk=new THREE.Mesh(new THREE.BoxGeometry(.08,.12,.05),new THREE.MeshBasicMaterial({color:0xffffff}));mk.position.set(0,-.12,z>0?.14:-.14);w.add(mk);g.add(w);wheels.push(w)}
+ scene.add(g);return{g,wheels}}
+const vehG=[];const VCOL={R:0xd23a42,B:0x2a6fdb};
+const OFFS={U:[0,60/190,120/190,20/190],C:[0,.75,.125,.625]};
+let mode="C",vehOn=true;
+function applyTraffic(m){mode=m;vehReset(m==="C",OFFS[m]);
+ while(vehG.length<veh.cars.length)vehG.push(mkCar(VCOL[VK[vehG.length][0]]));
+ rbG.visible=m==="C";xl.visible=m==="U";ackack=0;prevNear={};
+ $("mK").classList.toggle("act",m==="C");$("mU").classList.toggle("act",m==="U");vehG.forEach(v=>v.g.visible=vehOn)}
+
+// Bewohner (1,75 m): geht in +x des lokalen Systems, rechts = +z
+const char=new THREE.Group();scene.add(char);
+const skin=std(0xd9a883,.7),jacket=std(0x3d5a80,.9),jeans=std(0x2d3a55,.9),shoe=std(0x1d1d1d,.6),hair=std(0x2a1b12,.9);
+function bone(r,m){const g=new THREE.CylinderGeometry(r,r,1,10);const o=new THREE.Mesh(g,m);o.castShadow=true;char.add(o);return o}
+function ball(r,m){const o=new THREE.Mesh(new THREE.SphereGeometry(r,12,10),m);o.castShadow=true;char.add(o);return o}
+const Y=new THREE.Vector3(0,1,0),va=new THREE.Vector3(),vb=new THREE.Vector3(),vd=new THREE.Vector3();
+function seg(o,a,b){va.set(a[0],a[1],a[2]);vb.set(b[0],b[1],b[2]);vd.subVectors(vb,va);const l=vd.length()||1e-3;o.position.addVectors(va,vb).multiplyScalar(.5);o.scale.set(1,l,1);o.quaternion.setFromUnitVectors(Y,vd.divideScalar(l))}
+const thigh=[bone(.078,jeans),bone(.078,jeans)],shin=[bone(.06,jeans),bone(.06,jeans)],knee=[ball(.07,jeans),ball(.07,jeans)];
+const foot=[0,1].map(()=>{const f=new THREE.Mesh(new THREE.BoxGeometry(.27,.08,.1),shoe);f.castShadow=true;char.add(f);return f});
+const upperA=[bone(.05,jacket),bone(.05,jacket)],foreA=[bone(.04,jacket),bone(.04,jacket)],elbow=[ball(.048,jacket),ball(.048,jacket)],hand=[ball(.042,skin),ball(.042,skin)];
+const pelvis=new THREE.Mesh(new THREE.BoxGeometry(.2,.17,.34),jeans);pelvis.castShadow=true;char.add(pelvis);
+const torso=new THREE.Mesh(new THREE.CylinderGeometry(.16,.14,.56,14),jacket);torso.scale.set(.72,1,1.4);torso.castShadow=true;char.add(torso);
+const shoulders=ball(.07,jacket),shoulders2=ball(.07,jacket);
+const neck=new THREE.Mesh(new THREE.CylinderGeometry(.045,.05,.1,10),skin);char.add(neck);
+const head=new THREE.Mesh(new THREE.SphereGeometry(.105,18,14),skin);head.scale.set(1.05,1.18,.95);head.castShadow=true;char.add(head);
+const hairM=new THREE.Mesh(new THREE.SphereGeometry(.112,18,14,0,Math.PI*2,0,Math.PI*.55),hair);hairM.scale.set(1.05,1.18,.95);char.add(hairM);
+[-.04,.04].forEach(z=>{const e=new THREE.Mesh(new THREE.SphereGeometry(.012,8,6),std(0x111111));e.position.set(.095,.015,z);head.add(e)});
+const nose=new THREE.Mesh(new THREE.ConeGeometry(.014,.04,6),skin);nose.rotation.z=-Math.PI/2;nose.position.set(.105,-.015,0);head.add(nose);
+const eyeW=new THREE.Vector3(),gdir=new THREE.Vector3(),qv=new THREE.Vector3(),ftmp=new THREE.Vector3();
+const gazeGeo=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(),new THREE.Vector3(1,0,0)]);
+const gaze=new THREE.Line(gazeGeo,new THREE.LineDashedMaterial({color:dark?0x7fb0ff:0x2a6fdb,dashSize:.6,gapSize:.4}));gaze.frustumCulled=false;scene.add(gaze);
+// Handy mit Re-Menge
+const phoneCv=document.createElement("canvas");phoneCv.width=64;phoneCv.height=128;const phoneT=new THREE.CanvasTexture(phoneCv);
+function drawPhone(a,b){const g=phoneCv.getContext("2d");g.fillStyle="#0c0c0c";g.fillRect(0,0,64,128);g.fillStyle=hex(a);g.fillRect(8,40,12,24);g.fillStyle=hex(b);g.fillRect(20,40,36,24);g.fillStyle="#fff";g.font="bold 14px system-ui";g.fillText("Re",8,28);phoneT.needsUpdate=true}
+drawPhone(0xffffff,0x1f9d55);
+const phone=new THREE.Group();phone.add(new THREE.Mesh(new THREE.BoxGeometry(.012,.15,.07),std(0x151515,.3)));
+const ps=new THREE.Mesh(new THREE.PlaneGeometry(.062,.14),new THREE.MeshBasicMaterial({map:phoneT}));ps.rotation.y=-Math.PI/2;ps.position.x=-.0065;phone.add(ps);char.add(phone);
+// Senke (Ebene) und Hirnareal-Näherung über dem Kopf
+const senke=new THREE.Group();senke.position.y=2.4;char.add(senke);
+senke.add(new THREE.Mesh(new THREE.PlaneGeometry(1.6,1.2).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({color:dark?0xf1e9da:0x2a2118,transparent:true,opacity:.2,side:THREE.DoubleSide,fog:false})));
+const CP=[[-.8,-.6],[.8,-.6],[.8,.6],[-.8,.6]],sC=[];
+senke.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(CP.map(p=>new THREE.Vector3(p[0],0,p[1]))),new THREE.LineBasicMaterial({color:dark?0xf1e9da:0x2a2118})));
+CP.forEach((p,i)=>{const m=new THREE.Mesh(new THREE.SphereGeometry(.05,10,8),new THREE.MeshBasicMaterial({color:0x999999}));m.position.set(p[0],0,p[1]);senke.add(m);sC.push(m);
+ const l=label(NAMES[i],.34,.16);l.position.set(p[0]*1.18,.14,p[1]*1.18);senke.add(l)});
+const sl=label("Senke",.5,.18);sl.position.set(0,.3,0);senke.add(sl);
+const brain=new THREE.Group();brain.position.y=2.02;char.add(brain);
+const bS=BC.map((c,i)=>{const m=new THREE.Mesh(new THREE.SphereGeometry(.13,16,12,i*Math.PI/2,Math.PI/2),new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:.3,side:THREE.DoubleSide}));m.scale.set(1.25,.85,1);brain.add(m);return m});
+const bl=label("Hirnareal-Näherung",.7,.16);bl.position.set(0,.22,0);brain.add(bl);
+const svl=label("Sehareale Ri",.5,.14,"#8fbaff");svl.position.set(.3,.06,-.26);brain.add(svl);
+// Gedankenblase
+const BUB=[{f:"#ffffff",s:"#1f9d55",c:"#1f9d55"},{f:"#111111",s:"#ffffff",c:"#ffffff"},{f:"#ffffff",s:"#111111",c:"#111111"},{f:"#111111",s:"#ffffff",c:"#ffffff"}];
+const bubble=sprite(2.6,.8,()=>{},512,160);bubble.renderOrder=5;scene.add(bubble);
+function setBubble(k,text){const c=bubble.userData.c,g=c.getContext("2d"),s=BUB[k];g.clearRect(0,0,c.width,c.height);
+ g.fillStyle=s.f;g.strokeStyle=s.s;g.lineWidth=8;const r=60;g.beginPath();g.moveTo(r+6,6);g.arcTo(c.width-6,6,c.width-6,c.height-6,r);g.arcTo(c.width-6,c.height-6,6,c.height-6,r);g.arcTo(6,c.height-6,6,6,r);g.arcTo(6,6,c.width-6,6,r);g.closePath();g.fill();g.stroke();
+ g.fillStyle=s.c;g.font="bold 46px Georgia,serif";g.textAlign="center";g.textBaseline="middle";g.fillText(text,c.width/2,c.height/2+2,c.width-50);bubble.userData.t.needsUpdate=true}
+setBubble(0,"Ro1 …");
+// Quelle = nächste Ecke (entferntester Punkt) und Welle
+const qm=new THREE.Mesh(new THREE.SphereGeometry(.7,14,10),new THREE.MeshBasicMaterial({color:0xd23a42,fog:false}));scene.add(qm);
+const ql=label("Quelle: entferntester Punkt",9,1.4);scene.add(ql);
+const NW=240,wpos=new Float32Array((NW+1)*3),wgeo=new THREE.BufferGeometry();wgeo.setAttribute("position",new THREE.BufferAttribute(wpos,3));
+const wline=new THREE.Line(wgeo,new THREE.LineBasicMaterial({color:dark?0xf1e9da:0x2a2118,transparent:true,opacity:.8}));wline.frustumCulled=false;scene.add(wline);
+
+// Ablauf
+const SPEECH=["Licht an","Tür zu","Heizung an","Musik leiser","Kaffee kochen","Rollo runter"];
+const MOTOR=["Hand zum Schalter","Fuß zur Tür","Finger am Regler","Kopf nickt","Arm zur Tasse","Hand am Griff"];
+const cmdLog=[];let gz=0,gzSide=1,zT=0,zOff=0,n=0,phi=0,lastStep=-1,a=0,aT=0,speedF=1,running=true,wdir=1,tAll=0,curK=1,stamps=[],ackack=0,prevNear={},nc=0,lastNc=-1,cornersPassed=0,lead=0,flashT=0,flashTxt="",acc=0;
+const walkP=walkerLoop(Hx,Hz,1.6);let walkD=walkP.len-35,camYaw=0,ovr=false;
+function stamp(x,z){const k=curK,pr=PAIRS[k+(n%2?4:0)],long=1.1,short=.3;let L,R;
+ if(k===0){L=long;R=short}else if(k===1){L=R=(long+short)/2}else if(k===2){const f=n%2===0;L=f?long:short;R=f?short:long}else{L=short;R=long}
+ const g=new THREE.Group();g.position.set(x,.075,z);g.rotation.y=char.rotation.y;
+ const mk=(len,col,zc)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(.2,.012,len),new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.95}));m.position.z=zc;g.add(m);return m};
+ const m1=mk(L,pr[0],-L/2),m2=mk(R,pr[1],R/2);scene.add(g);stamps.push({g,t:0,m:[m1.material,m2.material]});
+ if(stamps.length>90){const o=stamps.shift();scene.remove(o.g)}return pr}
+function command(k,pr){const i=Math.floor(n/4)+1,j=(i-1)%6;
+ const lab=["Ro"+i+": "+SPEECH[j],"Ra"+i+": "+MOTOR[j],"Ri"+i+": Handy?","Re"+i+(i%2?": Handy, Re-Menge benutzt":": Bezug auf Re-Menge")][k];
+ setBubble(k,lab);cmdLog.push(lab+(k===1?" (unbewusst)":(k===2?" (Sehareale: Blick wechselt, unbewusst)":"")));if(cmdLog.length>3)cmdLog.shift();
+ $("cmd").innerHTML="<b>Ro1 … Ro"+i+"</b> Kommandos ausgeführt · zuletzt: "+cmdLog.join(" → ");
+ if(k===3)drawPhone(pr[0],pr[1])}
+function onStep(front,lg){
+ const k=n%4;curK=k;ftmp.set(lg.ankle[0]+.05,0,front?.09:-.09);char.localToWorld(ftmp);const pr=stamp(ftmp.x,ftmp.z);
+ if(k===2){wdir=-wdir;gzSide=-gzSide;gz=gzSide*.7;zT=gzSide*.3}
+ aT=(k===3)?2:0;command(k,pr);
+ counts[k]++;$("c"+k).textContent=counts[k];
+ document.querySelectorAll(".item").forEach((e,j)=>e.classList.toggle("on",j===k));
+ sC.forEach((m,j)=>{m.material.color.setHex(j===k?BC[k]:0x999999);m.scale.setScalar(j===k?2:1)});
+ bS.forEach((m,j)=>m.material.opacity=j===k?.95:.3);n++}
+
+const POCKET=[.03,.8,.215],FACE=[.33,1.6,.1];
+function pose(){
+ const L0=leg(phi),L1=leg(phi+Math.PI),hy=.08+Math.max(L0.drop,L1.drop);
+ const Ls=[L0,L1],zs=[-.09,.09];
+ for(let i=0;i<2;i++){const hip=[0,hy,zs[i]],kn=[hip[0]+Ls[i].knee[0],hip[1]+Ls[i].knee[1],zs[i]],an=[hip[0]+Ls[i].ankle[0],hip[1]+Ls[i].ankle[1],zs[i]];
+  seg(thigh[i],hip,kn);seg(shin[i],kn,an);knee[i].position.set(kn[0],kn[1],kn[2]);foot[i].position.set(an[0]+.07,an[1]-.02,an[2]);}
+ pelvis.position.set(0,hy+.02,0);
+ const sy=hy+.5,tw=.06*Math.sin(phi);
+ torso.position.set(0,hy+.3,0);torso.rotation.y=tw;neck.position.set(0,sy+.07,0);
+ head.position.set(.015,sy+.2,0);hairM.position.copy(head.position);hairM.position.x-=.008;
+ const S=[[0,sy-.03,-.2],[0,sy-.03,.2]];shoulders.position.set(S[0][0],S[0][1],S[0][2]);shoulders2.position.set(S[1][0],S[1][1],S[1][2]);
+ for(let i=0;i<2;i++){const ang=(i===0?1:-1)*.5*Math.sin(phi);
+  const sw=[S[i][0]+.5*Math.sin(ang),S[i][1]-.5*Math.cos(ang),S[i][2]+(i?.03:-.03)];
+  let T=sw;
+  if(i===1){T=a<=1?V.add(V.mul(sw,1-a),V.mul(POCKET,a)):V.add(V.mul(POCKET,2-a),V.mul(FACE,a-1))}
+  const pole=i?[-.4,-.6,.7]:[-.4,-.6,-.7],r=ik(S[i],T,.3,.27,pole);
+  seg(upperA[i],S[i],r.E);seg(foreA[i],r.E,r.H);elbow[i].position.set(r.E[0],r.E[1],r.E[2]);hand[i].position.set(r.H[0],r.H[1],r.H[2]);
+  if(i===1){phone.position.set(r.H[0]+.02,r.H[1]+(a>1?.05:0),r.H[2]);phone.rotation.set(0,0,a>1?-.35:0)}}
+ if(a<=.05){phone.position.set(.03,.82,.215);phone.rotation.set(0,0,0)}
+}
+// nächste Ecke = entferntester Punkt entlang der aktuellen Seite
+function nextCorner(q){let best=-1,bd=1e9;
+ CORN.forEach((c,i)=>{const dx=c[0]-q.x,dz=c[1]-q.z,along=dx*q.hx+dz*q.hz,lat=Math.abs(-dx*q.hz+dz*q.hx);if(along>.8&&lat<3&&along<bd){bd=along;best=i}});
+ return{i:best,d:bd}}
+
+// Kamera
+let th=.5,ph=1.3,rad=7,drag=false,px=0,py=0;
+stage.addEventListener("pointerdown",e=>{drag=true;px=e.clientX;py=e.clientY;stage.setPointerCapture(e.pointerId);stage.style.cursor="grabbing"});
+stage.addEventListener("pointermove",e=>{if(!drag)return;th-=(e.clientX-px)*.008;ph=Math.min(1.5,Math.max(.2,ph-(e.clientY-py)*.006));px=e.clientX;py=e.clientY});
+stage.addEventListener("pointerup",()=>{drag=false;stage.style.cursor="grab"});
+stage.addEventListener("wheel",e=>{e.preventDefault();rad=Math.min(260,Math.max(2,rad*(1+e.deltaY*.001)))},{passive:false});
+const cam=(t,p,r)=>()=>{ovr=false;th=t;ph=p;rad=r};
+$("cS").onclick=cam(.3,1.3,7);$("cH").onclick=cam(-Math.PI/2,1.35,6);$("cO").onclick=cam(.3,.3,12);$("cN").onclick=()=>{ovr=false;rad=3.2};
+$("cV").onclick=()=>{ovr=true;th=.7;ph=.62;rad=190};
+function resize(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
+addEventListener("resize",resize);resize();
+
+const SPEED=1.3,JN=RB.J;
+function frame(t){
+ const dt=Math.min(.05,(t-(frame.t||t))/1000);frame.t=t;
+ if(running){
+  tAll+=dt*speedF;
+  // Fahrzeuge
+  acc+=dt*speedF;let guard=0;while(acc>=1/30&&guard++<8){acc-=1/30;vehStep(1/30)}
+  veh.cars.forEach((c,i)=>{const m=vehG[i];if(!m)return;m.g.position.set(c.x,0,c.z);m.g.rotation.y=Math.atan2(-c.hz,c.hx);m.wheels.forEach(w=>w.rotation.z=-c.rot)});
+  // gleichzeitige Überkreuzung rot/blau an einer Kreuzung zählt ackack
+  if(vehOn&&mode==="U"){JN.forEach((jn,ji)=>{const nr=veh.cars.some(c=>c.k[0]==="R"&&Math.hypot(c.x-jn[0],c.z-jn[1])<24),nb=veh.cars.some(c=>c.k[0]==="B"&&Math.hypot(c.x-jn[0],c.z-jn[1])<24),on=nr&&nb;
+   if(on&&!prevNear[ji]){ackack++;flashT=1.6;flashTxt="ackack: rot und blau überkreuzen sich"}prevNear[ji]=on})}
+  // Bewohner auf dem Viereck
+  const w=2*Math.PI/1.0*speedF;phi+=w*dt;walkD+=SPEED*speedF*dt;if(walkD>=walkP.len)walkD-=walkP.len;
+  gz*=Math.exp(-dt*speedF*1.6);zT*=Math.exp(-dt*speedF*.9);zOff+=(zT-zOff)*Math.min(1,dt*speedF*2.5);
+  const q=atD(walkP,walkD);
+  char.position.set(q.x-q.hz*zOff,0,q.z+q.hx*zOff);char.rotation.y=Math.atan2(-q.hz,q.hx);char.updateMatrixWorld(true);
+  const idx=Math.floor((phi-Math.PI/2)/Math.PI);
+  while(lastStep<idx){lastStep++;const front=(lastStep%2===0)?0:1;onStep(front,leg(phi+(front?Math.PI:0)))}
+  a+=(aT-a)*Math.min(1,dt*3*speedF);
+  stamps.forEach(s=>{s.t+=dt;if(s.t>14){const o=Math.max(0,1-(s.t-14)/3);s.m.forEach(m=>m.opacity=o);if(o<=0){scene.remove(s.g);s.dead=1}}});stamps=stamps.filter(s=>!s.dead);
+  // nächste Ecke, Richtungswechsel an jeder Ecke
+  const nx=nextCorner(q);if(nx.i>=0){nc=nx.i;lead=-Math.max(0,Math.min(1,(14-nx.d)/14))*.7}
+  if(nc!==lastNc){if(lastNc>=0){cornersPassed++;wdir=-wdir;flashT=1.6;flashTxt="Ecke "+NAMES[lastNc]+": Richtungswechsel"}lastNc=nc;relabel(ql,"Quelle: entferntester Punkt · Ecke "+NAMES[nc])}
+  head.rotation.y=gz+lead;hairM.rotation.y=gz+lead;
+  bS[2].material.opacity=curK===2?.95:.45+.2*Math.sin(tAll*3);
+  pose();
+  const hp=char.position;
+  bubble.position.set(hp.x,hp.y+3.15,hp.z);
+  const Q=[CORN[nc][0],.7,CORN[nc][1]],S=[hp.x,2.4,hp.z];qm.position.set(Q[0],Q[1],Q[2]);qm.scale.setScalar(1+.25*Math.sin(tAll*5));ql.position.set(Q[0],3.4,Q[2]);
+  head.updateMatrixWorld(true);eyeW.set(.1,.015,0);head.localToWorld(eyeW);
+  qv.set(Q[0],Q[1],Q[2]);gdir.subVectors(qv,eyeW);const gl=gdir.length();gdir.normalize().applyAxisAngle(Y,gz+lead);
+  const gp=gazeGeo.attributes.position;gp.setXYZ(0,eyeW.x,eyeW.y,eyeW.z);gp.setXYZ(1,eyeW.x+gdir.x*gl,eyeW.y+gdir.y*gl,eyeW.z+gdir.z*gl);gp.needsUpdate=true;gaze.computeLineDistances();
+  const dx=S[0]-Q[0],dy=S[1]-Q[1],dz=S[2]-Q[2],ln=Math.hypot(dx,dz)||1,nx2=-dz/ln,nz2=dx/ln;
+  for(let i=0;i<=NW;i++){const f=i/NW,o=.28*Math.sin(Math.PI*f)*Math.sin(2*Math.PI*30*f-wdir*tAll*9);
+   wpos[i*3]=Q[0]+dx*f+nx2*o*.6;wpos[i*3+1]=Q[1]+dy*f+o;wpos[i*3+2]=Q[2]+dz*f+nz2*o*.6}
+  wgeo.attributes.position.needsUpdate=true;
+  senke.position.y=2.4+Math.sin(tAll*55)*(wdir>0?.012:.004);
+  brain.rotation.y+=dt*.4;
+  if(flashT>0)flashT-=dt;
+  let mnG=1e9;if(vehOn){for(let i=0;i<veh.cars.length;i++)for(let j=i+1;j<veh.cars.length;j++)mnG=Math.min(mnG,rectGap(veh.cars[i],veh.cars[j]))}
+  $("hud").innerHTML="Bewohner Ferhat Altun · Schritt "+n+" · Ecken: "+cornersPassed+" · nächste Ecke (entferntester Punkt): "+NAMES[nc]
+   +"<br>Welle "+(wdir>0?"Quelle → Senke":"Senke → Quelle (Richtungswechsel)")+" · Blick: "+(Math.abs(gz)>.08?"Richtungswechsel (Sehareale Ri, unbewusst)":(Math.abs(lead)>.05?"läuft der Kurve voraus (Sehareale Ri)":"fixiert den entferntesten Punkt"))
+   +(vehOn?"<br>"+(mode==="C"?"Kreisverkehr":"Überkreuzung")+" · ackack: "+ackack+" · kleinster Fahrzeugabstand: "+mnG.toFixed(1).replace(".",",")+" m":"")
+   +(flashT>0?"<br><b>"+flashTxt+"</b>":"");
+ }
+ const hp=char.position;
+ sun.position.set(hp.x+22,34,hp.z+16);sun.target.position.set(hp.x,0,hp.z);
+ if(ovr){camera.position.set(rad*Math.sin(ph)*Math.sin(th),rad*Math.cos(ph),rad*Math.sin(ph)*Math.cos(th));camera.lookAt(0,0,0)}
+ else{let d=char.rotation.y-camYaw;d=Math.atan2(Math.sin(d),Math.cos(d));camYaw+=d*Math.min(1,dt*3);
+  const ox=rad*Math.sin(ph)*Math.sin(th),oz=rad*Math.sin(ph)*Math.cos(th),c=Math.cos(camYaw),s=Math.sin(camYaw);
+  camera.position.set(hp.x+ox*c+oz*s,Math.max(.4,1.1+rad*Math.cos(ph)),hp.z-ox*s+oz*c);camera.lookAt(hp.x,1.15,hp.z)}
+ renderer.render(scene,camera);requestAnimationFrame(frame);
+}
+$("mK").onclick=()=>applyTraffic("C");$("mU").onclick=()=>applyTraffic("U");
+$("tF").onclick=e=>{vehOn=!vehOn;vehG.forEach(v=>v.g.visible=vehOn);e.currentTarget.textContent="Fahrzeuge: "+(vehOn?"an":"aus")};
+$("pp").onclick=e=>{running=!running;e.currentTarget.textContent=running?"Pause":"Weiter"};
+$("sl").onclick=()=>{speedF=Math.max(.3,speedF/1.3)};$("fa").onclick=()=>{speedF=Math.min(2.5,speedF*1.3)};
+applyTraffic("C");pose();requestAnimationFrame(frame);
+</script>
+</body>
+</html>
