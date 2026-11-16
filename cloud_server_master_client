@@ -75,4 +75,15 @@ Ra_Anweisung: Transformationen, dh. alle sämtlichen klassischen Variablendeklar
 Ri_Anweisung: InnereZusammenhänge,Korrelation,Analysewerkzeug,StatistischesVerhalten,WerkzeugDasZusammenhänge"Verlagern"soll,Diagnostikwerkzeug,...
 Re_Anweisung: Einbettung in die Umgebung, dh. Sensoren_Aktoren_Kamera_Objekte 
 
+Ich Analysiere "Strategien" inWissenschaften
+Ich Analysiere "Anwendungen" inWissenschaften
+Ich Analysiere "Systeme" inWissenschaften
+Ich Analysiere "Verfahren" inWissenschaften
+
+RoRaRiRe Strategien_Anwendungen_Systeme_Verfahren
+NenneIchSpezielle_Strategien_Anwendungen_Systeme_Verfahren
+Spezielle_Strategien_Anwendungen_Systeme_Verfahren_dieManNicht_zufälligStreut_sondernAls
+Zustandskombination_zb Ro:RotSchwarz Ra:SchwarzWeiss Ri:WeissGelb Re:WeissGrün
+
+
 
