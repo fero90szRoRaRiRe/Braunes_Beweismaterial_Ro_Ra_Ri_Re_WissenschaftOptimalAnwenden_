@@ -10,13 +10,17 @@ Ra(SchwarzWeiss)_Bildet_DenkenUndSprechenVonBürgernAb
 Ri(WeissGelb)_bildet_RiStrategienAb_umRückschlüsseAufAndereMengenZuErzeugenDarsufAufbauend
 Re(GrünWeiss)_bildet_GemitteltDasWerkzeugAb_DasEinBürgerVerwendet
 
-
-
-
 Behördliche-_Politische-_Psychologische-_Transport-_uswStrategien WerdenAls RoStrategien_RaStrategien_RiStrategien_ReStrategien gesplittet
 Gesundheit-_Wirtschaft-_Technik-_Bildung-_uswVerfahren WerdenAls            RoVerfahren_RaVerfahren_RiVerfahren_ReVerfahren gesplittet
 SpeisendeSysteme-_WieFahrzeuge-_Fernseher-_Flugzeuge-_Spielzeuge-_uswSysteme WerdenAls RoSysteme_RaSysteme_RiSysteme_ReSysteme gesplittet
 SpeisendeAnwendungen_WieSoftwareZbBlutprobenanalysewerkzeug_HardwaresimulationVonRaumschiffkomponenten_Arztpraxensoftware_Behördenspurensicherung_usw WerdenAls RoAnwendungen_RaAnwendungen_RiAnwendungen_ReAnwendungen gesplittet
+
+IchFasseSieZusammenNunIn
+
+RaSysteme RaStrategien RaVerfahren RaAnwendungen 
+RoSysteme RoStrategien RoVerfahren RoAnwendungen 
+RiSysteme RiStrategien RiVerfahren RiAnwendungen 
+ReSysteme ReStrategien ReVerfahren ReAnwendungen
 
 
 WiesoSplitten? EsGehtDarumAnfangswerteGeschicktZuErzeugen UndGemeinsamkeiten_zb_inDerZeit Rauszufiltern
@@ -30,11 +34,6 @@ RotierenVonRauschquellen zbKennzeichen
 
 BlutentsorgungsdienstleisterSindWichtigImKontext (FallbeispielAndereEntsorgungsfirma_Remondis)
 
-
-RaSysteme RaStrategien RaVerfahren RaAnwendungen 
-RoSysteme RoStrategien RoVerfahren RoAnwendungen 
-RiSysteme RiStrategien RiVerfahren RiAnwendungen 
-ReSysteme ReStrategien ReVerfahren ReAnwendungen
 
 FallbeispielMissbrauch
 
