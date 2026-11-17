@@ -39,7 +39,7 @@ Gedankenschleife(ri_Gedanke1_ri_Gedanke2)
 im_GIT_mainbranch_ist_"salzgitter-bewohnerverhalten-3d-v3.html" Grundlagenwerkzeug
 QuaderstrukturenMitVierTentakelnVersucheIchDabeiAlsAnpasskontrollsystemZuVerwenden.
 
-funktion_Gedankenpproximation(Gedankenschleife(ri_symptome_ri_diagnose_ri_therapie_Depressivfallbeispiel))
+funktion_Gedankenpproximation(funktion_Gedankenschleife(ri_symptome_ri_diagnose_ri_therapie_Depressivfallbeispiel))
 WoraufIchHinausWill DurchschnittlicheGedankenAbzubilden_NICHTGedankenlesen_sondern_IchFerhatAltunKommeAufDieIdeeGedankenZuApproximieren
 IndemZbEinBeobachtetesArealIn funktion_Gedankenschleife(ri_denkDirEtwasAus1_ri_denkDirEtwasAus2_USW) sitzt
 funktion_SchallHören_StimmeInMusikhören_zb_Musikhören(Musikinstrumentenschleife(ri_Verse_ri_hook_ri_DSDS_ri
@@ -59,7 +59,7 @@ Ra: https://example.com/Ra UploadLink
 Ri: https://example.com/Ri LinkMelden
 Re: https://example.com/Re LinkTeilen
 
-
+funktion_Gedankenapproximation(funktion_Gedankenschleife(ri_Brief1_ri_Brief2_ri_Brief3_ri_BriefRo))
 ÄhnlichInFilmenNachrichtenMusik vorgehen KImissinterpretieren
 
 "RoPsychologischeFuzzyRegler" "RaPsychologischeFuzzyRegler" "RiPsychologischeFuzzyRegler" "RePsychologischeFuzzyRegler"
