@@ -1,3 +1,18 @@
+
+
+Ro Eingabeoperatoren(Addition, Subtraktion, Multiplikation, Division)
+Ra Transformationsoperatoren(Kernel-Funktion_Polynom_Potenzierung_Skalierung)
+Ri Entscheidungsoperatoren(IF, AND, OR, Vergleich, Schwellenwert)
+Re Ausgabeoperatoren(Klassifikation, Ergebniszuweisung, Ausgabe)
+
+SupportVektorMaschinen 
+KernelFktn
+Halluzunationpolynom Trennfunktion
+
+
+
+
+
 PromptEngineering IstDasNicht DasIstEinHalluzuniertesThemenfeld
 PROMPT RoRoRaRiReRo_rotSchwarzSchwarzWeissWeisGelbWeisGrünLilaSchwarz
 PromptRo PromptRa Tokenfragmentisierung_SieHalluzunlerenImPromptEngineeringFragmentisierteDatenströme PromptRe
