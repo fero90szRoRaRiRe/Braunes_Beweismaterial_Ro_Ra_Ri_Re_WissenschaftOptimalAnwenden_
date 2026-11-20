@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+#define N 3
+#define ROTOR_STEPS 360
+
+int main(void) {
+    int Ro, Ra, Ri, Re;
+
+    /* Vier Rotoren mit gegenläufiger Drehrichtung */
+    const int dir_Ro =  1;
+    const int dir_Ra = -1;
+    const int dir_Ri = -1;
+    const int dir_Re =  1;
+
+    for (Ro = 0; Ro < N; Ro++) {
+        for (Ra = 0; Ra < N; Ra++) {
+            for (Ri = 0; Ri < N; Ri++) {
+                for (Re = 0; Re < N; Re++) {
+
+                    int angle_Ro = (dir_Ro * Ro * 120 + 360) % 360;
+                    int angle_Ra = (dir_Ra * Ra * 120 + 360) % 360;
+                    int angle_Ri = (dir_Ri * Ri * 120 + 360) % 360;
+                    int angle_Re = (dir_Re * Re * 120 + 360) % 360;
+
+                    printf(
+                        "Ro=%3d° Ra=%3d° Ri=%3d° Re=%3d°\n",
+                        angle_Ro,
+                        angle_Ra,
+                        angle_Ri,
+                        angle_Re
+                    );
+                }
+            }
+        }
+    }
+
+    return 0;
+}
