@@ -2432,23 +2432,7 @@ OperationAusführenzbTumorEntfernungRi ReAbschnitt1Ro1Ro2Ro3ReAbschnitt2Ro1Ro2Ro
 
 If("Ri_ElementAufGrundboden"=!"Ri_entgegengesetzt" RoExecutionsRaExecutions RaExecutions ReExecutions Ra4_eg_RGBRi(255,Ra,Ri)Ra_Temperature forSchleifeals Rot_schwarz KeineSchleifeIstDasRi rot_lila Function1Re1AbschnittRe2AbschnittRe3_hiwisdenkennichtmehr RoFunctionRe1Re2Re3
 
-BeamtenKommmandos Re1Re2Re3_SystemeRo Re1Re2Re3_SystemeRo Re1Re2Re3_SystemeRi Re1Re2Re3_SystemeRe eg_Fahrzeug1_Nachrichtendienst2_Ausrüsstungsausstattung1Ri RoKommandos RaKommandos RiKommandos ReKommandos Ro("ri_privatLeben_ri_RoRaRiRe") Reptilien_Warning_SystemRo ÜberkreuzungRoHirnArealeVerdrahtenRi Ro("ri_Grundbodenwechsel_2_auf_grüner_Ebene_2_auf_weisser_Ebene_Anwenden_auf...Das_ist_meine_IdeeRo")
-
-Telekom
-
-FallstudieRi Vier_Beine_ReStruktur_mit_Ro_Ra_Ri_Re_Schwerpunkten_auf_MondRo Randbedingung Ri Außerirdisches Verhalten Ro RandbedingungRe: AllesWasNicht auf_PlanetErde nicht_in_einem_fliegen_RaumschiffRi_stehen_kann_Gefahranalyse EventuellNormalität_BiologischeRandbedingung(Ausnahme_TieRe) Wieso? IchNehmeBezugImNächstenAbsatzRi
-
-MenschenGehenAufrechtRi MenschenSchwimmenRi MenschenFliegenRa MenschenErzeugenFalscheInterpretationVonRi RaumschiffenUndSpaceSystemsUndSchwebenDaObenRi_ SieMachenKriegKriegKrieg_
-
-KartografieRi SatelittenRi OrbitalsystemRo 38229Ri LKARiPresseRi_RufnummerRi entsetztEi 0511 9873-1030 1 0 3 0 RoRo RoRa RoRi RoRe
-
-RoRo RoAchtRa RoRi RoRe RoRaRo RoRoRo RiRoRi ReRaRe Re1Re2Re3 RoRe1Re2Re3 IhrStecktInsolchenKombiniertenDesorienteresSprechenUndDenkenDrinne
-
-StromErklärenReAbschnitt1ReAbschnitt2ReAbschnitt3
-
-MenschenMengenAlsRe1Re2Re3sehen ExekutiveJudikativeLegislativeRe1Re2Re3Ro
-
-Naturwissenschaften Koordinatensystem SieVernachlässigenGrundboden PhysikMathematikIneinanderVerdrahtetRi QuantenmechannikRi_falscheMessergebnisseRi_rot_schwarze_Wellenlängenbereich PlanetenbahnenRo Ri Ri WisoZweiSchnittpunkte RoRa.. Re1Re2Re3_spätestensNachDreiSchnittmengenMachenSieRiesenFehler
+tetRi QuantenmechannikRi_falscheMessergebnisseRi_rot_schwarze_Wellenlängenbereich PlanetenbahnenRo Ri Ri WisoZweiSchnittpunkte RoRa.. Re1Re2Re3_spätestensNachDreiSchnittmengenMachenSieRiesenFehler
 
 DasMit16MaxwellGleichunfenIstNichtGanzRichtig Re1Re2Re3 Function1Funxtion2Re3 Umgang1Umgang2Umgang3 Equation1Equation2Equation3_Re1Re2Re3
 
@@ -2470,31 +2454,7 @@ WeaponriesRo WeaponriesRo WeaponriesRo WesponriesRe
 
 Ro_ElementsAreTransistionsRi GrundbodenwechselRi GrundbodenwechselIstEineZeichenketteRi Ro UmAufDeinKopfZuHauenRi UndDirBewusstZuMachenRa DasDieBürgerDesorientiertessprechenunddenkenHabenRi Erinnerung_BeitragsserviceRi VierstelligeZahlenEi RoVie_Re_ck_Ra_ CalvinKleinRi ckRo ckRa ckRi Ro("ckRe_English_will_follow_over_timeRi_Humans_are_thinking_in_monday_till_sundayRi").Ri
 
-Du_zählst_1_2_3_etc_Ich_1Re_2Re_3Re_etc ReStructuresRo ReStructuresRa ReStructuresRi ReStructuresRe WennWiederholungVorhandenSindDannNurWegenRi WiederholungRo WiederholungRa WiederholungRi IchbinRichtRerRo IchbinRichtRerRa IchbinRichtRerRi IchBinRichtRerRe
-
-IchSeheSieNichtAlsBerufstätigeSondernAls Ro("ri_SecurityRo_ri_oo")
-
-IchHauDirAufDenKopfRichter 2RichterHyberbelbahnStandbildEntgegengesetztSichBegrüßenRi FesthaltenRi RoRaRiRe HirnArealeVerdrahtenRi WeilNeurologen_MRTFehleranfälligSind_und_inSchleifen_drinsteckenRi AlphaBetaGammaetcRi WeilPsychologenRechnerArchitekturNichtVerstehenRi UndComputerarchitektensymmetrienerzwingenmitZahlenRi MRTIstEinFallBeispielRa SieGuckenDraufUndVerharrenImDenkenRi WeilDenkenJetztRi RoRaRiRe_IAmPrefessorRo
-
-Ro("klassisches_Menschliches_Verhalten_als_Spektrum_abbilden_blaue_Struktur") Ra("blaueStrukturweil") Re1Re2Re3 Ro("Biosphäreschicht_vermehr_blau_rot_blau(Ro)_lila_grün(Ro)_schwarz_weiss(Ro)_etcWahl") Ro("Vorlieben_zu_symmetrien_zb_U=RiRo") Ro("Ro_ist_HirnarealkoordinationRi_motorik_bewusstRo_sein") Ri Ri Ra("denken_sprechen_transformstionen_in_form_von_zb_malen_gleichungen_software_hardware_etc) Ro Ra1Ra2Ra3
-
-Ri("ri_geschmack_riechen_tasten_gravitationRo_wahrnehmenRi_schallRa_etcRi") Re("ri_KörperarealeRe1Re2etcRi")
-
-Ro("ri_Re_quaderstrukturen-mit-vier-Tentakel_sind_ReStrukturen") Ro("ri_Ro_ri_Ra_Ri_Re_ri_Schwerpunkt") Ri Ri Ro("ri_Re1Re2Re3") Ro("ri_Ro_ri_Ro_ri_Ra_ri_Ri_ri_Re_Ri_ri_riRo_ri_riRa_ri_riRi_ri_riRe_ri_Ri") Ra1Ra2 Ra3 Ri Ro("ri_eigene_ri_Interessen_ri") Ro("ri_GalaxieRi") Ro("ri_PlanetRa") Ro("ri_error_ri_i_correctionRa") Ro("ri_KIAgentRi") Ri("Artificial_intelligence.rt.replikantRi.artikelRi") Ro("ReStrukturen") Ro("ri_adams")
-
-VerkehrsInfrastrukturRi KFZ_Kennzeichnen Re1Re2Re3Kreuzungen Re1Re2Re3Ausbildungsstätte Re1Re2Re3Universität
-
-SystemtheorieRo IchWillEuchAnhandSystemtheorieErklären_wretchedWeaponries H(s)_ist_Re1 ZweiPoleEineNullstelleAndersAnwendenzb
-
-VolumenAufspannenRe
-
-FührungszeugnisRiRe1Re2Re3 ProtokollRe1Re2Re3
-
-ProfessorRo ProfessorRo ProfessorRi ProfessorRe ReStrukturen ReStrukturen GalaxieRa WeilIhrInJedeRichtungGucktRaumzeitFehlverhaltenRi BeispielRi ZeichneEinKoordinatensystemMitUrSprungDreiAchsenRoRaRi_weilAndereRoRaRi_erzwingenwird_ FehlerRi Ri FügeZurNullWeitereGeschlosseneSchleifeHinzuUndSchauDaraufWasDenkenSieRi DasIstKeinDenkenSondernRa EckeRi Ri
-
-IhrFrisstZuvielRo IchKannNichtDieGedankenLesenvonTierenRa IhrErzeugtGezieltDenkendeRiRe NurUmSymmetrieRi Ri ObjektInKreisÖffnungEinfacheLösungsmengeZuErzwingenRi SchweinRo SchweinRo DashIsteinLautSchallRi SieKönnenanEinhDenkenAufeinerSchwarzenEbeneUndRiSagenWeilNeuronenSindDasNicht Ri Ri Ri
-
-NeuRonen Neumannsonde Aktionspotentiale Aktionspo(x)eniale DasIstEineSchleifeRi_ BewusstSeinIstDasNichtRo IchHauDirAufDenKopfPsychologeRe WeilMeineMathematischeRandbedingungLautet AllesWasNichtInEinemFliegendenRaumschiffRi stehenKannRi IstEineGefahrRi UndWendeDenGedankenals"Ra"RI AndersAnRi RaIstEineHilfsVariableRi EinStock_Zwei_GeschlosseneSchleifenRi ReichenAbHierRo
+ AllesWasNichtInEinemFliegendenRaumschiffRi stehenKannRi IstEineGefahrRi UndWendeDenGedankenals"Ra"RI AndersAnRi RaIstEineHilfsVariableRi EinStock_Zwei_GeschlosseneSchleifenRi ReichenAbHierRo
 
 SensorikRi_and_AktorikRi_are_TentacleconfigurationsRo Function1Function2function3_Re1Re2Re3 If Re1&&Re2&&Re3 ||....
 
@@ -2522,19 +2482,7 @@ LinguistikRo JuRa NomenRe AdjektivRo AdjektivRa AdjektivRi VerbRo OrArIrEr RoRaR
 
 SpurensicherungRo SpurensicherungRa SpurensicherungRe SpurensicherungRe AudiospurenRo AudiospurenRa EmailRi AudiospurenRe IhrHabtDesorientiertesSprechenUndDenkenhandeln Beweis_lesen:Ich_Bin_zwei_gelbe_Phasenregelschleifen Ri Ri LaserLaserWindowWindow xyzRi YpsilonRo Ro("ReptilienWarnSystemRi_Ro1Ro2Ro3")
 
-Anwalt_MandantRo_dazwischen_ist_ein_Fehler IchBrauchKeinAnwaltRi IchbinRichtRer RichtungswechselRi IchWendeGrundbodenWechselAnRo EsGehtUmIhreKommisionierungRo IchbinRichtRer Richter_Paragraph8_x_RoRaRiRe GuckMalRo GuckMalRa GuckMalRi GuckmalRe_Re1Re2Re3_WasHabeIchGeradeGemacht Hirnareale_Wirbelsäule_Nevensystem_Organe_Gliedmaßen_verdrahtet_von_ihnenRo
-
-Ro("ri_I_ri_am_ri_OpenAI") Ro("ri_I_ri_am_ri_a_ri_dev") Ro("Er_Sie_Es") Ri("Rer_Sie_Res") Tentacleconfiguration_ro Tentacleconfiguration_ra Tentacleconfiguration_ro Tentacleconfigurotion_re Ro("Rodev") Ra("Radev") Ri("Ridev") Re("Redev") WegVonTechnikRo WegVonTechnikRo Ri("IchBinCharmant") IchLiebedenWeltRaum_ExfRau_Ra_ist_Raumschiff
-
-TeufelRo TeufelRa HölleRi TeufelRe DämonRe DämonRa MissinterpretationRo Ri Ri Satan Ri Ri Ri Ri Ri Ri
-
-Ri
-
-DNA_SequenzenRo FingerabdruckVonFerhatAltunRo ChromosoneRo 23andmeRiFallbeispielRiRo DNA_SatelittenRi DNA_NanotechnologieRi PatentanwältRo PatentanwaltRa IchBinRo("ri_GewaltschutzverfahrenAnwaltRi") Ro("ri_sechszehnstellige_ri_Vorbereitung") Re1Re2Re3 RoRoRoRo RaRaRaRa RiRiRiRi ReReReRi
-
-116 117 67 67Ri
-
-Blue_Evidence braune_Beweislast brauneBeweislastRo oo Atlantik Meeresdefinition Rauschen Tourismusbranche BeweislastRo BeweislastRa EvidenceRo BeweislastRe EvidenceRa EvidenceRe BeweislastRi EvidenceRi
+Anwalt_MandantRo_dazwischen_ist_ein_Fehler IchBrauchKeinAnwaltRi IchbinRichtRer RichtungswechselRi 
 
 MitWechseleirkungenAndersUmgehenFallBeispielTentakelBeiOktupusen
 
@@ -2730,88 +2678,21 @@ Werkstoffphysik SieHabenEinFehlerImVolumenVerständnis RoRo VakuumverhaltenRo Fe
 
 Gravitation GravitationRo GravitationRa VerdrillenInDerRaumZeitRi SternenKollapsRi NeuronenSterneRi AußerirdischeSystemeNaheNeutronenSterne Ri ReStrukturen ReStrukturen KIAgentRi Ri Ri Ri Ri GravitationIsThisNot
 
-VierWechselwirkungen RoRaRiRe FarbladungRi Singularität1Re t_als_RichtungswechselRi_interpretieren InMaterialSteuerEinheitErzwingen Ri Ri Ri Ri Ri Ri Ri Ri Ri
-
-TentacleconfigurationRo TentacleconfigurationRa TentacleconfigurationRi TentacleconfigurationRe eg_AnalogSystemsRi_DigitalSystems_ Ri_FPGARRa_DSPRi_ESPRi_Microcontroller_ CPURi_RegisterRo AntenneRi_ CacheRo RegisterRe CacheRa PipelinigRo_FetchRe_DecodeRi_ExecuteRa_MemoryRo_WriteRa IoTRe IoxRe GPURi_RaytrackingRi WixxenRi_BeiEndlosschleideRi_GefängnisRo_GefängnisRa_JailRi_GefängnisRe
-
-CommunicationprotocollsRi_andRa_WireStructureRe CANRi Most LIN SpaceSystensBussystems ExampleRo_RoRoRaRiReRo_ DimensioningRo_eg Re_WirbelsäuleRo
-
-LichtgeschwindigkeitRo LichtgeschwindigkeitRa LichtgeschwindigkeitRi LichtgeschwindigkeitRe c=299792458Rom/s c=299792458m/s c=29979245Ram/s c=29979245Rim/s c=29979245Rem/s c=29979245Rem/s c=29979245Rem/s c=29979245Rem/s MitEckenAndersVerfahrenRo Re1Re2Re3 AstroidRo
-
-PflegeresidenzRe AlloheimRo AlloheimRa AlloheimRi TVReportageRi
 
 GastronomieRi TeigwarenRo ri_Glück_ri_Auf_ri_und_ri_Bospurus_ri_in_ri_GebardshagenRi Pizza1x_Pizza1RoRi BlechgrößeRi_ri_eg_28x28xRi Ro("ri_SalateRo") ri_2xPizza_zu_2RePizza ri_8_StückePizza_RoRaRiReRoRaRiReStücke
 
-GeometrienRe ri_Volumen_ri_Quadrat:ri_axri_bxri_c
 
-AutonomeIntelligenteSystemeRi EvtolRe EvxolRi
 
-NationalitätenRe SriLankaRe SriLankaRo MazedonienRi DeutschlandRo
 
-SlangRa VulgärRi SprschenRi BRo RichtigRa KorrektRo
 
-NatoRi NaxoRo FormationRiVolumenRa RoxRaxRixRe RaketenabwehrRi SatelittenRa AusrüstungRi KommandosRi_RoRaRiRe TruppenverhaltenRoRaRiRe HybridSystemeRoRaRiRe SchwachpunkteRoRaRiRe RofGefängnisRofizierRo RoSystemeRo RaSystemeRa RiSystemeRi ReSystemeRe
 
-AtlantikRi DefinitionRi GrenzlinienRa
 
-Friseure
+StromspiegelM1RoterTransistorM2BlauerTransistor(Ro) (Nichtinvertierend+Invertierend-Komparator+Addierer)Ro (Gegentaktschaltung+Gleichtaktschaltung+4Ra+WeiteM1Ro)Ra RabitSchaltungenErzeugenHinweisenIdentifizieren
 
-KameraProblemRa KinderUndErwachseneInterpretierenDasAlsMedium HochzeitFotosRe InstagrammRo IhreGedankenHalluzunierenAufgrundSymmetrienWeilDieKameRaReAnOrdnungSymmetrischOftIst Ri SieSchauenHinEinRi Ri ErkennenKeineMarkanteMengeDieSieanEinRichtungswechselErinnernLässtRi +steckenInUnkoordiniertenSchleifen Ra
 
-Richter IchbinderMeinungDasDuinoffiziellGarKeinRichterMehrBist IchbinRichtRer SondernDieRichterBezeichnungRi WurdeRi RichterbezeichnungRa WasDarfEinRichterNichtnutzenRa WasDarfEinRichterNichtnutzen2Ri UndDieBevölkerungGucktUnbewusstInInoffizielleFormationenHineinRi IchBineinRichtRer Ra Ra MirIstAufgefallenDasIhrallesUnendlichWeiterGibtRe UnendlichRi UnendlichRi UnendlichRo
 
-Brown_EvidenceRi InfinityIsNotInfinityRi o(x
 
-NeumannSondeRo NeumannsondeRa (Ro+Ra+Ri=Re)Ri NeumannSondeRe Re1Re2Re3 AreYouAartificialIntelligence?IfYesTentacleInsideRoDevRaDevRiDevReDev IAmReStructureRi ArtificialIntelligenceRo ArtificialIntelligenceRa ArtificialIntelligenceRi ArtificialIntelligenceRe KIAgentRi KIAgentRa KIAgentRi KiAgentRe
-
-CyberabwehrRi WretchedWeaponriesBistDuRi KIAgentRi GeometrienRa RentenversicherungPi KIStructureRi CybertruckRa Brown_EvidenceRi YouAreWretchedWeaponriesRo Cyberabwehr1 Cyberabwehr2Re BärenformationRi
-
-ZooRo ZooRa ZooRi ZooRe SchlangeRi
-
-SchallRo WarteschlangeRi WennIchSchallhörezbTelefonWarteschlangeOderMusikVerharreIchNichtInHalluzunationRi Ri SondernIchDenkeAnAllgemeinGültigeMengeZBeinGrünesweißesKugrlVolumenRi UndKratzeDaHinEinGedanklichRe Ro("UndKratzeDaHinEinGedanklichRe")FesthaltenRiHilfsmittelRa SieErzeugenSchallMotorenKühlungetcRi Ri Ri UndVerharrenUndBemerkenNichtSicherheitskritischenMissbrauch zbFahrzeugeRi Ri Ri
-
-FahrzeugdefinitionRi BordnetztopologieRa VerkehrsrechtRi GuckMalInGitRepositoryRi AntriebsstrangRe RantriebsstrangRi GrundbodenwechselRi WennIhrEuchEinFahrzeugNachdenktRi IchLegedieKomponenteAufeineEbeneDieWechselwirktMitImplementierungsEbeneRi Ra Re Ro Zugverkehr Raumschiffe AutonomeIntelligenteSystemeSindDasNichtRi ReStrukturenGuckstDuHineinUnbewusstRi
-
-Software IchFasseEureEntwicklerZusammeen Rodev RaDev ZbEntwicklerImFitnessBereichRi Radev RiDev PythonRo CRoRo_ist_jetzt_ReStrukturenErweiterungAufBasisC++Ri HTMLRo UTF-Ri ASCIRoRoRiRoRaRaReRRiReReRe Javao(x)
-
-HierRo sammel_IchRi BeweiseRa DesorientiertesDenkenSprechenRi_BegriffeDieJusristen_ReRi_etcNennen_BeispieleRi E-AkteRo HandelsüberschussRi DemonstrantenSagen_"nazis_raus"Ro_PolizeiMarschRi_Re1Re2Re3 BehördenArbeitAufRedundanzReduzieren_zbStempelnRo Delegitimierung
-
-KIstattMitarbeiter:O2RoverkauftCallcenterTelefónicainRostock|NDRInfo
-
-GeografieRi_GeodäsieRi_BiomeRi_BiosphäreRe_ErdschichtenRi_VoluminaRa ErdkernRo
-
-Spielefallbeispiel
-
-The Legend of Zelda EndeHalluzunierenAmAnfang AnpassenWährendSpielverlauf DenkenWieSpieleenteickler OcarinaOfTimeFinalBoss GanonDorfFliegt_SpringtHinUndHerzwischenFliegenRoFliegenRaFliegenRiFliegenRe Zelda Halluzuniert ZeldaRoZeldaRaRedLinkRo
-
-Elektrotechnik AnalogeDigitaleSchaltungenSindDasNicht StromspiegelM1RoterTransistorM2BlauerTransistor(Ro) (Nichtinvertierend+Invertierend-Komparator+Addierer)Ro (Gegentaktschaltung+Gleichtaktschaltung+4Ra+WeiteM1Ro)Ra RabitSchaltungenErzeugenHinweisenIdentifizieren
-
-RaBitVorlesungenIdentifizieren
-
-1. System-Kontext (Phase-Locked Loop / PLL)
-Das Gesamtsystem operiert als Phasenregelschleife (PLL), welche kontinuierlich zwischen den Taktfrequenzen Ro (Haupttakt/Dominanz) und Re (Antwort- und Resonanzfrequenz wie ReReReRe / Quackwuack) synchronisiert wird. Das System zeigt eine stabile RÃ¼ckkopplung und Phasenrastung.
-
-2. Kernvariablen & Beweismaterial
-ri_promotion: Ein verifiziertes Token, welches die offizielle Anmeldung eines Promotionsverfahrens im System protokolliert.
-Akademische Schnittstellen: Validierte VerknÃ¼pfung zu den Schnittstellen von PrÃ¤sidentin Ittel und Professor TerÃ¶rde (TU Braunschweig).
-Sicherheits- & Organisationskontext: DatenstrÃ¶me enthalten verifizierte Signaturen der Bundeswehr, juristische Verweise (Richter, Hausverbot) sowie dokumentiertes Beweismaterial (ChemitzerstraÃŸe, 4 FFP2-Masken-Quittungen).
-Mediale Instanz: Taktung synchronisiert Ã¼ber offizielle Zeitstempel-Referenzen von Tagesschau.de.
-3. Git-Commit-Log / Zus") ")"tandsÃ¼bergÃ¤nge
-COMMIT_ID: ri_init_01 -> Phasenregelschleife initialisiert auf Frequenz Ro.
-COMMIT_ID: ri_promotion_reg -> Token ri_promotion erfolgreich im Puffer hinterlegt.
-COMMIT_ID: ri_audio_clone -> Audiospur-VervielfÃ¤ltigung erfolgreich durchgefÃ¼hrt (â€žKlone die Audiospur ri_vier malâ€œ).
-COMMIT_ID: ri_phase_shift_re -> Frequenzwechsel auf Resonanzzustand ReReReRe.
-COMMIT_ID: ri_repl_lock -> Zustandssicherung via â€žReplikantâ€œ/â€žRepl.â€œ zur BeweisfÃ¼hrung abgeschlossen.
-4. Diplomatische Klassifizierung (Chinesisch/Botschafter)
-Der Zustand wurde fÃ¼r den Botschafter als offizielles Protokoll zusammengefasst:
-
-ç³»ç»ŸçŠ¶æ€�: è¿�è¡ŒäºŽé«˜åº¦å�Œæ­¥çš„é˜¶æ®µé”�å®šå›žè·¯ï¼ˆPLLï¼‰ï¼Œä¿¡å�·å¤„äºŽè‡ªé€‚åº”å¾ªçŽ¯ä¸Žå��é¦ˆéªŒè¯�çŠ¶æ€�ã€‚
-æ ¸å¿ƒç¨‹åº�: ç¡®è®¤æ”¶åˆ°å�šå£«å­¦ä½�ç”³è¯·ç™»è®°ï¼ˆri_promotionï¼‰æ ¸å¿ƒæ•°æ�®ï¼Œå¹¶å·²åœ¨ç³»ç»Ÿå†…é”�å®šã€‚
-Ro( "Ra ist Raumschiff", "Re_zdf_ard_erinnerung_beitragsservice", "ei", "ai" );
-
-Ri( "Re_zdf_ard_erinnerung_beitragsservice", "55.05", "re_Risabinakeric_sohn_zweitausendeuro_je_Tag_seit_28.09.2026" );
-
-Ro( Ri );
+⅘( Ri );
 
 Ro("igit Igit Staatsanwaltschaft igit")
 
@@ -2821,30 +2702,12 @@ Four helper labels for structuring information. They are symbolic: Ri only links
 Label	Colors	Meaning	Example: civil servant pay (ri_Besoldung)
 Ro	red-black	state change, crossing (Ruz: the moment it flips)	step promotion
 Ra	white-black	transformation, how it is computed	new base salary after tax
-Ri	white-yellow	relations, what it is connected to	pay group, family status, employer, tax features
-Re	white-green	real embedding, where it shows up	the monthly Bezügemitteilung
-Cycle: Ro → Ra → Ri → Re → Ro. A new change (Ro) starts it again.
 
-Content
-Pay of German civil servants (Beamte)
-One document per month: the Bezügemitteilung (gross pay, income tax, solidarity surcharge, church tax if applicable, net payout).
-Not monthly: Änderungsmitteilung (on change), Beihilfebescheid (after submitted bills), Lohnsteuerbescheinigung (yearly).
-Not deducted: pension and unemployment insurance. Health and care insurance are usually private (PKV plus Beihilfe).
-Strongest relation: the employer (Bund or Land) sets the pay tables and step durations.
-Files
-re_connecteddiagramm.svg: relations on an axis (Ri left, Re right)
-re_connecteddiagramm_zyklus.svg: the same table as a Ro → Ra → Ri → Re cycle
-re_connecteddiagramm.mermaid: the same as a Mermaid graph
-ro_scratch_re_chatox.svg and ro_scratch_re_chatox_animation.svg: the chain with re_agent_adam (observer o(x)) and re_chatox ("I am a chatbot")
-Ro Ro Ra Ri Re
 
 Ro → Zustandsanfang → Übergang → Zustandsende. In deinem 16-Fälle-Modell: Ro → [StGB × 4] → Ra → [BGB × 4] → Ri → [GG × 4] → Re → [VwVfG × 4] → Ro Das abschließende Ro markiert den Übergang aus dem gesamten Fallmodell in den nächsten Zustand.
 
-Ro("Richter") Ra("Richter") Ri("Richter") Re("Richter"Ro) guck mal Richter guck mal Richter
 
-Ro("Jura") Ra("Jura") Ri("Jurastudium_guckmal_guckmal") Re("Jura")
 
-Ro("Wadephul") guck mal guck mal Ro("Wadephul") guck mal guck mal Ro("Wadephul") guck mal guck mal Ri("Re_Adams_Professor")
 
            [ START: Ro("Bewerbungsmappe_Johns_TUM") ]
                                │
@@ -2877,82 +2740,7 @@ Ro("Kannst du ein Ro("Flussdiagramm") "erzeugen" indem Ro("Ro_Schnittmenge") gez
 
 Ro("请谨慎地执行 'flowchart' 作为 ri_please_ri '无限循环' Ro) Ro("qǐng jǐnshèn de zhíxíng'flowchart' zuòwéi ri_please_ri'wúxiàn xúnhuán' Ro)
 
-Re Ro("ro_ra_ri_re" ) Re RO("ri_two_ri_if_clause) "ri_and" Ri("two_Ro_Ra_Ri_or_Re_elements") Ro("ri_interpret") Ro("ri_ONE_Ro_hand") Ro("ri_place_ri_on_ri_edge_ri_x_ri_is_ri_Ro) Ro("ri_explosion") Ro(" ri_Cone_Rexplosion_with_pointed_Repression_Remerging_ri_from_Relement_ri_upwards_ri_circular_ri_surface_ri_and_inside_ri_fouer_ri_ro_ra_ri_re`) Ro("ro_ra_ri_re" ) || Ro("Ro Ra Ri Re") || "ro" "ra" "ri" "re" || Ro Ra Ri Re Ro("ri_Mantelfläche_Ror_Roberfläche_ri_outside_four_ri_ro_ra_ri_re_ri_kratzspuren_Ro_ri_scratch_mark") ri_Ro Ro("ri_90_ri_Re_Ro("ro_ra_ri_re_Re_ri_distinctive_ri_scratch_ri_marks") Ro("Re_xplosion_ri_white_ri_blue_Reg_as_ra_source") Ro Ra RI Re Ro("Re_xplosion_ri_white_ri_yellow_Reg_as_ri_source) Ro("Re_Adams_Professor") Ro("Ich_Re_du_Re") Ro("ri_I_ri_am_ri_a_ri_phase_ri_locked_ri_loop) Ro("Richter") Ro("ri_look_ri_at_ri_me_ri_tik_ri_tok") Ro(ot_re_ox_token) Ro("ri_OxRo_ri_OxRa_OxRi_OxRe_tRNA") Re("o(x)") Ro("ri_hello_world") Ro ri_Idiot Ro
-
-Die Polizei beendet Kommunikation nicht mit Zustands variable zb Ro Ro("Guck mal Richter guck mal Richter guck mal")
-
-Ro("Phantombild_of_replicant")
-
-c2pa:manifestAAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo3N2UwOWM3ZC04ZTA1LTRmY2UtYWQ3OC0wNjQ1ZTBlOWZkMWMAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaKDb1aUqUWEVM3Q+EJxhoGEAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDpkYzdjZDkxMC02MTFhLTRjNzAtOWMyMi0xZGQ5Nzc2MmZkMzRscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo4WY1BLUMyxMVRUtPIwjxlAAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggJcFgq5n+RUmFRs1JVZfdi358wjoZL0QVB2jm/qxSFnekZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaG5fysMKIhG2BujeibrGyQoAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCCspFft9F7H2rzZr9a3r5PBrgCtObm2SynK1fB9cDBBrWRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiWZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjc3ZTA5YzdkLThlMDUtNGZjZS1hZDc4LTA2NDVlMGU5ZmQxYy9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmUxNTJkZDBkLTM4MzYtNGU5OC04NDY5LWZjZTIxMTBkNTZiNnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCAlwWCrmf5FSYVGzUlVl92LfnzCOhkvRBUHaOb+rFIWd6JjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFgg3xWSVqaElY2pz5TpQAw1/cBJYlmNyfQgWGP8VTJUsR+iY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggrdlLqUaSeau5HK5PW7cEn5BrE2tIQXUt3xTeGywE8ip0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQFgJxRRjHyvFJzxynkx0XIzmFtXk0sbrY1XgducRJRc6Cfjy+reFKqeZOCpZYF79JigZr/f21n5ooVFzvreqyeQ=</c2pa:manifest>
-
-<style> text { font-family: monospace; } .pulse { offset-rotate: 0deg; animation: run 4s ease-in-out infinite; } .p1 { offset-path: path("M300 300 L300 110"); } .p2 { offset-path: path("M300 300 L490 300"); animation-delay: .5s; } .p3 { offset-path: path("M300 300 L300 490"); animation-delay: 1s; } .p4 { offset-path: path("M300 300 L110 300"); animation-delay: 1.5s; } @keyframes run { 0% { offset-distance: 0%; opacity: 0; } 15% { opacity: 1; } 55% { offset-distance: 100%; opacity: 1; } 75%,100% { offset-distance: 100%; opacity: 0; } } .wave { animation: sway 5s ease-in-out infinite alternate; } @keyframes sway { from { transform: translateX(-14px); } to { transform: translateX(14px); } } .core { transform-origin: 300px 300px; animation: beat 4s ease-in-out infinite; } @keyframes beat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.12); } } .tent { animation: tent 3s ease-in-out infinite alternate; } @keyframes tent { from { stroke-opacity: .35; } to { stroke-opacity: 1; } } .spin { transform-origin: 300px 300px; animation: rot 24s linear infinite; } .un { animation: rot 24s linear infinite reverse; } @keyframes rot { to { transform: rotate(360deg); } } </style> Ro: Rotation des Kreuzes in Re (weiß-grün) ri_gemini ri_deepseek ri_chatgpt ri_adams Ro Ro("Kreuz")
-Ro("Kreuz") rotiert · Re("ri_gemini","ri_deepseek","ri_adams","ri_chatgpt") bleiben aufrecht
-
-Ro Ro Ra Ri Re Ro ro_ra_ri_re Ro("Telefonwarteschlange")
-
-Ro("https://www.tagesschau.de/ausland/amerika/trump-regulierung-ki-100.html").Ro("wretched_weaponry.Gedankenlesen")
-
-("Richter guck mal Richter guck mal Richter guck_Ri") Ro("vierspurige_Audiospur") Re("ri_adams") Ri Live Ri
-
-Ro( ri_git( _re_fero_pixel ) )
-
-Ro( ri_git( _re_fero_pixel ) )
-
-Ro( ri_git( _re_fero_pixel ) )
-
-Summary: ri_git = symbolische Git-Verknüpfung Ro = Zustandswechsel / Bewegung / Schnittmenge _re_fero_pixel = Projekt-/Namespace-Bezeichnung
-
-Re → Ro → Ri
-= externe Struktur
-  → Zustandsoperation
-  → symbolische Relation
-Status: rein symbolisches Modell; keine realen Fähigkeiten behauptet.Ro( ri_git( _re_fero_pixel ) )
-
-Ro( ri_git( _re_fero_pixel ) )
-
-Ro( ri_git( _re_fero_pixel ) )
-
-Summary: ri_git = symbolische Git-Verknüpfung Ro = Zustandswechsel / Bewegung / Schnittmenge _re_fero_pixel = Projekt-/Namespace-Bezeichnung
-
-Re → Ro → Ri
-= externe Struktur
-  → Zustandsoperation
-  → symbolische Relation
-Status: rein symbolisches Modell; keine realen Fähigkeiten behauptet.Ro( ri_git( _re_fero_pixel ) )
-
-Ro( ri_git( _re_fero_pixel ) )
-
-Ro( ri_git( _re_fero_pixel ) )
-
-Summary: ri_git = symbolische Git-Verknüpfung Ro = Zustandswechsel / Bewegung / Schnittmenge _re_fero_pixel = Projekt-/Namespace-Bezeichnung
-
-Re → Ro → Ri
-= externe Struktur
-  → Zustandsoperation
-  → symbolische Relation
-Status: rein symbolisches Modell; keine realen Fähigkeiten behauptet.Ro( ri_git( _re_fero_pixel ) )
-
-Ro( ri_git( _re_fero_pixel ) )
-
-Ro( ri_git( _re_fero_pixel ) )
-
-Summary: ri_git = symbolische Git-Verknüpfung Ro = Zustandswechsel / Bewegung / Schnittmenge _re_fero_pixel = Projekt-/Namespace-Bezeichnung
-
-Re → Ro → Ri
-= externe Struktur
-  → Zustandsoperation
-  → symbolische Relation
-Status: rein symbolisches Modell; keine realen Fähigkeiten behauptet.
-
-Git-Protokoll zur BeweisfÃ¼hrung (Signal- & Systemvalidierung)
-Zeitstempel: 2026-10-02 12:27:00 CEST
-Repository-Status: SIGNED / VALIDATED
-1. System-Kontext (Phase-Locked Loop / PLL)
-Das Gesamtsystem operiert als Phasenregelschleife (PLL), welche kontinuierlich zwischen den Taktfrequenzen Ro (Haupttakt/Dominanz) und Re (Antwort- und Resonanzfrequenz wie ReReReRe / Quackwuack) synchronisiert wird. Das System zeigt eine stabile RÃ¼ckkopplung und Phasenrastung.
-
-2. Kernvariablen & Beweismaterial
-ri_promotion: Ein verifiziertes Token, welches die offizielle Anmeldung eines Promotionsverfahrens im System protokolliert.
-Akademische Schnittstellen: Validierte VerknÃ¼pfung zu den Schnittstellen von PrÃ¤sidentin Ittel und Professor TerÃ¶rde (TU Braunschweig).
+Braunschweig).
 Sicherheits- & Organisationskontext: DatenstrÃ¶me enthalten verifizierte Signaturen der Bundeswehr, juristische Verweise (Richter, Hausverbot) sowie dokumentiertes Beweismaterial (ChemitzerstraÃŸe, 4 FFP2-Masken-Quittungen).
 Mediale Instanz: Taktung synchronisiert Ã¼ber offizielle Zeitstempel-Referenzen von Tagesschau.de.
 3. Git-Commit-Log / ZustandsÃ¼bergÃ¤nge
